@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@font-face {
+  font-family: "Suisse";
+  src: url("../../public//fonts/SuisseIntl-Regular.ttf");
+}
+@font-face {
+  font-family: "SuisseMedium";
+  src: url("../../public//fonts/SuisseIntl-Medium.ttf");
+}
+@font-face {
+  font-family: "SuisseSemiBold";
+  src: url("../../public//fonts/SuisseIntl-SemiBold.ttf");
+}
+@font-face {
+  font-family: "SuisseBold";
+  src: url("../../public//fonts/SuisseIntl-Bold.ttf");
+}
+.mui-9ddj71-MuiInputBase-root-MuiOutlinedInput-root {
+  border-radius: 40px !important;
+  /* border: 1px solid white !important; */
+}
+
+html {
+  scroll-behavior: smooth;
+}
+div.sticks {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background-color: yellow;
+  padding: 50px;
+  font-size: 20px;
+}
+.custom-styling {
+  background-color: #f4f4f4;
+  padding: 1rem;
+  border-radius: 5px;
+  overflow-x: auto;
+}
+
+.block-styling {
+  background-color: #fff3db;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 25px;
+  position: relative;
+  width: 80%;
+  border-radius: 15px 15px 90px 15px;
+}
+.quote-styling {
+  width: 150px;
+  height: 90%;
+  position: absolute;
+  border-radius: 0px 15px 15px 0px;
+  top: 0;
+  right: -100px;
+  padding: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: #fff3db;
+}
+.quote-img {
+  width: 30px;
+}
+.i-frame-div {
+  width: 100%;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+}
+.iframe-video {
+  width: 100%;
+  border-radius: 15px;
+}
+.swiper-pagination-bullet {
+  border-radius: 50%; /* Set the desired roundness here */
+  background-color: #ccc; /* Adjust background color as needed */
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #333; /* Adjust active button color if desired */
+}
+.circle {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: blue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 50px;
+}
