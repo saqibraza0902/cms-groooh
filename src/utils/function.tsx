@@ -233,3 +233,22 @@ export const get_images_from_firebase = async (folderPath: string) => {
   const urls = await Promise.all(items.map((item) => getDownloadURL(item)));
   return urls;
 };
+export const get_collectibles = async (paramtype: string) => {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_URL}/api/collectibles?mytype=${
+        paramtype ? paramtype : ""
+      }`,
+      {
+        method: "GET",
+        cache: "no-cache",
+      }
+    );
+    if (!res.ok) {
+      throw new Error("Failed");
+    }
+    return res.json();
+  } catch (error) {
+    return error;
+  }
+};

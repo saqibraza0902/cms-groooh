@@ -15,6 +15,7 @@ import { FaChevronUp } from "react-icons/fa";
 import { HiBars3BottomLeft, HiBars3BottomRight } from "react-icons/hi2";
 import { useTheme } from "next-themes";
 import { HiOutlineSun } from "react-icons/hi";
+import { RxCross1 } from "react-icons/rx";
 
 interface IProp {
   text?: string;
@@ -36,7 +37,7 @@ interface ISlider {
 }
 export const AnimatedHeroNav = ({ className, text }: IProp) => {
   const [isHovered, setIsHovered] = useState(false);
-  const { theme, setTheme } = useTheme();
+
   return (
     <div
       className={cn(
@@ -369,9 +370,8 @@ export const SliderLeftButton = ({ className }: ISlider) => {
     </div>
   );
 };
-export const AnimatedHeroHamburger = ({ className, text }: IProp) => {
+export const AnimatedHeroHamburger = ({ className }: IProp) => {
   const [isHovered, setIsHovered] = useState(false);
-  const { theme, setTheme } = useTheme();
   return (
     <div
       className={cn(
@@ -434,6 +434,39 @@ export const CartButton = ({ className, text }: IProp) => {
             <span>Add to Cart</span>
             <span>${text}</span>
           </span>
+        </motion.p>
+      </div>
+    </div>
+  );
+};
+
+export const AnimatedCloseNavbarButton = ({ className }: IProp) => {
+  const [isHovered, setIsHovered] = useState(false);
+  const { theme } = useTheme();
+  return (
+    <div
+      className={cn(
+        `bg-black border-black min-w-10 gap-3 px-2 flex items-center justify-center rounded-lg relative overflow-hidden ${className}`
+      )}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div className="!w-full ">
+        <motion.p
+          className="text-nowrap"
+          initial={{ x: "0%", y: "50%" }}
+          animate={{ x: isHovered ? "-200%" : "0%", y: "50%" }}
+          transition={{ duration: 0.3 }}
+        >
+          <RxCross1 color={theme === "dark" ? "#fff" : "#fff"} size={30} />
+        </motion.p>
+        <motion.p
+          className="text-nowrap"
+          initial={{ x: "150%", y: "-50%" }}
+          animate={{ x: isHovered ? "0%" : "150%", y: "-50%" }}
+          transition={{ duration: 0.3 }}
+        >
+          <RxCross1 color={theme === "dark" ? "#fff" : "#fff"} size={30} />
         </motion.p>
       </div>
     </div>

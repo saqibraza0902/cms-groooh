@@ -5,7 +5,13 @@ import { RxCross1 } from "react-icons/rx";
 import { WITHOUT_AUTH_PUBLIC_NAV } from "@/mock";
 import { auth } from "@/utils/firebase";
 import { motion } from "framer-motion";
-import { AnimatedHeroNav, AnimatedLink } from "@/ui/components/AnimatedButton";
+import {
+  AnimatedCloseNavbarButton,
+  AnimatedHeroHamburger,
+  AnimatedHeroNav,
+  AnimatedLink,
+} from "@/ui/components/AnimatedButton";
+import { cn } from "@/utils/styles";
 interface Props {
   open: boolean;
   close: () => void;
@@ -43,9 +49,12 @@ const ToggleSidebar = ({ open, close }: Props) => {
       `}
     >
       <div className=" px-4 w-full py-5 space-y-6 rounded-xl">
-        <div className="flex items-center justify-end">
-          <div className="cursor-pointer" onClick={close}>
-            <RxCross1 />
+        <div
+          onClick={close}
+          className="bg-brand_blue-300 min-w-[46px] flex md:hidden h-10 w-10 self-end my-3 relative rounded-xl ml-auto"
+        >
+          <div className="absolute capitalize text-sm -top-1 -left-1">
+            <AnimatedCloseNavbarButton className="h-10" />
           </div>
         </div>
 
@@ -54,7 +63,7 @@ const ToggleSidebar = ({ open, close }: Props) => {
             <div
               key={index}
               className={`flex transition-all duration-300 ease-in-out flex-col px-3 bg-brand_blue-300 w-full relative gap-2 ${
-                path === item.pathname && "!bg-orange-400"
+                path === item.pathname && "!bg-brand_orange-400"
               }`}
             >
               <div
@@ -104,7 +113,12 @@ const ToggleSidebar = ({ open, close }: Props) => {
                             (subCategory, subCatIndex) => (
                               <AnimatedLink
                                 key={subCatIndex}
-                                className="rounded-none !bg-transparent w-full uppercase flex items-center gap-1"
+                                className={cn(
+                                  `rounded-none w-full pl-2 uppercase flex items-center gap-1   ${
+                                    path === subCategory.link &&
+                                    "!bg-brand_orange-400"
+                                  }`
+                                )}
                                 href={subCategory.link}
                                 text={subCategory.title}
                               />

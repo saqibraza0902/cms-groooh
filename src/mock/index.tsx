@@ -95,8 +95,8 @@ export const WITHOUT_AUTH_PUBLIC_NAV = [
   {
     isDropdown: false,
     title: "Process",
-    pathname: PUBLIC_URLS.HOME,
-    prefix: PUBLIC_URLS.HOME,
+    pathname: PUBLIC_URLS.PROCESSES,
+    prefix: PUBLIC_URLS.PROCESSES,
   },
   {
     title: "Projects",

@@ -51,6 +51,9 @@ const config: Config = {
           300: "#FF6633",
           600: "#16a34a",
         },
+        brand_orange:{
+          400:"#ffa500"
+        }
       },
     },
   },

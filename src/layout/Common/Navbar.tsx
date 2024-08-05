@@ -7,7 +7,7 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useTheme } from "next-themes";
 import { HiOutlineSun } from "react-icons/hi";
-import { WITHOUT_AUTH_PUBLIC_NAV } from "@/mock";
+import { PUBLIC_NAV, WITHOUT_AUTH_PUBLIC_NAV } from "@/mock";
 import Link from "next/link";
 import {
   AnimatedLink,
@@ -17,7 +17,7 @@ import {
 import { cn } from "@/utils/styles";
 import { BsCart } from "react-icons/bs";
 import { PUBLIC_URLS } from "@/utils/urls";
-import { services_title } from "@/utils/function";
+import { get_collectibles, services_title } from "@/utils/function";
 
 const Navbar = ({ toggle }: any) => {
   const path = usePathname();
@@ -26,6 +26,7 @@ const Navbar = ({ toggle }: any) => {
   const { items } = useAppSelector((s) => s.cart);
   const [isHovered, setIsHovered] = useState(false);
   const [CARDSARRAY, setCARDSARRAY] = useState([]);
+  const [collectibles, setCollectibles] = useState([]);
 
   const handleSignOut = () => {
     try {
@@ -37,6 +38,8 @@ const Navbar = ({ toggle }: any) => {
   useEffect(() => {
     const gettitles = async () => {
       const data = await services_title();
+      const mydata = await get_collectibles("");
+      setCollectibles(mydata.data);
       setCARDSARRAY(data);
     };
 
@@ -53,51 +56,61 @@ const Navbar = ({ toggle }: any) => {
     <nav className=" bg-white  dark:bg-black cursor-pointer h-16 border dark:border-none flex justify-between items-center text-white px-6">
       <div className="2xl:w-11/12 2xl:mx-auto w-full">
         <ul className="flex gap-4 items-center w-full justify-between h-full">
-          <div className="bg-brand_blue-300 w-32 h-10"></div>
+          <Link href={"/"} className="bg-brand_blue-300 w-32 h-10"></Link>
           <div className="gap-5 hidden md:flex items-center">
-            {WITHOUT_AUTH_PUBLIC_NAV.map((item, index) => (
-              <div
-                key={index}
-                className="flex items-center w-full relative gap-2"
-              >
-                <AnimatedLink
-                  onMouseEnter={() => setIsHovered(true)}
-                  onMouseLeave={() => setIsHovered(false)}
-                  className="!text-black dark:text-black !bg-none  uppercase flex items-center gap-1"
-                  href={item.pathname}
-                  text={item.title}
-                  showIcon={item.isDropdown}
-                />
-                {isHovered && item.isDropdown && (
-                  <motion.div
+            {WITHOUT_AUTH_PUBLIC_NAV.map((item, index) => {
+              const isCollectiblesEmpty =
+                item.pathname === PUBLIC_URLS.COLLECTIBLES &&
+                collectibles.length === 0;
+              return (
+                <div
+                  key={index}
+                  className="flex items-center w-full relative gap-2"
+                >
+                  <AnimatedLink
                     onMouseEnter={() => setIsHovered(true)}
                     onMouseLeave={() => setIsHovered(false)}
-                    initial={{ y: "0%" }}
-                    // animate={{ y: isHovered ? "-150%" : "50%" }}
-                    transition={{ duration: 0.3 }}
                     className={cn(
-                      " top-12 -left-2/4  absolute z-50 dark:bg-black bg-white py-5 pl-7 pr-5  shadow-md rounded-b-[41px] ",
-                      {}
+                      `text-black dark:text-black !bg-none  uppercase flex items-center gap-1`,
+                      {
+                        "pointer-events-none opacity-50": isCollectiblesEmpty,
+                      }
                     )}
-                  >
-                    <div className="flex justify-center w-full gap-5">
-                      {CARDSARRAY.map((el, i) => (
-                        <Cards item={el} key={i} />
-                      ))}
-                      {/* <Cards arr={c1} text="Product Branding" />
+                    href={item.pathname}
+                    text={item.title}
+                    showIcon={item.isDropdown}
+                  />
+                  {isHovered && item.isDropdown && (
+                    <motion.div
+                      onMouseEnter={() => setIsHovered(true)}
+                      onMouseLeave={() => setIsHovered(false)}
+                      initial={{ y: "0%" }}
+                      // animate={{ y: isHovered ? "-150%" : "50%" }}
+                      transition={{ duration: 0.3 }}
+                      className={cn(
+                        " top-12 -left-2/4  absolute z-50 dark:bg-black bg-white py-5 pl-7 pr-5  shadow-md rounded-b-[41px] ",
+                        {}
+                      )}
+                    >
+                      <div className="flex justify-center w-full gap-5">
+                        {CARDSARRAY.map((el, i) => (
+                          <Cards item={el} key={i} />
+                        ))}
+                        {/* <Cards arr={c1} text="Product Branding" />
                       <Cards /> */}
-                    </div>
-                  </motion.div>
-                )}
-              </div>
-            ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </div>
+              );
+            })}
           </div>
           <div className="flex gap-5 items-center">
             <div
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="bg-brand_blue-300 cursor-pointer  hidden md:flex w-10 h-10 my-3 relative rounded-xl"
+              className="bg-brand_blue-300 dark:bg-brand_orange-400 cursor-pointer  hidden md:flex w-10 h-10 my-3 relative rounded-xl"
             >
-              <div className="absolute capitalize flex items-center justify-center bg-black dark:bg-white w-full h-full text-sm rounded-lg -top-1 -left-1">
+              <div className="absolute capitalize flex items-center justify-center bg-black dark:!bg-brand_blue-300 w-full h-full text-sm rounded-lg -top-1 -left-1">
                 <HiOutlineSun
                   size={20}
                   color={theme === "dark" ? "#000" : "#fff"}
@@ -117,13 +130,13 @@ const Navbar = ({ toggle }: any) => {
                 </div>
               </Link>
             ) : (
-              <div className="bg-brand_blue-300  hidden md:flex min-w-36 h-10 my-3 relative rounded-xl">
+              <div className="bg-brand_blue-300 dark:bg-brand_orange-400  hidden md:flex min-w-36 h-10 my-3 relative rounded-xl">
                 <Link
                   href={PUBLIC_URLS.CONTACT}
                   className="absolute capitalize text-sm -top-1 -left-1"
                 >
                   <AnimatedHeroNav
-                    className="bg-black h-10 min-w-36"
+                    className="bg-black dark:bg-brand_blue-300 h-10 min-w-36"
                     text="CONTACT US"
                   />
                 </Link>
@@ -157,18 +170,18 @@ interface ICard {
 const Cards = ({ item }: ICard) => {
   return (
     <div className="h-64 relative bg-black dark:bg-white w-52 rounded-[27px]">
-      <div className="h-full text-black dark:text-white bg-brand_blue-300 absolute -top-2 right-2 p-3  w-full rounded-[19px]">
+      <div className="h-full text-black dark:text-white bg-brand_blue-300 absolute -top-2 right-2 p-3 w-full rounded-[19px]">
         <h3 className="text-2xl !font-SuisseBold">{item.title}</h3>
 
         {item?.title && <div className="w-2/3 mx-auto bg-black h-[1px] my-2" />}
         <div className="flex flex-col gap-2">
-          {item?.sub_services?.map((item, i) => (
+          {item?.sub_services?.map((subItem, i) => (
             <Link
               key={i}
-              href={`/services/${item.url}`}
-              className="font-semibold"
+              href={`/services/${subItem.url}`}
+              className="font-SuisseMedium !transition-all !duration-300  hover:text-brand_blue-400"
             >
-              {item.title}
+              {subItem.title}
             </Link>
           ))}
         </div>

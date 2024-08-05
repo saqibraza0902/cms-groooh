@@ -35,7 +35,7 @@ const ParagraphComponent = ({ text }: IProp) => {
             return (
               <span
                 key={idx}
-                className={`mr-2  lg:mt-2 leading-10 font-semibold md:text-4xl text-xl ${
+                className={`mr-2  lg:mt-2 leading-7 md:leading-10 font-semibold md:text-4xl text-xl ${
                   idx === 0 ? "" : ""
                 }`}
               >
