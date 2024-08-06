@@ -15,7 +15,7 @@ const HomeSection = ({ hero }: IProp) => {
         <div className="pl-4 pr-9 lg:pr-0 lg:pl-0 lg:w-9/12">
           <ContentBox
             className="!bg-brand_blue-300 w-full p-0"
-            childClass="!bg-black dark:!bg-brand_orange-400"
+            childClass="!bg-black dark:!bg-white"
           >
             <div className="w-full flex gap-14 lg:gap-5 flex-col justify-center items-start p-10 h-full ">
               <p className="font-extrabold z-40 w-full text-center lg:text-left text-3xl lg:text-6xl font-SuisseBold xl:text-[80px] lg:leading-[100px] text-black uppercase ">

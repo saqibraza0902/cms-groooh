@@ -29,7 +29,7 @@ const HomeSwiper = ({ swiperRef }: any) => {
     >
       {[0, 2, 3, 4, 5, 5].map((item, i) => (
         <SwiperSlide key={i} className="h-full w-full relative overflow-hidden">
-          <div className="bg-black absolute bottom-0 right-0 w-[95%] dark:bg-brand_orange-400 rounded-[60px] h-full lg:h-[95%] overflow-hidden"></div>
+          <div className="bg-black absolute bottom-0 right-0 w-[95%] dark:bg-white rounded-[60px] h-full lg:h-[95%] overflow-hidden"></div>
           <div className="absolute bottom-[3%] right-[5%] w-[95%] h-[95%] ">
             <div className="relative h-full">
               <Image

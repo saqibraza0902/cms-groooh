@@ -37,6 +37,8 @@ const config: Config = {
           600: "#01011d",
         },
         brand_pink: {
+          100: "#fdf2f8",
+          200: "#ccccd2",
           300: "#f6f5f8",
           400: "#f472b6",
         },
@@ -51,9 +53,9 @@ const config: Config = {
           300: "#FF6633",
           600: "#16a34a",
         },
-        brand_orange:{
-          400:"#ffa500"
-        }
+        brand_orange: {
+          400: "#ffa500",
+        },
       },
     },
   },

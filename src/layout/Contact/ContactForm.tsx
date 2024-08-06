@@ -34,19 +34,19 @@ const ContactForm = () => {
       <div className="flex flex-col lg:flex-row space-y-10 lg:space-y-0 lg:space-x-5 ">
         <div className="w-full space-y-10">
           <Input
-            inputClassName="bg-brand_blue-100 dark:bg-brand_blue-100 text-black placeholder:text-black border-none rounded"
+            inputClassName="bg-brand_pink-100 dark:!bg-brand_pink-100 dark:bg-brand_blue-100 text-black placeholder:text-black border-none rounded"
             placeholder="Type your name"
-            className="space-y-3 min-w-0"
+            className="space-y-3 min-w-0 "
             label="Your name"
           />
           <Input
-            inputClassName="bg-brand_blue-100 dark:bg-brand_blue-100 text-black placeholder:text-black border-none rounded"
+            inputClassName="bg-brand_pink-100 dark:!bg-brand_pink-100 dark:bg-brand_blue-100 text-black placeholder:text-black border-none rounded"
             placeholder="Type your mail"
             className="space-y-3 min-w-0"
             label="Your Mail"
           />
           <Input
-            inputClassName="bg-brand_blue-100 dark:bg-brand_blue-100 text-black placeholder:text-black border-none rounded"
+            inputClassName="bg-brand_pink-100 dark:!bg-brand_pink-100 dark:bg-brand_blue-100 text-black placeholder:text-black border-none rounded"
             placeholder="Type your subject"
             className="space-y-3 min-w-0"
             label="Subject"
@@ -58,7 +58,7 @@ const ContactForm = () => {
             label="Message"
             divClass="space-y-3 w-full min-w-0"
             placeholder="Type your message..."
-            className="bg-brand_blue-100 text-black placeholder:text-black border-none rounded"
+            className="bg-brand_pink-100 !dark:bg-brand_pink-100 text-black placeholder:text-black border-none rounded"
           />
         </div>
       </div>

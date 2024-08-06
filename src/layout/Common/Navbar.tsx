@@ -73,7 +73,7 @@ const Navbar = ({ toggle }: any) => {
                     className={cn(
                       `text-black dark:text-black !bg-none  uppercase flex items-center gap-1`,
                       {
-                        "pointer-events-none opacity-50": isCollectiblesEmpty,
+                        hidden: isCollectiblesEmpty,
                       }
                     )}
                     href={item.pathname}
@@ -108,7 +108,7 @@ const Navbar = ({ toggle }: any) => {
           <div className="flex gap-5 items-center">
             <div
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="bg-brand_blue-300 dark:bg-brand_orange-400 cursor-pointer  hidden md:flex w-10 h-10 my-3 relative rounded-xl"
+              className="bg-brand_blue-300 dark:bg-white cursor-pointer  hidden md:flex w-10 h-10 my-3 relative rounded-xl"
             >
               <div className="absolute capitalize flex items-center justify-center bg-black dark:!bg-brand_blue-300 w-full h-full text-sm rounded-lg -top-1 -left-1">
                 <HiOutlineSun
@@ -130,7 +130,7 @@ const Navbar = ({ toggle }: any) => {
                 </div>
               </Link>
             ) : (
-              <div className="bg-brand_blue-300 dark:bg-brand_orange-400  hidden md:flex min-w-36 h-10 my-3 relative rounded-xl">
+              <div className="bg-brand_blue-300 dark:bg-white  hidden md:flex min-w-36 h-10 my-3 relative rounded-xl">
                 <Link
                   href={PUBLIC_URLS.CONTACT}
                   className="absolute capitalize text-sm -top-1 -left-1"

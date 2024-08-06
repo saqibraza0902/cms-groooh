@@ -396,17 +396,17 @@ export const MOBILEAPPEXPERTISE = [
 ];
 export const LANDINGEXPERTISE = [
   {
-    image: "/landing-1.svg",
+    image: "/raw/landing-page-design-2-1.svg",
     title: "Involving Content",
     description: `The content we create for your landing is engaging and attention-grabbing that the customer won't want to part with until they are entirely familiar with it.`,
   },
   {
-    image: "/landing-2.svg",
+    image: "/raw/landing-page-design-2-2.svg",
     title: "Business Scaling up",
     description: `The digital solutions we create attract more attention, investment, and customers to your product because that's what it demands.`,
   },
   {
-    image: "/landing-3.svg",
+    image: "/raw/landing-page-design-2-3.svg",
     title: "Reaching target audience",
     description: `What we create by our team is made to meet the needs of your target audience because we run an in-depth analysis at the start of the product.`,
   },

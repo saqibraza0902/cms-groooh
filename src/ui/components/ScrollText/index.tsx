@@ -1,4 +1,5 @@
 "use client";
+import { cn } from "@/utils/styles";
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useScroll, useTransform, motion } from "framer-motion";
 import React, { useRef } from "react";
@@ -7,8 +8,9 @@ const Content =
 
 interface IProp {
   text: string;
+  className?: string;
 }
-const ParagraphComponent = ({ text }: IProp) => {
+const ParagraphComponent = ({ text, className }: IProp) => {
   const element = useRef(null);
   const { scrollYProgress } = useScroll({
     target: element,
@@ -18,56 +20,47 @@ const ParagraphComponent = ({ text }: IProp) => {
   const words = text.split(" ");
 
   return (
-    <div>
-      <div>
-        <p
-          ref={element}
-          className="flex flex-wrap  leading-none justify-center   "
-        >
-          {words.map((word, idx) => {
-            const start = idx / words.length;
-            const end = start + 1 / words.length;
+    <p
+      ref={element}
+      className={cn(
+        "flex flex-wrap leading-7 md:leading-10 font-semibold md:text-4xl text-xl",
+        className
+      )}
+    >
+      {words.map((word, idx) => {
+        const start = idx / words.length;
+        const end = start + 1 / words.length;
+        const char = word.split("");
+        const amount = end - start;
+        const step = amount / char.length;
+        return (
+          <span key={idx} className={`mr-2 lg:mt-2`}>
+            {char.map((ch, idx) => {
+              const cstart = start + step * idx;
+              const cend = start + step * (idx + 1);
+              const opacity = useTransform(
+                scrollYProgress,
+                [cstart, cend],
+                [0, 1]
+              );
 
-            /* const opacity = useTransform(scrollYProgress, [start, end], [0, 1]); */
-            const char = word.split("");
-            const amount = end - start;
-            const step = amount / char.length;
-            return (
-              <span
-                key={idx}
-                className={`mr-2  lg:mt-2 leading-7 md:leading-10 font-semibold md:text-4xl text-xl ${
-                  idx === 0 ? "" : ""
-                }`}
-              >
-                {/* ------Character Map */}
-                {char.map((ch, idx) => {
-                  const cstart = start + step * idx;
-                  const cend = start + step * (idx + 1);
-                  const opacity = useTransform(
-                    scrollYProgress,
-                    [cstart, cend],
-                    [0, 1]
-                  );
-
-                  return (
-                    <span className="relative" key={idx}>
-                      <span className="absolute opacity-30">{ch}</span>
-                      <motion.span
-                        key={idx}
-                        style={{ opacity }}
-                        transition={{ duration: 2 }}
-                      >
-                        {ch}
-                      </motion.span>
-                    </span>
-                  );
-                })}
-              </span>
-            );
-          })}
-        </p>
-      </div>
-    </div>
+              return (
+                <span className="relative" key={idx}>
+                  <span className="absolute opacity-30">{ch}</span>
+                  <motion.span
+                    key={idx}
+                    style={{ opacity }}
+                    transition={{ duration: 2 }}
+                  >
+                    {ch}
+                  </motion.span>
+                </span>
+              );
+            })}
+          </span>
+        );
+      })}
+    </p>
   );
 };
 

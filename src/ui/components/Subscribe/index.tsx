@@ -77,7 +77,7 @@ export const Subscribe = () => {
         label="Your email address"
         InputLabelProps={{
           sx: {
-            color: "#000",
+            color: "#ccc",
             [`&.${inputLabelClasses.shrink}`]: {
               color: "#ccc",
             },
