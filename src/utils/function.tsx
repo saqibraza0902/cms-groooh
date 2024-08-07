@@ -252,3 +252,17 @@ export const get_collectibles = async (paramtype: string) => {
     return error;
   }
 };
+export const get_processes = async () => {
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/processes`, {
+      method: "GET",
+      cache: "no-cache",
+    });
+    if (!res.ok) {
+      throw new Error("Failed");
+    }
+    return res.json();
+  } catch (error) {
+    return error;
+  }
+};

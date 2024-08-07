@@ -11,7 +11,7 @@ export interface ImageWithFallbackProps {
 function ImageWithFallback({
   className,
   src,
-  fallbackSrc = "/assets/pfp1.png",
+  fallbackSrc = "https://firebasestorage.googleapis.com/v0/b/groooh-com.appspot.com/o/logos%2Fprofile-alt.png?alt=media&token=6bc149ee-b3a8-4d9f-80b2-07a6f78fc785",
   alt,
   ...rest
 }: React.HTMLAttributes<HTMLImageElement> & ImageWithFallbackProps) {

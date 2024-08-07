@@ -33,7 +33,9 @@ const HomeSwiper = ({ swiperRef }: any) => {
           <div className="absolute bottom-[3%] right-[5%] w-[95%] h-[95%] ">
             <div className="relative h-full">
               <Image
-                src={"/images/slide-1.jpg"}
+                src={
+                  "https://firebasestorage.googleapis.com/v0/b/groooh-com.appspot.com/o/logos%2Fslide-1.jpg?alt=media&token=331dca77-447a-47c1-bb32-c8dab5920652"
+                }
                 alt=""
                 className="object-center rounded-[40px] w-full h-full"
                 layout="fill"

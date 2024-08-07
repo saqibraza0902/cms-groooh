@@ -1,4 +1,3 @@
-import { OFFERS, SERVICE_ARRAY } from "@/mock";
 import Image from "next/image";
 import React from "react";
 import RatingSection from "../Home/RatingSection";

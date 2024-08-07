@@ -4,19 +4,19 @@ import {
   SliderRightButton,
 } from "@/ui/components/AnimatedButton";
 import React, { useRef, useState } from "react";
-import { RatingSwiper } from "@/ui/components/RatingSwiper";
-import { IRating } from "@/utils/types";
 import { SwiperSlide } from "swiper/react";
 import ContentBox from "@/ui/components/ContentBox";
-import { LANDINGEXPERTISE } from "@/mock";
-import { FaStar } from "react-icons/fa";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { cn } from "@/utils/styles";
 import { SwiperComponent } from "@/ui/components/SwiperComponent";
-import { BiMinus, BiMinusCircle, BiPlus, BiPlusCircle } from "react-icons/bi";
+import { BiMinusCircle, BiPlusCircle } from "react-icons/bi";
+import { IProcess } from "@/utils/types";
 
-const ProcessesDetailsSection = () => {
+interface IProp {
+  prop: IProcess;
+}
+const ProcessesDetailsSection = ({ prop }: IProp) => {
   const swiperRef = useRef<any>(null);
 
   const nextSlide = () => {
@@ -31,7 +31,7 @@ const ProcessesDetailsSection = () => {
     }
   };
   const [hoverStates, setHoverStates] = useState(
-    Array(LANDINGEXPERTISE.length).fill(false)
+    Array(prop.processes.length).fill(false)
   );
 
   const handleMouseEnter = (index: number) => {
@@ -50,7 +50,7 @@ const ProcessesDetailsSection = () => {
       <div className="w-full lg:w-5/12 xl:w-3/12  flex flex-row justify-between items-center lg:items-start lg:px-0 lg:justify-end lg:flex-col 2xl:justify-end  text-white">
         <div className="lg:w-1/2 flex px-4 lg:px-0 flex-col">
           <span className="text-3xl  text-white font-SuisseMedium">
-            {"Our Processes"}
+            {prop.title}
           </span>
         </div>
         <div className="flex gap-10 px-4 lg:px-0 lg:mt-6">
@@ -68,7 +68,7 @@ const ProcessesDetailsSection = () => {
           onNextSlide={nextSlide}
           onPrevSlide={prevSlide}
         >
-          {LANDINGEXPERTISE?.map((el, i: number) => (
+          {prop?.processes?.map((el, i: number) => (
             <SwiperSlide key={i} className="h-full pl-4 pr-9 py-10">
               <ContentBox className="">
                 <div className="w-full flex flex-col justify-center  gap-1 h-full min-h-full">

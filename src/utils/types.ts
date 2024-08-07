@@ -213,3 +213,23 @@ export interface IServicesPage {
     services: IPageService[];
   };
 }
+export interface IProcess {
+  title: string;
+  processes: {
+    title: string;
+    image: string;
+    description: string;
+  }[];
+}
+export interface ICTOSection {
+  cto_name: string;
+  cto_image: string;
+  cto_position: string;
+  client_text: string;
+  text: string;
+}
+export interface IProcesses {
+  hero_section: IServiceHeroSection;
+  processes_section: IProcess;
+  cto_section: ICTOSection;
+}

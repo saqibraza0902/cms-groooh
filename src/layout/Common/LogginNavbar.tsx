@@ -88,7 +88,7 @@ const LoggedinNavbar = ({ toggle }: any) => {
               <ImageWithFallback
                 className="h-8 w-8 cursor-pointer rounded-full"
                 src={user?.photoURL || ""}
-                fallbackSrc="pfp1.png"
+                fallbackSrc="https://firebasestorage.googleapis.com/v0/b/groooh-com.appspot.com/o/logos%2Fprofile-alt.png?alt=media&token=6bc149ee-b3a8-4d9f-80b2-07a6f78fc785"
                 alt=""
               />
             </li>
