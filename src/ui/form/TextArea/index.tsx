@@ -19,7 +19,7 @@ const TextArea = ({
       {label && <label className={cn("", labelClass)}>{label}</label>}
       <textarea
         className={cn(
-          `outline-none w-full dark:bg-brand_black-500 p-4 rounded-xl border ${className}`
+          `outline-none w-full transition-all bg-transparent duration-300 p-4 rounded-xl  focus:border-black border-[1px] focus:dark:border-lime-800 ${className}`
         )}
         {...rest}
       />

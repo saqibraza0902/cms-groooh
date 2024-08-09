@@ -81,7 +81,13 @@ export const AnimatedHeroNav = ({ className, text }: IProp) => {
     </div>
   );
 };
-export const AnimatedHeroButton = ({ className, text }: IProp) => {
+export const ButtonLayout = ({
+  className,
+  children,
+}: {
+  className?: string;
+  children: React.ReactNode;
+}) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -99,7 +105,7 @@ export const AnimatedHeroButton = ({ className, text }: IProp) => {
           animate={{ y: isHovered ? "-150%" : "50%", x: "-55%" }}
           transition={{ duration: 0.3 }}
         >
-          {text}
+          {children}
         </motion.p>
         <motion.p
           className="text-nowrap"
@@ -107,7 +113,7 @@ export const AnimatedHeroButton = ({ className, text }: IProp) => {
           animate={{ y: isHovered ? "-50%" : "150%", x: "-55%" }}
           transition={{ duration: 0.3 }}
         >
-          {text}
+          {children}
         </motion.p>
       </div>
 
@@ -246,7 +252,7 @@ export const ContactLink = ({
     <Link
       href={href}
       className={cn(
-        ` border-black h-8 w-max flex-nowrap text-nowrap  flex items-center justify-center relative overflow-hidden ${className}`
+        ` border-white h-8 w-max flex-nowrap text-nowrap  flex items-center justify-center relative overflow-hidden ${className}`
       )}
       onMouseEnter={() => {
         setIsHovered(true), setIsHovered2(false);
@@ -275,17 +281,17 @@ export const ContactLink = ({
           {text}
         </motion.p>
         <motion.div
-          className="absolute bottom-0 left-0 h-0.5 dark:bg-white bg-black"
+          className="absolute bottom-0 left-0 h-0.5 bg-white "
           style={{ width: "100%", scaleX: isHovered ? 1 : 0 }}
-          initial={{ x: "105%" }} // Change initial position to start from the left
-          animate={{ x: isHovered ? "0%" : "-105%" }} // Animate towards the right when hovered
+          initial={{ x: "110%" }} // Change initial position to start from the left
+          animate={{ x: isHovered ? "0%" : "-110%" }} // Animate towards the right when hovered
           transition={{ duration: 0.3 }}
         />
         <motion.div
-          className="absolute bottom-0 left-0 h-0.5 dark:bg-white bg-black"
+          className="absolute bottom-0 left-0 h-0.5 bg-white "
           style={{ width: "100%", scaleX: isHovered2 ? 1 : 0 }}
-          initial={{ x: "-5%" }}
-          animate={{ x: isHovered2 ? "-100%" : "-5%" }}
+          initial={{ x: "-15%" }}
+          animate={{ x: isHovered2 ? "-100%" : "-15%" }}
           transition={{ duration: 0.3 }}
         />
       </div>
@@ -297,40 +303,34 @@ export const SliderRightButton = ({ className }: ISlider) => {
   const [isHovered, setIsHovered] = useState(false);
   return (
     <div
-      className={cn(
-        ` border-black h-12 w-12 lg:h-28 lg:w-28  flex-nowrap text-nowrap  flex items-center justify-center relative overflow-hidden ${className}`
-      )}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      className={`h-12 w-12 lg:h-28 lg:w-28 relative overflow-hidden flex justify-center transition-all duration-300 items-center border-[1px] rounded-full ${
+        isHovered ? "bg-black border-black" : " bg-none border-black"
+      }`}
     >
-      <div
-        className={`w-full h-full flex justify-center transition-all duration-300 items-center  rounded-full ${
-          isHovered ? "bg-white border" : " bg-none border"
-        }`}
+      <motion.p
+        className=""
+        initial={{ x: "50%", y: "-0%" }}
+        animate={{ x: isHovered ? "250%" : "50%", y: "-0%" }}
+        transition={{ duration: 0.3 }}
       >
-        <motion.p
-          className=""
-          initial={{ x: "50%", y: "-0%" }}
-          animate={{ x: isHovered ? "200%" : "50%", y: "-0%" }}
-          transition={{ duration: 0.3 }}
-        >
-          <MdOutlineArrowForwardIos
-            className="lg:text-5xl text-xl"
-            color="#fff"
-          />
-        </motion.p>
-        <motion.p
-          className=""
-          initial={{ x: "-200%", y: "-0%" }}
-          animate={{ x: isHovered ? "-50%" : "-200%", y: "-0%" }}
-          transition={{ duration: 0.3 }}
-        >
-          <MdOutlineArrowForwardIos
-            className="lg:text-5xl text-xl"
-            color="#000"
-          />
-        </motion.p>
-      </div>
+        <MdOutlineArrowForwardIos
+          className="lg:text-5xl text-xl"
+          color="#000"
+        />
+      </motion.p>
+      <motion.p
+        className=""
+        initial={{ x: "-250%", y: "-0%" }}
+        animate={{ x: isHovered ? "-50%" : "-250%", y: "-0%" }}
+        transition={{ duration: 0.3 }}
+      >
+        <MdOutlineArrowForwardIos
+          className="lg:text-5xl text-xl"
+          color="#fff"
+        />
+      </motion.p>
     </div>
   );
 };
@@ -339,34 +339,28 @@ export const SliderLeftButton = ({ className }: ISlider) => {
   const [isHovered, setIsHovered] = useState(false);
   return (
     <div
-      className={cn(
-        ` border-black lg:h-28 lg:w-28 h-12 w-12 flex-nowrap text-nowrap  flex items-center justify-center relative overflow-hidden ${className}`
-      )}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      className={`h-12 w-12 lg:h-28 lg:w-28 relative overflow-hidden flex justify-center transition-all duration-300 items-center border-[1px] rounded-full ${
+        isHovered ? "bg-black border-black" : " bg-none border-black"
+      }`}
     >
-      <div
-        className={`w-full h-full flex justify-center transition-all duration-300 items-center  rounded-full ${
-          isHovered ? "bg-white border" : " bg-none border"
-        }`}
+      <motion.p
+        className=""
+        initial={{ x: "50%", y: "-0%" }}
+        animate={{ x: isHovered ? "-200%" : "50%", y: "-0%" }}
+        transition={{ duration: 0.3 }}
       >
-        <motion.p
-          className=""
-          initial={{ x: "50%", y: "-0%" }}
-          animate={{ x: isHovered ? "-200%" : "50%", y: "-0%" }}
-          transition={{ duration: 0.3 }}
-        >
-          <MdOutlineArrowBackIos className="lg:text-5xl text-xl" color="#fff" />
-        </motion.p>
-        <motion.p
-          className=""
-          initial={{ x: "200%", y: "-0%" }}
-          animate={{ x: isHovered ? "-50%" : "200%", y: "-0%" }}
-          transition={{ duration: 0.3 }}
-        >
-          <MdOutlineArrowBackIos className="lg:text-5xl text-xl" color="#000" />
-        </motion.p>
-      </div>
+        <MdOutlineArrowBackIos className="lg:text-5xl text-xl" color="#000" />
+      </motion.p>
+      <motion.p
+        className=""
+        initial={{ x: "200%", y: "-0%" }}
+        animate={{ x: isHovered ? "-50%" : "200%", y: "-0%" }}
+        transition={{ duration: 0.3 }}
+      >
+        <MdOutlineArrowBackIos className="lg:text-5xl text-xl" color="#fff" />
+      </motion.p>
     </div>
   );
 };

@@ -11,7 +11,10 @@ interface IProp {
 }
 const Services = ({ services }: IProp) => {
   return (
-    <ContentBox className="bg-brand_blue-300 px-0 py-5 lg:p-10">
+    <ContentBox
+      childClass="!bg-secondary"
+      className="bg-primary px-0 py-5 lg:p-10"
+    >
       <h2 className="text-4xl w-1/12  lg:text-[70px] font-SuisseBold lg:leading-[65px] text-black px-10 ">
         {services.title}
       </h2>

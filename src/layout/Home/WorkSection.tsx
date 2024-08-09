@@ -7,6 +7,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { WorkContentSlider, WorkSlider } from "./SwiperComponent";
 import { get_portfolios } from "@/utils/function";
 import BlueContentBox from "@/ui/components/BlueContentBox";
+import ContentBox from "@/ui/components/ContentBox";
 
 interface IProp {
   title: string;
@@ -60,7 +61,7 @@ const WorkSection = ({ title }: IProp) => {
     return <p>Loading...</p>;
   }
   return (
-    <BlueContentBox>
+    <ContentBox className="bg-primary" childClass="!bg-secondary">
       <div className="flex flex-col-reverse z-0 h-full lg:flex-row relative p-5 lg:gap-5">
         <div className="lg:w-1/2 h-full flex 2xl:justify-end flex-col z-40  -mt-12 md:mt-0 gap-4">
           <h2 className="text-4xl hidden lg:flex w-1/12 lg:text-[70px] font-SuisseBold lg:leading-[65px] text-black ">
@@ -98,7 +99,7 @@ const WorkSection = ({ title }: IProp) => {
           />
         </div>
       </div>
-    </BlueContentBox>
+    </ContentBox>
   );
 };
 

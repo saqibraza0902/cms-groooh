@@ -17,23 +17,23 @@ const Home = async () => {
       <section className="bg-white dark:bg-black py-20 lg:mt-0 lg:px-20 h-full lg:h-full 2xl:h-screen flex  flex-col justify-center items-center">
         <HomeSection hero={home_detail?.HeroSection} />
       </section>
-      <section className="bg-brand_pink-100 dark:bg-black pl-9 pr-4 py-20 lg:mt-0 lg:px-28 h-full lg:h-full 2xl:h-screen flex  flex-col justify-center items-center">
+      <section className="bg-white  pl-9 pr-4 py-20 lg:mt-0 lg:px-28 h-full lg:h-full 2xl:h-screen flex  flex-col justify-center items-center">
         <ScrollTextSection text={home_detail?.ScrollText} />
       </section>
-      <section className="h-full bg-brand_green-300 pl-4 pr-9 py-20 lg:p-20">
+      <section className="h-full bg-brand_green-700 dark:bg-black pl-4 pr-9 py-20 lg:p-20">
         <Services services={home_detail?.ServicesPage} />
       </section>
 
-      <section className="h-full bg-brand_blue-300 2xl:h-screen flex flex-col lg:flex-row  w-full lg:px-20 py-10">
+      <section className="h-full bg-primary 2xl:h-screen flex flex-col lg:flex-row  w-full lg:px-20 py-10">
         <RatingSection rating={home_detail.RatingSection} />
       </section>
       <section className="min-h-screen pl-4 pr-9 py-10 2xl:h-screen flex items-center justify-center h-full lg:p-20 bg-brand_pink-100">
         <WorkSection title={home_detail?.WorksSection?.title} />
       </section>
-      <section className="h-full px-4 py-10 lg:p-20 flex justify-center items-center bg-brand_green-300">
+      <section className="h-full px-4 py-10 lg:p-20 flex justify-center items-center bg-brand_green-700">
         <PartnerSection partners={home_detail.PartnersSection} />
       </section>
-      <section className="h-full min-h-screen bg-brand_blue-300 pl-4 pr-9 py-10 lg:p-20 ">
+      <section className="h-full min-h-screen bg-white pl-4 pr-9 py-10 lg:p-20 ">
         <BlogSection mydata={home_detail.BlogSection} />
       </section>
     </CommonLayout>

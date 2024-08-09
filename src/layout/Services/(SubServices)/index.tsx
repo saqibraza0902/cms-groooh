@@ -31,7 +31,7 @@ const SubServicesLayout = async ({ slug }: IProp) => {
           image={matchingService?.hero_section?.image}
         />
       </section>
-      <section className="bg-brand_blue-100 h-full pl-1 pr-4 py-10 lg:p-20 ">
+      <section className="bg-brand_green-700 h-full pl-1 pr-4 py-10 lg:p-20 ">
         <ExpertiseComponent
           expertise={matchingService?.expertise_section?.expertise}
           title={matchingService?.expertise_section?.title}
@@ -42,8 +42,11 @@ const SubServicesLayout = async ({ slug }: IProp) => {
           <TechStackComponent partners={matchingService.tech_stack} />
         </section>
       )}
-      <section className="h-full min-h-full bg-brand_blue-300 pl-4 pr-9 py-10 lg:p-20 ">
+
+      {/* <section className="h-full min-h-full bg-brand_blue-300 pl-4 pr-9 py-10 lg:p-20 ">
         <BlogSection mydata={home_detail.BlogSection} />
+      </section> */}
+      <section className="h-full min-h-full bg-primary pl-4 pr-9 py-10 lg:p-20 ">
         <ContactComponent />
       </section>
     </div>

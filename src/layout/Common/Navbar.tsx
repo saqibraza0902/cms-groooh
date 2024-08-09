@@ -13,11 +13,13 @@ import {
   AnimatedLink,
   AnimatedHeroNav,
   AnimatedHeroHamburger,
+  ButtonLayout,
 } from "@/ui/components/AnimatedButton";
 import { cn } from "@/utils/styles";
 import { BsCart } from "react-icons/bs";
 import { PUBLIC_URLS } from "@/utils/urls";
 import { get_collectibles, services_title } from "@/utils/function";
+import Image from "next/image";
 
 const Navbar = ({ toggle }: any) => {
   const path = usePathname();
@@ -53,10 +55,17 @@ const Navbar = ({ toggle }: any) => {
     return () => unsubscribe();
   }, [user]);
   return (
-    <nav className=" bg-white  dark:bg-black cursor-pointer h-16 border dark:border-none flex justify-between items-center text-white px-6">
+    <nav className="px-6 lg:px-14  bg-white  dark:bg-black cursor-pointer h-16 border dark:border-none flex justify-between items-center text-white">
       <div className="2xl:w-11/12 2xl:mx-auto w-full">
         <ul className="flex gap-4 items-center w-full justify-between h-full">
-          <Link href={"/"} className="bg-brand_blue-300 w-32 h-10"></Link>
+          <Link href={"/"} className=" w-32 h-10">
+            <Image
+              src={theme === "dark" ? "/icons/logo-w.svg" : "/icons/logo.svg"}
+              alt="logo"
+              height={40}
+              width={128}
+            />
+          </Link>
           <div className="gap-5 hidden md:flex items-center">
             {WITHOUT_AUTH_PUBLIC_NAV.map((item, index) => {
               const isCollectiblesEmpty =
@@ -108,14 +117,12 @@ const Navbar = ({ toggle }: any) => {
           <div className="flex gap-5 items-center">
             <div
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="bg-brand_blue-300 dark:bg-white cursor-pointer  hidden md:flex w-10 h-10 my-3 relative rounded-xl"
+              className="bg-black dark:bg-primary cursor-pointer  hidden md:flex w-12 h-12 my-3 justify-center items-center rounded-lg"
             >
-              <div className="absolute capitalize flex items-center justify-center bg-black dark:!bg-brand_blue-300 w-full h-full text-sm rounded-lg -top-1 -left-1">
-                <HiOutlineSun
-                  size={20}
-                  color={theme === "dark" ? "#000" : "#fff"}
-                />
-              </div>
+              <HiOutlineSun
+                size={20}
+                color={theme === "dark" ? "#000" : "#fff"}
+              />
             </div>
             {path.includes("/collectibles") ? (
               <Link
@@ -135,10 +142,13 @@ const Navbar = ({ toggle }: any) => {
                   href={PUBLIC_URLS.CONTACT}
                   className="absolute capitalize text-sm -top-1 -left-1"
                 >
-                  <AnimatedHeroNav
+                  {/* <AnimatedHeroNav
                     className="bg-black dark:bg-brand_blue-300 h-10 min-w-36"
                     text="CONTACT US"
-                  />
+                  /> */}
+                  <ButtonLayout className="dark:bg-primary dark:text-black bg-black text-white">
+                    CONTACT US
+                  </ButtonLayout>
                 </Link>
               </div>
             )}
@@ -169,8 +179,8 @@ interface ICard {
 }
 const Cards = ({ item }: ICard) => {
   return (
-    <div className="h-64 relative bg-black dark:bg-white w-52 rounded-[27px]">
-      <div className="h-full text-black dark:text-white bg-brand_blue-300 absolute -top-2 right-2 p-3 w-full rounded-[19px]">
+    <div className="h-64 relative bg-secondary  w-52 rounded-[27px]">
+      <div className="h-full text-black bg-primary absolute -top-2 right-2 p-3 w-full rounded-[19px]">
         <h3 className="text-2xl !font-SuisseBold">{item.title}</h3>
 
         {item?.title && <div className="w-2/3 mx-auto bg-black h-[1px] my-2" />}

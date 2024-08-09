@@ -1,4 +1,4 @@
-import { AnimatedHeroButton } from "@/ui/components/AnimatedButton";
+import { ButtonLayout } from "@/ui/components/AnimatedButton";
 import BlueContentBox from "@/ui/components/BlueContentBox";
 import ContentBox from "@/ui/components/ContentBox";
 import HomeSwiper from "@/ui/components/HomeSwiper";
@@ -14,8 +14,8 @@ const HomeSection = ({ hero }: IProp) => {
       <div className="h-screen lg:h-[50vh] xl:h-[80vh] 2xl:h-[60vh] flex flex-col lg:flex-row gap-14 w-full 2xl:w-[90%]">
         <div className="pl-4 pr-9 lg:pr-0 lg:pl-0 lg:w-9/12">
           <ContentBox
-            className="!bg-brand_blue-300 w-full p-0"
-            childClass="!bg-black dark:!bg-white"
+            className="!bg-primary w-full p-0"
+            childClass="!bg-secondary dark:!bg-secondary"
           >
             <div className="w-full flex gap-14 lg:gap-5 flex-col justify-center items-start p-10 h-full ">
               <p className="font-extrabold z-40 w-full text-center lg:text-left text-3xl lg:text-6xl font-SuisseBold xl:text-[80px] lg:leading-[100px] text-black uppercase ">
@@ -36,7 +36,7 @@ const HomeSection = ({ hero }: IProp) => {
                   </span>
                 </div>
                 <div className="lg:w-1/6  text-black uppercase lg:mr-20 xl:mr-10">
-                  <AnimatedHeroButton text="LET'S TALK" />
+                  <ButtonLayout>Let's Talk</ButtonLayout>
                 </div>
               </div>
             </div>

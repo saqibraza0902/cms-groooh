@@ -45,9 +45,9 @@ const Footer = () => {
   const [isHovered, setIsHovered] = useState(false);
   return (
     <div>
-      <div className="h-full w-full flex flex-col gap-5 lg:flex-row justify-between bg-white dark:bg-black  px-4 lg:px-20 py-10">
+      <div className="h-full w-full flex flex-col gap-5 lg:flex-row justify-between bg-brand_green-700  px-4 lg:px-20 py-10">
         <div className="lg:w-4/12 flex flex-col gap-5">
-          <p className="dark:text-white text-black font-bold text-xl">
+          <p className="text-white  font-bold text-xl">
             Subscribe to our newsletter to stay in touch with the latest.
           </p>
           <div className="w-full">
@@ -58,7 +58,7 @@ const Footer = () => {
           {FOOTER_LINKS.map((item, i) => (
             <span className="flex items-center lg:w-8/12 justify-start" key={i}>
               <FooterLink
-                className="dark:text-white text-black text-lg font-bold"
+                className="text-white  text-lg font-bold"
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
                 href={item.pathname}
@@ -69,7 +69,7 @@ const Footer = () => {
             </span>
           ))}
         </div>
-        <div className="lg:w-3/12 dark:text-white text-black flex flex-col gap-5">
+        <div className="lg:w-3/12 text-white  flex flex-col gap-5">
           <div>
             <p className="font-light text-xs dark:text-[#ccc]">
               DROP US A LINE

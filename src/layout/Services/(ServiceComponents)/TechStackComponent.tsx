@@ -13,10 +13,10 @@ const TechStackComponent = ({ partners }: IProp) => {
       {partners.map((item, i) => (
         <div
           key={i}
-          className="bg-brand_blue-300 rounded-full gap-5 border w-60 h-60 flex justify-center items-center flex-col"
+          className="bg-primary rounded-full gap-5 border w-60 h-60 flex justify-center items-center flex-col"
         >
           <Image src={item.image} alt="" height={120} width={120} />
-          <p className="font-SuisseSemiBold text-xl">{item.title}</p>
+          <p className="font-SuisseSemiBold text-xl text-black">{item.title}</p>
         </div>
       ))}
     </div>

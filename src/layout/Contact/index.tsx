@@ -30,7 +30,7 @@ interface IProp {
 }
 const ContactLayout = ({ contact }: IProp) => {
   return (
-    <div className="bg-brand_blue-300 w-full">
+    <div className="bg-secondary w-full">
       <div className="mx-auto w-full lg:w-9/12 xl:w-2/3 py-10   lg:p-10 h-full space-y-10">
         <h3 className="lg:text-center text-start px-5  w-10/12 lg:w-6/12 lg:mx-auto font-medium text-3xl">
           {contact.title}

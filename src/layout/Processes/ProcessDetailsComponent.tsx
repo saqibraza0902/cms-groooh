@@ -49,7 +49,7 @@ const ProcessesDetailsSection = ({ prop }: IProp) => {
     <>
       <div className="w-full lg:w-5/12 xl:w-3/12  flex flex-row justify-between items-center lg:items-start lg:px-0 lg:justify-end lg:flex-col 2xl:justify-end  text-white">
         <div className="lg:w-1/2 flex px-4 lg:px-0 flex-col">
-          <span className="text-3xl  text-white font-SuisseMedium">
+          <span className="text-3xl  text-black font-SuisseMedium">
             {prop.title}
           </span>
         </div>
@@ -70,11 +70,11 @@ const ProcessesDetailsSection = ({ prop }: IProp) => {
         >
           {prop?.processes?.map((el, i: number) => (
             <SwiperSlide key={i} className="h-full pl-4 pr-9 py-10">
-              <ContentBox className="">
+              <ContentBox className="!px-0">
                 <div className="w-full flex flex-col justify-center  gap-1 h-full min-h-full">
                   <div
                     key={i}
-                    className="bg-brand_blue-100 w-full h-96 rounded-2xl flex flex-col justify-between items-center relative"
+                    className="bg-white w-full h-96 rounded-2xl flex flex-col justify-between items-center relative"
                   >
                     <div className="relative z-10 w-full h-full flex justify-center items-center">
                       <Image src={el.image} alt="" width={150} height={150} />
@@ -85,15 +85,17 @@ const ProcessesDetailsSection = ({ prop }: IProp) => {
                         `group absolute inset-0 z-20 cursor-pointer overflow-hidden`
                       )}
                     >
-                      <span className=" bottom-28 z-50 fixed right-[85px]">
+                      <span className=" bottom-28 z-50 fixed right-14">
                         {hoverStates[i] === true ? (
                           <BiMinusCircle
                             size={30}
+                            color="#000"
                             onClick={() => handleMouseLeave(i)}
                           />
                         ) : (
                           <BiPlusCircle
                             size={30}
+                            color="#000"
                             onClick={() => handleMouseEnter(i)}
                           />
                         )}
@@ -102,7 +104,7 @@ const ProcessesDetailsSection = ({ prop }: IProp) => {
                         initial={{ y: "83%" }}
                         animate={{ y: hoverStates[i] ? "0%" : "83%" }}
                         transition={{ duration: 0.3 }}
-                        className=" w-10/12 mx-auto rounded-2xl bg-brand_blue-100 overflow-hidden flex-col h-full flex "
+                        className=" w-10/12 mx-auto rounded-2xl bg-white text-black overflow-hidden flex-col h-full flex "
                       >
                         <p className="font-SuisseSemiBold w-11/12 text-2xl">
                           {el.title}
