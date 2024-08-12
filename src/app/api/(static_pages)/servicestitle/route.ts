@@ -10,6 +10,7 @@ export const GET = async () => {
     const refined_data = [
       {
         title: data.SERVICE_1.title,
+        icon: data.SERVICE_1.icon,
         id: data.SERVICE_1.id,
         sub_services: data.SERVICE_1.services.map((el: any) => {
           return { title: el.title, url: el.url };
@@ -17,6 +18,7 @@ export const GET = async () => {
       },
       {
         title: data.SERVICE_2.title,
+        icon: data.SERVICE_2.icon,
         id: data.SERVICE_2.id,
         sub_services: data.SERVICE_2.services.map((el: any) => {
           return { title: el.title, url: el.url };
@@ -24,6 +26,7 @@ export const GET = async () => {
       },
       {
         title: data.SERVICE_3.title,
+        icon: data.SERVICE_3.icon,
         id: data.SERVICE_3.id,
         sub_services: data.SERVICE_3.services.map((el: any) => {
           return { title: el.title, url: el.url };

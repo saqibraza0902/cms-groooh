@@ -34,9 +34,9 @@ const Services = ({ services }: IProp) => {
                   alt=""
                 />
               </span>
-              <span className="bg-white p-1 h-14 flex justify-center items-center w-14 rounded-full">
+              {/* <span className="bg-white p-1 h-14 flex justify-center items-center w-14 rounded-full">
                 <GoArrowUpRight size={30} />
-              </span>
+              </span> */}
             </div>
             <div className="flex w-11/12 lg:w-2/3 flex-col gap-1 lg:gap-5">
               <h3 className="text-white text-2xl">{item.title}</h3>

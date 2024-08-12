@@ -36,7 +36,7 @@ const HomeSection = ({ hero }: IProp) => {
                   </span>
                 </div>
                 <div className="lg:w-1/6  text-black uppercase lg:mr-20 xl:mr-10">
-                  <ButtonLayout>Let's Talk</ButtonLayout>
+                  <ButtonLayout>Lets Talk</ButtonLayout>
                 </div>
               </div>
             </div>

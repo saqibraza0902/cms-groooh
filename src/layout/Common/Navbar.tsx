@@ -102,9 +102,9 @@ const Navbar = ({ toggle }: any) => {
                       )}
                     >
                       <div className="flex justify-center w-full gap-5">
-                        {CARDSARRAY.map((el, i) => (
-                          <Cards item={el} key={i} />
-                        ))}
+                        {CARDSARRAY.map((el, i) => {
+                          return <Cards item={el} key={i} />;
+                        })}
                         {/* <Cards arr={c1} text="Product Branding" />
                       <Cards /> */}
                       </div>
@@ -171,6 +171,7 @@ export default Navbar;
 interface ICard {
   item: {
     title: string;
+    icon: string;
     sub_services: {
       title: string;
       url: string;
@@ -181,6 +182,13 @@ const Cards = ({ item }: ICard) => {
   return (
     <div className="h-64 relative bg-secondary  w-52 rounded-[27px]">
       <div className="h-full text-black bg-primary absolute -top-2 right-2 p-3 w-full rounded-[19px]">
+        <Image
+          src={item.icon}
+          alt=""
+          className="bg-black rounded-xl p-1 mb-3"
+          width={50}
+          height={50}
+        />
         <h3 className="text-2xl !font-SuisseBold">{item.title}</h3>
 
         {item?.title && <div className="w-2/3 mx-auto bg-black h-[1px] my-2" />}
