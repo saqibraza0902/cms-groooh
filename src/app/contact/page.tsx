@@ -1,5 +1,5 @@
 import CommonLayout from "@/layout";
-import ContactLayout from "@/layout/Contact";
+import ContactLayout from "@/layout/contact-layout";
 import { contact_details } from "@/utils/function";
 import { IContact } from "@/utils/types";
 import React from "react";

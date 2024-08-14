@@ -1,6 +1,6 @@
 "use client";
 import CommonLayout from "@/layout";
-import EditServices from "@/layout/EditServices";
+import EditServices from "@/layout/edit-services";
 import { services_page, services_title } from "@/utils/function";
 import React, { useEffect, useState } from "react";
 

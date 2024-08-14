@@ -1,5 +1,5 @@
 import CommonLayout from "@/layout";
-import ServicesLayout from "@/layout/Services";
+import ServicesLayout from "@/layout/services-layout";
 import { services_page } from "@/utils/function";
 import { IServicesPage } from "@/utils/types";
 import React from "react";

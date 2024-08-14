@@ -1,12 +1,12 @@
 import CommonLayout from "@/layout";
 import React from "react";
-import Services from "@/layout/Home/Services";
-import HomeSection from "@/layout/Home/HomeSection";
-import RatingSection from "@/layout/Home/RatingSection";
-import PartnerSection from "@/layout/Home/PartnerSection";
-import BlogSection from "@/layout/Home/BlogSection";
-import WorkSection from "@/layout/Home/WorkSection";
-import ScrollTextSection from "@/layout/Home/ScrollTextSection";
+import Services from "@/layout/home-layout/services-section";
+import HomeSection from "@/layout/home-layout/home-section";
+import RatingSection from "@/layout/home-layout/rating-section";
+import PartnerSection from "@/layout/home-layout/partner-section";
+import BlogSection from "@/layout/home-layout/blog-section";
+import WorkSection from "@/layout/home-layout/work-section";
+import ScrollTextSection from "@/layout/home-layout/scroll-text-section";
 import { home_details } from "@/utils/function";
 import { IHome } from "@/utils/types";
 

@@ -119,6 +119,7 @@ export interface IHome {
 
 export interface IContact {
   title: string;
+  icon: string;
   contact: {
     title: string;
     description: string;

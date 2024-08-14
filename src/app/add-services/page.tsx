@@ -1,6 +1,6 @@
 "use client";
 import CommonLayout from "@/layout";
-import GalleryInput from "@/ui/form/GalleryInput";
+import GalleryInput from "@/ui/form/gallery-input";
 import { app, db } from "@/utils/firebase";
 import { get_images_from_firebase } from "@/utils/function";
 import { slugify } from "@/utils/slugify";

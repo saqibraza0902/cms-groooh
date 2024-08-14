@@ -1,6 +1,6 @@
 import CommonLayout from "@/layout";
-import DashboardLayout from "@/layout/NewBlog";
-import WithAuthLayout from "@/layout/WithAuthLayout";
+import DashboardLayout from "@/layout/new-blog";
+import WithAuthLayout from "@/layout/with-auth-layout";
 import React from "react";
 
 const Dashboard = () => {

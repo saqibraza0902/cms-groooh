@@ -1,8 +1,8 @@
 "use client";
-import WithAuthLayout from "@/layout/WithAuthLayout";
-import Button from "@/ui/form/Button";
-import Input from "@/ui/form/Input";
-import InputFile from "@/ui/form/FileInput";
+import WithAuthLayout from "@/layout/with-auth-layout";
+import Button from "@/ui/form/button-component";
+import Input from "@/ui/form/input-component";
+import InputFile from "@/ui/form/file-input";
 import { config } from "@/utils/editor";
 import { app, db } from "@/utils/firebase";
 import { uploadFile } from "@/utils/uploadFile";

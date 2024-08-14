@@ -1,6 +1,6 @@
 "use client";
 import CommonLayout from "@/layout";
-import Button from "@/ui/form/Button";
+import Button from "@/ui/form/button-component";
 import { useRouter } from "next/navigation";
 import React from "react";
 

@@ -1,5 +1,5 @@
 import CommonLayout from "@/layout";
-import ProcessesLayout from "@/layout/Processes";
+import ProcessesLayout from "@/layout/processes-layout";
 import React from "react";
 
 const Processes = () => {

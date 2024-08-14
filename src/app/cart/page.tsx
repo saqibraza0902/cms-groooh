@@ -1,7 +1,7 @@
 "use client";
 import { useAppDispatch, useAppSelector } from "@/hooks/Hooks";
 import CommonLayout from "@/layout";
-import { addItem, decrementItem, removeItem } from "@/redux/slices/cartSlices";
+import { addItem, decrementItem, removeItem } from "@/redux/slices/cart-slices";
 import { ICollectible } from "@/utils/types";
 import Image from "next/image";
 import Link from "next/link";

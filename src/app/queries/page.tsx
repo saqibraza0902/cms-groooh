@@ -1,7 +1,7 @@
 "use client";
 import adminAuth from "@/hooks/adminAuth";
 import CommonLayout from "@/layout";
-import Loader from "@/ui/components/Loader";
+import Loader from "@/ui/components/loader-component";
 import { db } from "@/utils/firebase";
 import { collection, getDocs } from "firebase/firestore";
 import React, { useEffect, useState } from "react";

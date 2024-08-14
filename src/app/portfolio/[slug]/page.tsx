@@ -1,9 +1,9 @@
 import { IItem } from "@/app/newportfolio/page";
 import CommonLayout from "@/layout";
 import { SHARE_ICONS } from "@/mock";
-import { ShareIcon } from "@/ui/components/AnimatedIcons";
-import PortfolioBox from "@/ui/components/PortfolioBox";
-import { calculateDuration } from "@/utils/calculatedate";
+import { ShareIcon } from "@/ui/components/animated-icons";
+import PortfolioBox from "@/ui/components/portfolio-box";
+import { calculateDuration } from "@/utils/calculate-date";
 import { recent_portfolios } from "@/utils/function";
 import extractStrongText from "@/utils/text";
 import { timestamps } from "@/utils/timestamp";

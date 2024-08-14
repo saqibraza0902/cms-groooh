@@ -1,7 +1,7 @@
 import React from "react";
-import Navigation from "./Common/Navigation";
-import Footer from "./Common/Footer";
-import CookiesConcent from "./Common/CookiesConcent";
+import Navigation from "./common-components/Navigation";
+import Footer from "./common-components/footer-component";
+import CookiesConcent from "./common-components/cookies-concent";
 
 interface ICommon {
   children: React.ReactNode;

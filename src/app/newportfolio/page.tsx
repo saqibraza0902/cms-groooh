@@ -7,12 +7,12 @@ import { addDoc, collection } from "firebase/firestore";
 import { config } from "@/utils/editor";
 import CommonLayout from "@/layout";
 import { get_tags } from "@/utils/function";
-import Pills from "@/ui/components/Pills";
-import Input from "@/ui/form/Input";
-import FileInput from "@/ui/form/FileInput";
+import Pills from "@/ui/components/pills-component";
+import Input from "@/ui/form/input-component";
+import FileInput from "@/ui/form/file-input";
 import { uploadFile } from "@/utils/uploadFile";
-import RadioInput from "@/ui/form/Radio";
-import Button from "@/ui/form/Button";
+import RadioInput from "@/ui/form/radio-component";
+import Button from "@/ui/form/button-component";
 import { slugify } from "@/utils/slugify";
 import Image from "next/image";
 export interface IItem {

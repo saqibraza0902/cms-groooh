@@ -1,5 +1,5 @@
 import CommonLayout from "@/layout";
-import PortfolioBox from "@/ui/components/PortfolioBox";
+import PortfolioBox from "@/ui/components/portfolio-box";
 import { get_portfolios } from "@/utils/function";
 import { IPortfolio } from "@/utils/types";
 import Image from "next/image";

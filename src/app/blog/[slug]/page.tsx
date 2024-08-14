@@ -7,8 +7,8 @@ import { addCustomStyling } from "@/utils/transformation";
 import React from "react";
 import { CiCalendar } from "react-icons/ci";
 import Image from "next/image";
-import BlogBox from "@/ui/components/BlogBox";
-import { ShareIcon } from "@/ui/components/AnimatedIcons";
+import BlogBox from "@/ui/components/blog-box";
+import { ShareIcon } from "@/ui/components/animated-icons";
 import { SHARE_ICONS } from "@/mock";
 import { Metadata } from "next";
 

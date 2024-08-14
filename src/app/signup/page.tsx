@@ -1,6 +1,6 @@
 import CommonLayout from "@/layout";
 import React from "react";
-import SignUpLayout from "@/layout/AuthPages/SignUp";
+import SignUpLayout from "@/layout/auth-pages/sign-up";
 const SignUp = () => {
   return (
     <CommonLayout>

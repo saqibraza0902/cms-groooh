@@ -1,5 +1,5 @@
 import CommonLayout from "@/layout";
-import BlogBox from "@/ui/components/BlogBox";
+import BlogBox from "@/ui/components/blog-box";
 import { get_blogs } from "@/utils/function";
 import { IBlog } from "@/utils/types";
 import Image from "next/image";

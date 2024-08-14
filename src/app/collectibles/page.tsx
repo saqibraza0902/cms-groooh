@@ -1,9 +1,9 @@
 "use client";
 import { useAppDispatch } from "@/hooks/Hooks";
 import CommonLayout from "@/layout";
-import { addItem } from "@/redux/slices/cartSlices";
-import CollectiblesBox from "@/ui/components/CollectiblesBox";
-import Loader from "@/ui/components/Loader";
+import { addItem } from "@/redux/slices/cart-slices";
+import CollectiblesBox from "@/ui/components/collectibles-box";
+import Loader from "@/ui/components/loader-component";
 import { db } from "@/utils/firebase";
 import { ICollectible } from "@/utils/types";
 import { collection, getDocs } from "firebase/firestore";

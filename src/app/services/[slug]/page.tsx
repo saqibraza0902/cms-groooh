@@ -1,5 +1,5 @@
 import CommonLayout from "@/layout";
-import SubServicesLayout from "@/layout/Services/(SubServices)";
+import SubServicesLayout from "@/layout/services-layout/(sub-services)";
 import React from "react";
 
 interface IProp {

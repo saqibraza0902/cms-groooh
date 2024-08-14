@@ -1,10 +1,10 @@
 "use client";
 import adminAuth from "@/hooks/adminAuth";
 import CommonLayout from "@/layout";
-import Modal from "@/ui/components/Modal";
-import Loader from "@/ui/components/Loader";
-import Button from "@/ui/form/Button";
-import Input from "@/ui/form/Input";
+import Modal from "@/ui/components/modal-component";
+import Loader from "@/ui/components/loader-component";
+import Button from "@/ui/form/button-component";
+import Input from "@/ui/form/input-component";
 import { config } from "@/utils/editor";
 import { db } from "@/utils/firebase";
 import { deleteCollectible } from "@/utils/function";
