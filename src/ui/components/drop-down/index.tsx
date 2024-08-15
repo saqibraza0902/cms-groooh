@@ -27,7 +27,7 @@ const Dropdown = ({ item }: any) => {
   return (
     <div className="relative inline-block" ref={dropdownRef}>
       <li
-        className="text-white cursor-pointer flex items-center gap-1"
+        className=" cursor-pointer flex dark:text-white text-black items-center gap-1"
         onClick={handleClick}
       >
         {!item.dropdown && <Link href={item.pathname}>{item.title}</Link>}

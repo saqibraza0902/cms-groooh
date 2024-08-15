@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { hasCookie, setCookie } from "cookies-next";
 import { cn } from "@/utils/styles";
+import { ButtonLayout } from "@/ui/components/animated-button";
 const CookiesConcent = () => {
   const [showConcent, setShowConcent] = useState(false);
   useEffect(() => {
@@ -24,8 +25,12 @@ const CookiesConcent = () => {
         We use cookies to improve your experience. By continuing, you consent to
         our use of cookies.
       </p>
-      <div className="">
-        <div
+      <div
+        className={` ${!showConcent ? "flex" : "hidden"}`}
+        onClick={() => acceptCookies()}
+      >
+        <ButtonLayout className="bg-primary text-black ">Accept</ButtonLayout>
+        {/* <div
           onClick={() => acceptCookies()}
           className={`bg-brand_blue-300 h-10 relative rounded-xl w-32 cursor-pointer ${
             !showConcent ? "flex" : "hidden"
@@ -34,7 +39,7 @@ const CookiesConcent = () => {
           <div className="bg-white text-black px-5 flex items-center justify-center rounded-lg absolute -top-1 -left-1 h-full w-full">
             Accept
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

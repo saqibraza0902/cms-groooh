@@ -8,7 +8,7 @@ export const CARDSARRAY = [
     sub_categories: [
       {
         title: "UI/UX Design",
-        link: "/services/ui-ux-design",
+        link: "/services/uiux-design",
       },
       {
         title: "Web Design",
@@ -122,11 +122,6 @@ export const PUBLIC_NAV = [
     title: "Home",
     pathname: PUBLIC_URLS.HOME,
     prefix: PUBLIC_URLS.HOME,
-  },
-  {
-    title: "Services",
-    pathname: PUBLIC_URLS.SERVICES,
-    prefix: PUBLIC_URLS.SERVICES,
   },
   {
     title: "Projects",

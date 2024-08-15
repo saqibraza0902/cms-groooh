@@ -1,4 +1,5 @@
 "use client";
+import { ButtonLayout } from "@/ui/components/animated-button";
 import Button from "@/ui/form/button-component";
 import Input from "@/ui/form/input-component";
 import TextArea from "@/ui/form/textarea-component";
@@ -34,19 +35,19 @@ const ContactForm = () => {
       <div className="flex flex-col lg:flex-row space-y-10 lg:space-y-0 lg:space-x-5 ">
         <div className="w-full space-y-10">
           <Input
-            inputClassName="text-black placeholder:text-brand_gray-500"
+            inputClassName="text-white placeholder:text-brand_gray-500 border-none bg-black "
             placeholder="Type your name"
             className="space-y-3 min-w-0 "
             label="Your name"
           />
           <Input
-            inputClassName="text-black placeholder:text-brand_gray-500"
+            inputClassName="text-white placeholder:text-brand_gray-500 border-none bg-black"
             placeholder="Type your mail"
             className="space-y-3 min-w-0"
             label="Your Mail"
           />
           <Input
-            inputClassName="text-black placeholder:text-brand_gray-500"
+            inputClassName="text-white placeholder:text-brand_gray-500 border-none bg-black"
             placeholder="Type your subject"
             className="space-y-3 min-w-0"
             label="Subject"
@@ -58,15 +59,18 @@ const ContactForm = () => {
             label="Message"
             divClass="space-y-3 w-full min-w-0"
             placeholder="Type your message..."
-            className=" text-black placeholder:text-brand_gray-500"
+            className=" text-white placeholder:text-brand_gray-500 border-none bg-black"
           />
         </div>
       </div>
-      <div className=" bg-brand_blue-300 relative rounded-3xl w-full h-14 ">
+      <div className="w-2/6 mx-auto">
+        <ButtonLayout className="w-">Send Message</ButtonLayout>
+      </div>
+      {/* <div className=" bg-brand_blue-300 relative rounded-3xl w-full h-14 ">
         <Button className="bg-black text-white w-full h-full absolute -top-2 -left-2 rounded-2xl !font-normal">
           Send Message
         </Button>
-      </div>
+      </div> */}
     </form>
   );
 };

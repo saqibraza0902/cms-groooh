@@ -15,6 +15,8 @@ import { PUBLIC_URLS } from "@/utils/urls";
 import { AUTH_NAV, PUBLIC_NAV } from "@/mock";
 import Link from "next/link";
 import Dropdown from "@/ui/components/drop-down";
+import { AnimatedLink } from "@/ui/components/animated-button";
+import { cn } from "@/utils/styles";
 const LoggedinNavbar = ({ toggle }: any) => {
   const router = useRouter();
   const { theme, setTheme } = useTheme();
@@ -35,11 +37,18 @@ const LoggedinNavbar = ({ toggle }: any) => {
     return () => unsubscribe();
   }, [user]);
   return (
-    <nav className=" bg-brand_gray-400 dark:bg-brand_gray-700 h-16 flex justify-between items-center text-white px-6">
+    <nav className=" dark:bg-black bg-white h-16 flex justify-between items-center text-white px-6">
       <ul className="flex gap-4 items-center h-full">
         {PUBLIC_NAV.map((item, index) => (
           <Link className="hidden md:flex" key={index} href={item.pathname}>
-            {item.title}
+            <AnimatedLink
+              className={cn(
+                `!text-white !bg-none  uppercase flex items-center gap-1`
+              )}
+              href={item.pathname}
+              text={item.title}
+              showIcon={false}
+            />
           </Link>
         ))}
         {!user && (
@@ -69,18 +78,14 @@ const LoggedinNavbar = ({ toggle }: any) => {
             <HiOutlineSun color={theme === "dark" ? "#fff" : "#fff"} />
           </p>
         </li>
-        <Link
-          href="/cart"
-          className="relative cursor-pointer"
-          // onClick={() => router.push("/cart")}
-        >
-          <BsCart size={25} />
+        <Link href="/cart" className="relative cursor-pointer">
+          <BsCart size={25} color={theme === "dark" ? "#fff" : "#000"} />
           <span className="absolute -top-2 bg-brand_red-800 w-4 text-sm h-5 flex justify-center items-center rounded-full -right-2">
             {items.length}
           </span>
         </Link>
         {user && (
-          <div className="hidden lg:flex">
+          <div className="hidden lg:flex gap-4">
             {AUTH_NAV.map((item, index) => (
               <Dropdown item={item} key={index} />
             ))}
@@ -92,7 +97,10 @@ const LoggedinNavbar = ({ toggle }: any) => {
                 alt=""
               />
             </li>
-            <li onClick={() => handleSignOut()} className="cursor-pointer">
+            <li
+              onClick={() => handleSignOut()}
+              className="cursor-pointer dark:text-white text-black"
+            >
               Logout
             </li>
           </div>

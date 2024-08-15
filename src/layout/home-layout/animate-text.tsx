@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 
 const AnimatedText = () => {
-  const words = ["Breakthrough", "Buzz", "Idea"]; // List of words to loop through
+  const words = ["Idea", "Buzz", "Breakthrough"]; // List of words to loop through
   const images = [
     "/icons/bulb-dynamic-premium.png", // Replace with actual paths to your images
     "/icons/hash-dynamic-premium.png",
@@ -37,7 +37,7 @@ const AnimatedText = () => {
         </motion.p>{" "}
         <p> Stats Here</p>
       </p>
-      <div className="absolute right-0 bottom-32">
+      <div className="lg:absolute z-50 lg:right-0 flex justify-center lg:bottom-32">
         <motion.div
           key={images[currentWordIndex]}
           initial={{ opacity: 0, y: 20 }}

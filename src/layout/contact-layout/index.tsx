@@ -8,6 +8,7 @@ import { MdLocalPhone } from "react-icons/md";
 import ContactForm from "./contact-form";
 import { IContact } from "@/utils/types";
 import Image from "next/image";
+import ContentBox from "@/ui/components/content-box";
 const CONTACT_DETAILS = [
   {
     icon: <FaLocationDot />,
@@ -31,27 +32,27 @@ interface IProp {
 }
 const ContactLayout = ({ contact }: IProp) => {
   return (
-    <div className="bg-secondary w-full">
+    <div className="bg-brand_green-700 w-full">
       <div className="mx-auto w-full lg:w-9/12 xl:w-2/3 py-10   lg:p-10 h-full space-y-10">
         <div className="flex justify-center items-center">
           <Image
             src={contact.icon}
             alt=""
-            width={120}
-            height={120}
+            width={200}
+            height={200}
             className="mx-auto my-auto"
           />
         </div>
-        <h3 className="lg:text-center text-start px-5  w-10/12 lg:w-6/12 lg:mx-auto font-medium text-3xl">
-          {contact.title}
-        </h3>
+
         <div className="pl-11 pr-5">
-          <div className="relative bg-black h-[83vh] lg:h-[60vh] xl:h-[97vh] 2xl:h-[60vh] rounded-[60px] w-full">
-            <div className="bg-white  h-full w-full rounded-[40px]  space-y-5 absolute -top-5 -left-5 px-4 py-10 lg:px-10 lg:py-14">
-              <h4 className="text-2xl font-medium text-black">Contact Form</h4>
-              <ContactForm />
-            </div>
-          </div>
+          {/* <div className="relative bg-black h-[83vh] lg:h-[60vh] xl:h-[97vh] 2xl:h-[60vh] rounded-[60px] w-full">
+            <div className="bg-white  h-full w-full rounded-[40px]  space-y-5 absolute -top-5 -left-5 px-4 py-10 lg:px-10 lg:py-14"> */}
+          <ContentBox className="bg-primary" childClass="bg-secondary">
+            <h3 className="text-black font-medium text-3xl">{contact.title}</h3>
+            <ContactForm />
+          </ContentBox>
+          {/* </div>
+          </div> */}
         </div>
         <div className="grid pl-8 pr-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 justify-items-stretch">
           {contact?.contact?.map((item, i) => (

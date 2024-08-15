@@ -10,6 +10,7 @@ import {
   AnimatedHeroHamburger,
   AnimatedHeroNav,
   AnimatedLink,
+  ButtonLayout,
 } from "@/ui/components/animated-button";
 import { cn } from "@/utils/styles";
 interface Props {
@@ -43,7 +44,7 @@ const ToggleSidebar = ({ open, close }: Props) => {
   };
   return (
     <div
-      className={`fixed lg:hidden inset-y-0 w-full md:w-[50%]  !overflow-hidden z-50 lg:w-[25%] bg-white transition-transform duration-300 transform flex 
+      className={`fixed lg:hidden inset-y-0 w-full md:w-[50%]  !overflow-hidden z-50 lg:w-[25%] bg-white dark:bg-black transition-transform duration-300 transform flex 
        ${open ? "translate-x-0" : "-translate-x-full"} 
      
       `}
@@ -133,13 +134,10 @@ const ToggleSidebar = ({ open, close }: Props) => {
             </div>
           ))}
         </div>
-        <div className="bg-brand_blue-300 flex md:hidden w-36 h-10 my-3 relative rounded-xl">
-          <div className="absolute capitalize text-sm -top-1 -left-1">
-            <AnimatedHeroNav
-              className="bg-black text-white h-10 min-w-36"
-              text="CONTACT US"
-            />
-          </div>
+        <div className=" flex md:hidden w-44 ">
+          <ButtonLayout className="dark:bg-primary !w-full dark:text-black bg-black text-white">
+            CONTACT US
+          </ButtonLayout>
         </div>
       </div>
     </div>

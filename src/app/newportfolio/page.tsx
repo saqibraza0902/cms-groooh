@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 const JoditEditor = dynamic(() => import("jodit-react"), { ssr: false });
-import { db } from "@/utils/firebase";
+import { app, db } from "@/utils/firebase";
 import { addDoc, collection } from "firebase/firestore";
 import { config } from "@/utils/editor";
 import CommonLayout from "@/layout";
@@ -15,6 +15,8 @@ import RadioInput from "@/ui/form/radio-component";
 import Button from "@/ui/form/button-component";
 import { slugify } from "@/utils/slugify";
 import Image from "next/image";
+import { deleteObject, getStorage, ref } from "firebase/storage";
+import { ButtonLayout } from "@/ui/components/animated-button";
 export interface IItem {
   url: string;
   alt: string;
@@ -94,7 +96,26 @@ const NewPortfolio = () => {
       tags: [...prevFields.tags, selectedTag],
     }));
   };
+  const storage = getStorage(app);
+  const handleDiscard = async () => {
+    for (const imageUrl of fields.gallery) {
+      console.log("Image URL", imageUrl);
+      // @ts-ignore
+      const imageRef = ref(storage, imageUrl.url);
+      try {
+        console.log(imageRef);
+        await deleteObject(imageRef);
+        // @ts-ignore
+        console.log(`Image deleted: ${imageUrl.url}`);
+      } catch (error) {
+        console.error("Error deleting image:", error);
+      }
+    }
 
+    // Reset the form fields
+    setFields(initialState);
+    setFile(null);
+  };
   return (
     <CommonLayout>
       <div className="flex justify-center w-full min-h-screen">
@@ -252,7 +273,14 @@ const NewPortfolio = () => {
               ))}
             </div>
           </div>
-          <Button onClick={() => postData()}>Submit</Button>
+          <div className="flex gap-10 w-8/12 mx-auto">
+            <div className="w-full" onClick={() => postData()}>
+              <ButtonLayout className="">Submit</ButtonLayout>
+            </div>
+            <div className="w-full" onClick={() => handleDiscard()}>
+              <ButtonLayout className="bg-red-600">Discard</ButtonLayout>
+            </div>
+          </div>
         </div>
       </div>
     </CommonLayout>
