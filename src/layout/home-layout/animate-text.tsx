@@ -37,7 +37,7 @@ const AnimatedText = () => {
         </motion.p>{" "}
         <p> Stats Here</p>
       </p>
-      <div className="lg:absolute z-50 lg:right-0 flex justify-center lg:bottom-32">
+      <div className="lg:absolute z-50 lg:right-0 flex justify-center lg:bottom-32 2xl:bottom-1/3 2xl:right-[5%]">
         <motion.div
           key={images[currentWordIndex]}
           initial={{ opacity: 0, y: 20 }}

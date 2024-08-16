@@ -32,7 +32,7 @@ interface IProp {
 }
 const ContactLayout = ({ contact }: IProp) => {
   return (
-    <div className="bg-brand_green-700 w-full">
+    <div className="bg-black w-full">
       <div className="mx-auto w-full lg:w-9/12 xl:w-2/3 py-10   lg:p-10 h-full space-y-10">
         <div className="flex justify-center items-center">
           <Image
@@ -56,8 +56,12 @@ const ContactLayout = ({ contact }: IProp) => {
         </div>
         <div className="grid pl-8 pr-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 justify-items-stretch">
           {contact?.contact?.map((item, i) => (
-            <div key={i} className="relative bg-black  rounded-3xl w-full h-28">
-              <div className="bg-white absolute p-3 -top-2 rounded-2xl -left-2 flex space-x-2 items-center lg:justify-center  w-full h-full">
+            <ContentBox
+              key={i}
+              childClass="bg-secondary !rounded-3xl !translate-x-2 !translate-y-2"
+              className="!p-4 !rounded-xl bg-primary"
+            >
+              <div className="flex gap-3 ">
                 <div className="h-12 w-12 rounded-full bg-black text-white flex items-center justify-center"></div>
                 <div className="flex text-sm flex-col">
                   <span className="text-black">{item.title}</span>
@@ -66,7 +70,7 @@ const ContactLayout = ({ contact }: IProp) => {
                   </span>
                 </div>
               </div>
-            </div>
+            </ContentBox>
           ))}
         </div>
       </div>

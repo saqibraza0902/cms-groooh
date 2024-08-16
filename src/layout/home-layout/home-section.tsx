@@ -11,7 +11,7 @@ interface IProp {
 const HomeSection = ({ hero }: IProp) => {
   return (
     <>
-      <div className="h-screen lg:h-[50vh] xl:h-[80vh] 2xl:h-[60vh] flex flex-col lg:flex-row gap-14 w-full 2xl:w-[90%]">
+      <div className="h-screen lg:h-[50vh] xl:h-[80vh] 2xl:h-[60vh] flex flex-col lg:flex-row gap-14 w-full 2xl:w-[80%]">
         <div className="pl-4 pr-9 lg:pr-0 lg:pl-0 lg:w-9/12">
           <ContentBox
             className="!bg-primary w-full p-0"
