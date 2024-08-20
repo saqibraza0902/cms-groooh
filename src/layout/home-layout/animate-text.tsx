@@ -21,8 +21,8 @@ const AnimatedText = () => {
   }, [words.length]);
 
   return (
-    <div>
-      <p className="font-SuisseMedium relative z-40 w-full text-center lg:text-left text-3xl lg:text-6xl  xl:text-[60px] lg:leading-[80px] text-black uppercase">
+    <div className="w-full text-center">
+      <p className="font-SuisseMedium relative z-40 w-full text-center lg:text-left text-3xl lg:text-4xl lg:leading-[60px]  xl:text-[60px] xl:leading-[80px] text-black uppercase">
         <p className="text-[2.3rem]">Innovate the Future: </p>
         <p>Your Next Big</p>{" "}
         <motion.p
@@ -37,7 +37,7 @@ const AnimatedText = () => {
         </motion.p>{" "}
         <p> Stats Here</p>
       </p>
-      <div className="lg:absolute z-50 lg:right-0 flex justify-center lg:bottom-32 2xl:bottom-1/3 2xl:right-[5%]">
+      <div className="lg:absolute z-50 lg:right-0 flex justify-center lg:bottom-[35%] 1.5xl:bottom-[40%] 1.5xl:right-[5%] 2xl:bottom-1/3 2xl:right-[5%]">
         <motion.div
           key={images[currentWordIndex]}
           initial={{ opacity: 0, y: 20 }}

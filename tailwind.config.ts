@@ -6,8 +6,17 @@ const config: Config = {
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+
   darkMode: ["class"],
   theme: {
+    screens: {
+      sm: "640px",
+      md: "768px",
+      lg: "1024px",
+      xl: "1280px",
+      "1.5xl": "1366px",
+      "2xl": "1536px",
+    },
     extend: {
       fontFamily: {
         Suisse: ["Suisse"],
@@ -19,6 +28,21 @@ const config: Config = {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      },
+      height: {
+        lg: "750px",
+        "2xl": "1080px",
+        "4k": "400px",
+        "5k": "500px",
+        "6k": "600px",
+        "6.3k": "630px",
+        "6.5k": "650px",
+        "6.6k": "660px",
+        "6.7k": "670px",
+        "6.8k": "680px",
+        "7k": "700px",
+        "8k": "800px",
+        "9k": "900px",
       },
       colors: {
         primary: "#e3ff00",

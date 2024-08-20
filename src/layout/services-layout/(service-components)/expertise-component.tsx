@@ -1,5 +1,4 @@
 "use client";
-import BlueContentBox from "@/ui/components/blue-content-box";
 import Image from "next/image";
 import React, { useState } from "react";
 import { motion } from "framer-motion";

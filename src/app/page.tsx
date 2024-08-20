@@ -14,20 +14,20 @@ const Home = async () => {
   const home_detail: IHome = await home_details();
   return (
     <CommonLayout>
-      <section className="bg-white dark:bg-black py-20 lg:mt-0 lg:px-20 h-full lg:h-full 2xl:h-screen flex  flex-col justify-center items-center">
+      <section className="bg-white dark:bg-black h-full py-10 lg:h-lg 2xl:h-2xl">
         <HomeSection hero={home_detail?.HeroSection} />
       </section>
       <section className="bg-white  pl-9 pr-4 py-20 lg:mt-0 lg:px-28 h-full lg:h-full 2xl:h-screen flex  flex-col justify-center items-center">
         <ScrollTextSection text={home_detail?.ScrollText} />
       </section>
-      <section className="h-full bg-brand_green-700 dark:bg-black pl-4 pr-9 py-20 lg:p-20">
+      <section className="h-full bg-brand_green-700 dark:bg-black 2xl:h-2xl flex justify-center items-center pl-4 pr-9 py-20 lg:p-20">
         <Services services={home_detail?.ServicesPage} />
       </section>
 
-      <section className="h-full bg-primary 2xl:h-screen flex flex-col lg:flex-row  w-full lg:px-20 py-10">
+      <section className="h-full py-10 bg-primary w-full flex flex-col lg:flex-row lg:px-20  lg:items-end lg:min-h-[700px] 2xl:h-2xl ">
         <RatingSection rating={home_detail.RatingSection} />
       </section>
-      <section className="min-h-screen pl-4 pr-9 py-10 2xl:h-screen flex items-center justify-center h-full lg:p-20 bg-brand_pink-100">
+      <section className="min-h-screen bg-brand_pink-100 pl-4 pr-9 py-10 flex items-center justify-center h-full lg:px-14 lg:min-h-[850px] 2xl:h-screen">
         <WorkSection title={home_detail?.WorksSection?.title} />
       </section>
       <section className="h-full px-4 py-10 lg:p-20 flex justify-center items-center bg-brand_green-700">

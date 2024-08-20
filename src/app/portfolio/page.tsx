@@ -1,5 +1,6 @@
 import CommonLayout from "@/layout";
-import PortfolioBox from "@/ui/components/portfolio-box";
+import ContentBox from "@/ui/components/content-box";
+import ContentLayout from "@/ui/components/content-layout";
 import { get_portfolios } from "@/utils/function";
 import { IPortfolio } from "@/utils/types";
 import Image from "next/image";
@@ -11,11 +12,20 @@ const Portfolio = async () => {
 
   return (
     <CommonLayout>
-      <div className="bg-brand_blue-300 min-h-screen">
+      <div className="bg-black min-h-screen">
         {newposts?.length > 0 ? (
-          <div className="grid  grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10 p-10">
-            {newposts?.map((post: IPortfolio, index: number) => (
-              <PortfolioBox item={post} key={index} />
+          <div className="grid grid-cols-1 pr-8 pl-3 py-10 lg:px-14 md:grid-cols-2 gap-10">
+            {newposts?.map((item: IPortfolio, index: number) => (
+              <ContentLayout
+                key={index}
+                item={{
+                  desc: item?.desc,
+                  image: item?.gallery[0]?.url,
+                  slug: item.slug,
+                  title: item.title,
+                  isPortfolio: true,
+                }}
+              />
             ))}
           </div>
         ) : (

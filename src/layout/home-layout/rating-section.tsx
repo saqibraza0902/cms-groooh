@@ -26,7 +26,7 @@ const RatingSection = ({ rating }: IProp) => {
   };
   return (
     <>
-      <div className="w-full lg:w-5/12 xl:w-3/12  flex flex-row justify-between items-center lg:items-start lg:px-0 lg:justify-end lg:flex-col 2xl:justify-end  text-white">
+      <div className="flex flex-row justify-between items-center lg:items-start lg:px-0 lg:flex-col  text-white">
         <div className="lg:w-1/2 flex px-4 lg:px-0 flex-col">
           <span className="text-4xl font-SuisseBold text-black">4.9</span>
           <span className="text-3xl  text-black font-SuisseMedium">
@@ -42,13 +42,15 @@ const RatingSection = ({ rating }: IProp) => {
           </span>
         </div>
       </div>
-      <div className="w-full lg:w-8/12 xl:w-9/12 flex items-center justify-center  h-full">
-        <RatingSwiper
-          array={rating?.ratings}
-          swiperRef={swiperRef}
-          onNextSlide={nextSlide}
-          onPrevSlide={prevSlide}
-        />
+      <div className="w-full lg:w-8/12 xl:w-9/12 flex !items-end  h-full">
+        <div className="w-[40vh] xl:w-full  h-full">
+          <RatingSwiper
+            array={rating?.ratings}
+            swiperRef={swiperRef}
+            onNextSlide={nextSlide}
+            onPrevSlide={prevSlide}
+          />
+        </div>
       </div>
     </>
   );

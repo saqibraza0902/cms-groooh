@@ -93,7 +93,7 @@ export const ButtonLayout = ({
   return (
     <div
       className={cn(
-        `bg-black border-black h-12 min-w-40 text-white flex items-center justify-center rounded-lg relative overflow-hidden ${className}`
+        `bg-black px-3 gap-3 border-black flex justify-between items-center text-white rounded-lg relative overflow-hidden ${className}`
       )}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -101,23 +101,23 @@ export const ButtonLayout = ({
       <div className="!w-2/6 cursor-pointer">
         <motion.p
           className="text-nowrap"
-          initial={{ y: "50%", x: "-55%" }}
-          animate={{ y: isHovered ? "-150%" : "50%", x: "-55%" }}
+          initial={{ y: "50%" }}
+          animate={{ y: isHovered ? "-150%" : "50%" }}
           transition={{ duration: 0.3 }}
         >
           {children}
         </motion.p>
         <motion.p
           className="text-nowrap"
-          initial={{ y: "150%", x: "-55%" }}
-          animate={{ y: isHovered ? "-50%" : "150%", x: "-55%" }}
+          initial={{ y: "150%" }}
+          animate={{ y: isHovered ? "-50%" : "150%" }}
           transition={{ duration: 0.3 }}
         >
           {children}
         </motion.p>
       </div>
 
-      <div className="h-5 w-5 rounded-full bg-slate-400 absolute right-3"></div>
+      <div className="h-5 w-5 rounded-full bg-gray-600 "></div>
     </div>
   );
 };

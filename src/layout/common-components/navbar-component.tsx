@@ -55,7 +55,7 @@ const Navbar = ({ toggle }: any) => {
     return () => unsubscribe();
   }, [user]);
   return (
-    <nav className="px-6 lg:px-14  bg-white  dark:bg-black cursor-pointer h-16 border dark:border-none flex justify-between items-center text-white">
+    <nav className="px-6 lg:px-14 py-1 border bg-white  dark:bg-black cursor-pointer dark:border-none flex justify-between items-center text-white">
       <div className="2xl:w-11/12 2xl:mx-auto w-full">
         <ul className="flex gap-4 items-center w-full justify-between h-full">
           <Link href={"/"} className=" w-32 h-10">
@@ -137,15 +137,8 @@ const Navbar = ({ toggle }: any) => {
                 </div>
               </Link>
             ) : (
-              <div className="bg-brand_blue-300 dark:bg-white  hidden md:flex min-w-36 h-10 my-3 relative rounded-xl">
-                <Link
-                  href={PUBLIC_URLS.CONTACT}
-                  className="absolute capitalize text-sm -top-1 -left-1"
-                >
-                  {/* <AnimatedHeroNav
-                    className="bg-black dark:bg-brand_blue-300 h-10 min-w-36"
-                    text="CONTACT US"
-                  /> */}
+              <div className="">
+                <Link href={PUBLIC_URLS.CONTACT}>
                   <ButtonLayout className="dark:bg-primary dark:text-black bg-black text-white">
                     CONTACT US
                   </ButtonLayout>

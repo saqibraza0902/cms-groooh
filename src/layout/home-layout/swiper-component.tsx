@@ -1,6 +1,7 @@
 // SwiperComponent.js
+"use client";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Scrollbar, Autoplay } from "swiper/modules";
+import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -8,6 +9,7 @@ import SwiperCore from "swiper";
 import { useEffect } from "react";
 import { SwiperNavButtons } from "./slides-component";
 import { FaStar } from "react-icons/fa6";
+import Image from "next/image";
 SwiperCore.use([Navigation]);
 
 export const WorkSlider = ({ swiperRef, data }: any) => {
@@ -37,8 +39,10 @@ export const WorkSlider = ({ swiperRef, data }: any) => {
     >
       {data?.map((item: any, i: number) => (
         <SwiperSlide key={i} className="h-full w-full">
-          <img
-            className="h-full  rounded-3xl"
+          <Image
+            height={1200}
+            width={1200}
+            className="h-full w-full object-cover rounded-3xl"
             src={item.gallery[0]?.url}
             alt={item.gallery[0]?.alt}
           />

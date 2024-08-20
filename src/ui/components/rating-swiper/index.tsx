@@ -23,7 +23,7 @@ export const RatingSwiper = ({ swiperRef, array }: any) => {
       spaceBetween: 10,
     },
     1536: {
-      slidesPerView: 2.5,
+      slidesPerView: 3,
       spaceBetween: 10,
     },
   };
@@ -36,12 +36,12 @@ export const RatingSwiper = ({ swiperRef, array }: any) => {
       pagination={{ clickable: false }}
       scrollbar={{ draggable: true }}
       autoplay={{ delay: 3000 }}
-      loop={true}
-      className="h-full 2xl:h-[90vh]"
+      loop={false}
+      className="h-full"
     >
       {array?.map((item: any, i: number) => (
         <SwiperSlide key={i} className="h-full pl-4 pr-9 py-10">
-          <ContentBox className="!h-full">
+          <ContentBox className="!h-6k" childClass="!h-6k">
             <div className="w-full flex flex-col justify-center  gap-1 h-full min-h-full">
               <div className="flex items-center h-1/6 gap-4">
                 <p className="!text-black text-xl font-bold">{item.rating}</p>
@@ -53,7 +53,7 @@ export const RatingSwiper = ({ swiperRef, array }: any) => {
               </div>
               <div className="h-[0.1px] my-6 w-full bg-black" />
               <div className="!h-full">
-                <p className="text-lg text-black line-clamp-[12] min-h-[30vh] md:min-h-[20vh] lg:min-h-[30vh] xl:min-h-[50vh] font-bold h-full">
+                <p className="text-lg text-black line-clamp-[12]  font-bold h-full">
                   {item.review}
                 </p>
               </div>

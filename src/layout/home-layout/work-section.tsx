@@ -6,7 +6,6 @@ import {
 import React, { useEffect, useRef, useState } from "react";
 import { WorkContentSlider, WorkSlider } from "./swiper-component";
 import { get_portfolios } from "@/utils/function";
-import BlueContentBox from "@/ui/components/blue-content-box";
 import ContentBox from "@/ui/components/content-box";
 
 interface IProp {
