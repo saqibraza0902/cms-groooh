@@ -55,10 +55,24 @@ const ProcessesDetailsSection = ({ prop }: IProp) => {
         </div>
         <div className="flex gap-10 px-4 lg:px-0 lg:mt-6">
           <span onClick={prevSlide} className="cursor-pointer">
-            <SliderLeftButton />
+            <SliderLeftButton
+              item={{
+                hoverBorder: "border-[#000]",
+                iconColorA: "#000",
+                iconColorB: "#fff",
+                bg: "#000",
+              }}
+            />
           </span>
           <span onClick={nextSlide} className="cursor-pointer">
-            <SliderRightButton />
+            <SliderRightButton
+              item={{
+                hoverBorder: "#000",
+                iconColorA: "#000",
+                iconColorB: "#fff",
+                bg: "#000",
+              }}
+            />
           </span>
         </div>
       </div>

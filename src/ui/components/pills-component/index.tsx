@@ -1,23 +1,23 @@
+import { cn } from "@/utils/styles";
 import React from "react";
 import { BiCross } from "react-icons/bi";
 import { RxCross1 } from "react-icons/rx";
 
 interface IProp {
   children: React.ReactNode;
-  isIcon: boolean;
+  className?: string;
   handleClick?: () => void;
-  iconClick?: () => void;
 }
-const Pills = ({ handleClick, iconClick, isIcon, children }: IProp) => {
+const Pills = ({ handleClick, className, children }: IProp) => {
   return (
     <div
       onClick={handleClick}
-      className="w-auto cursor-pointer bg-brand_blue-500 px-4 rounded py-1  flex-nowrap relative"
-    >
-      {isIcon && (
-        <RxCross1 onClick={iconClick} className="absolute -top-1 -right-1" />
+      className={cn(
+        "w-auto cursor-pointer bg-brand_blue-500 px-4 rounded py-1  flex-nowrap relative",
+        className
       )}
-      <span className="text-sm text-white">{children}</span>
+    >
+      {children}
     </div>
   );
 };

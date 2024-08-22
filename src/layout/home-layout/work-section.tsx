@@ -77,10 +77,24 @@ const WorkSection = ({ title }: IProp) => {
             </div>
             <div className="flex gap-10 ">
               <span onClick={prevSlide} className="cursor-pointer">
-                <SliderLeftButton />
+                <SliderLeftButton
+                  item={{
+                    hoverBorder: "#000",
+                    iconColorA: "#fff",
+                    iconColorB: "#fff",
+                    bg: "#fff",
+                  }}
+                />
               </span>
               <span onClick={nextSlide} className="cursor-pointer">
-                <SliderRightButton />
+                <SliderRightButton
+                  item={{
+                    hoverBorder: "#fff",
+                    iconColorA: "#fff",
+                    iconColorB: "#fff",
+                    bg: "#fff",
+                  }}
+                />
               </span>
             </div>
           </div>

@@ -49,6 +49,7 @@ export const services_title = async () => {
       `${process.env.NEXT_PUBLIC_URL}/api/servicestitle`,
       {
         method: "GET",
+        cache: "force-cache",
       }
     );
     if (!res.ok) {
@@ -76,6 +77,7 @@ export const get_portfolios = async () => {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/portfolio`, {
       method: "GET",
+      cache: "no-cache",
     });
     if (!res.ok) {
       throw new Error("Failed");
@@ -173,12 +175,15 @@ export const get_featured_blogs = async () => {
     return error;
   }
 };
-export const recent_blogs = async () => {
+export const suggested_blogs = async (tags: string[], id: string) => {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/recentblogs`, {
-      method: "GET",
-      cache: "no-cache",
-    });
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_URL}/api/suggested-blogs?tags=${tags}&id=${id}`,
+      {
+        method: "GET",
+        cache: "no-cache",
+      }
+    );
     if (!res.ok) {
       throw new Error("Failed");
     }
@@ -204,18 +209,16 @@ export const auther_details = async (id: string) => {
     return error;
   }
 };
-export const recent_portfolios = async (tags: string[]) => {
+export const suggested_projects = async (tags: string[], id: string) => {
   try {
-    const arrayParam = tags;
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_URL}/api/recentportfolios`,
+      `${process.env.NEXT_PUBLIC_URL}/api/suggested-portfolios?tags=${tags}&id=${id}`,
       {
-        method: "POST",
+        method: "GET",
         cache: "no-cache",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(arrayParam),
       }
     );
     if (!res.ok) {
@@ -241,7 +244,7 @@ export const get_collectibles = async (paramtype: string) => {
       }`,
       {
         method: "GET",
-        cache: "no-cache",
+        cache: "force-cache",
       }
     );
     if (!res.ok) {

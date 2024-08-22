@@ -91,10 +91,19 @@ const NewPortfolio = () => {
     runs();
   }, [file]);
   const handleTagClick = (selectedTag: string) => {
-    setFields((prevFields: any) => ({
-      ...prevFields,
-      tags: [...prevFields.tags, selectedTag],
-    }));
+    setFields((prevFields: any) => {
+      const alreadySelected = prevFields.tags.includes(selectedTag);
+      const selectedTags = alreadySelected
+        ? prevFields.tags.filter((tag: string) => tag !== selectedTag)
+        : prevFields.tags.length < 5
+        ? [...prevFields.tags, selectedTag]
+        : prevFields.tags;
+
+      return {
+        ...prevFields,
+        tags: selectedTags,
+      };
+    });
   };
   const storage = getStorage(app);
   const handleDiscard = async () => {
@@ -124,11 +133,16 @@ const NewPortfolio = () => {
             Add new portfolio Item
           </h2>
           <p>Available Tags</p>
-          <div className="flex gap-2">
-            {tags.map((tag: any) => (
+          <div className="flex gap-2 flex-wrap">
+            {tags.map((tag: { name: string; id: string }) => (
               <Pills
-                isIcon={false}
                 key={tag.id}
+                className={
+                  // @ts-ignore
+                  fields.tags.includes(tag.name)
+                    ? "bg-blue-500 text-white"
+                    : "bg-gray-200 text-black"
+                }
                 handleClick={() => handleTagClick(tag.name)}
               >
                 {tag.name}
@@ -263,16 +277,7 @@ const NewPortfolio = () => {
               setFields({ ...fields, content: newContent })
             }
           />
-          <div>
-            <p>Tags in your Portfolio</p>
-            <div className="flex gap-5">
-              {fields.tags.map((tag, index) => (
-                <Pills key={index} isIcon={false}>
-                  {tag}
-                </Pills>
-              ))}
-            </div>
-          </div>
+
           <div className="flex gap-10 w-8/12 mx-auto">
             <div className="w-full" onClick={() => postData()}>
               <ButtonLayout className="">Submit</ButtonLayout>

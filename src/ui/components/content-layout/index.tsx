@@ -21,18 +21,18 @@ const ContentLayout = ({ item }: IProp) => {
       <div className="w-full h-full relative group">
         <Link
           href={`${url}/${item.slug}`}
-          className="h-full w-full relative block bg-black rounded-xl"
+          className="h-full w-full relative block bg-black rounded-[20px]"
         >
           <Image
             alt={item.image}
             src={item?.image}
             height={1200}
-            className="h-full w-full rounded-[14px] group-hover:opacity-80 object-center transition-all duration-300"
+            className="h-full w-full min-h-96 lg:min-h-80 rounded-[20px] group-hover:opacity-80 object-center transition-all duration-300"
             width={1200}
           />
-          <div className="absolute bottom-0 bg-black flex flex-col justify-end p-2 gap-1 text-white rounded-[14px] w-full">
+          <div className="absolute bottom-0 bg-black flex flex-col justify-end py-3 px-5 gap-3 text-white rounded-[20px] w-full">
             <p className="line-clamp-1 font-bold text-xl">{item.title}</p>
-            <p className="line-clamp-1">{item.desc}</p>
+            <p className="line-clamp-2">{item.desc}</p>
           </div>
         </Link>
       </div>

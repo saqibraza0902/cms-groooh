@@ -25,8 +25,8 @@ const RatingSection = ({ rating }: IProp) => {
     }
   };
   return (
-    <>
-      <div className="flex flex-row justify-between items-center lg:items-start lg:px-0 lg:flex-col  text-white">
+    <div className="h-full flex flex-col md:flex-row ">
+      <div className="flex flex-row justify-between items-center lg:items-start lg:justify-end lg:px-0 lg:flex-col  text-white">
         <div className="lg:w-1/2 flex px-4 lg:px-0 flex-col">
           <span className="text-4xl font-SuisseBold text-black">4.9</span>
           <span className="text-3xl  text-black font-SuisseMedium">
@@ -35,15 +35,29 @@ const RatingSection = ({ rating }: IProp) => {
         </div>
         <div className="flex gap-10 px-4 lg:px-0 lg:mt-6">
           <span onClick={prevSlide} className="cursor-pointer">
-            <SliderLeftButton />
+            <SliderLeftButton
+              item={{
+                hoverBorder: "border-[#000]",
+                iconColorA: "#000",
+                iconColorB: "#fff",
+                bg: "#000",
+              }}
+            />
           </span>
           <span onClick={nextSlide} className="cursor-pointer">
-            <SliderRightButton />
+            <SliderRightButton
+              item={{
+                hoverBorder: "#000",
+                iconColorA: "#000",
+                iconColorB: "#fff",
+                bg: "#000",
+              }}
+            />
           </span>
         </div>
       </div>
-      <div className="w-full lg:w-8/12 xl:w-9/12 flex !items-end  h-full">
-        <div className="w-[40vh] xl:w-full  h-full">
+      <div className="w-full md:w-1/2 lg:w-8/12 xl:w-9/12 flex !items-end justify-end h-full">
+        <div className="w-full xl:w-full 2xl:h-2/3  h-full">
           <RatingSwiper
             array={rating?.ratings}
             swiperRef={swiperRef}
@@ -52,7 +66,7 @@ const RatingSection = ({ rating }: IProp) => {
           />
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -11,7 +11,7 @@ export default async function Blog() {
   const blogPosts = await get_blogs();
   return (
     <CommonLayout>
-      <div className="bg-black min-h-screen">
+      <div className="dark:bg-black min-h-screen">
         {blogPosts?.length > 0 ? (
           <div className="grid grid-cols-1 pr-8 pl-3 py-10 lg:px-14 md:grid-cols-2 gap-10">
             {blogPosts.map((item: IBlog, i: number) => (

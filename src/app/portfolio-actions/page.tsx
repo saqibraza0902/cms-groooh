@@ -22,7 +22,6 @@ import Loader from "@/ui/components/loader-component";
 const fetcher = async (url: string) => {
   const res = await fetch(url);
   const data = await res.json();
-  console.log("New data", data);
   if (!res.ok) {
     const error = new Error(data.message);
     throw error;
@@ -65,7 +64,9 @@ const PortfolioActions = () => {
     }));
   };
   useEffect(() => {
-    setFields(postData);
+    if (postData) {
+      setFields(postData[0]);
+    }
   }, [postData]);
   const handleUpdate = async (id: string) => {
     const washingtonRef = doc(db, "Portfolio", id);

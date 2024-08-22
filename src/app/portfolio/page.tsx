@@ -12,7 +12,7 @@ const Portfolio = async () => {
 
   return (
     <CommonLayout>
-      <div className="bg-black min-h-screen">
+      <div className="dark:bg-black min-h-screen">
         {newposts?.length > 0 ? (
           <div className="grid grid-cols-1 pr-8 pl-3 py-10 lg:px-14 md:grid-cols-2 gap-10">
             {newposts?.map((item: IPortfolio, index: number) => (

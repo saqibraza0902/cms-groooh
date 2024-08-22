@@ -37,11 +37,11 @@ export const RatingSwiper = ({ swiperRef, array }: any) => {
       scrollbar={{ draggable: true }}
       autoplay={{ delay: 3000 }}
       loop={false}
-      className="h-full"
+      className="h-full w-full !py-5"
     >
       {array?.map((item: any, i: number) => (
-        <SwiperSlide key={i} className="h-full pl-4 pr-9 py-10">
-          <ContentBox className="!h-6k" childClass="!h-6k">
+        <SwiperSlide key={i} className="!h-6k pl-4 w-full pr-9 ">
+          <ContentBox>
             <div className="w-full flex flex-col justify-center  gap-1 h-full min-h-full">
               <div className="flex items-center h-1/6 gap-4">
                 <p className="!text-black text-xl font-bold">{item.rating}</p>

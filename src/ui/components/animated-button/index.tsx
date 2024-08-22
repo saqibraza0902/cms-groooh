@@ -32,9 +32,16 @@ interface ILinkProp {
   onMouseLeave?: () => void;
 }
 interface ISlider {
-  Arrows?: any;
-  className?: any;
+  item?: {
+    Arrows?: any;
+    className?: any;
+    bg?: string;
+    iconColorA?: string;
+    iconColorB?: string;
+    hoverBorder?: string;
+  };
 }
+
 export const AnimatedHeroNav = ({ className, text }: IProp) => {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -299,25 +306,28 @@ export const ContactLink = ({
   );
 };
 
-export const SliderRightButton = ({ className }: ISlider) => {
+export const SliderRightButton = ({ item }: ISlider) => {
   const [isHovered, setIsHovered] = useState(false);
+  const color = item?.bg;
   return (
     <div
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       className={`h-12 w-12 lg:h-28 lg:w-28 relative overflow-hidden flex justify-center transition-all duration-300 items-center border-[1px] rounded-full ${
-        isHovered ? "bg-black border-black" : " bg-none border-black"
+        isHovered
+          ? `bg-[${color}] border-black`
+          : `bg-none border-[${item?.hoverBorder}]`
       }`}
     >
       <motion.p
         className=""
-        initial={{ x: "50%", y: "-0%" }}
-        animate={{ x: isHovered ? "250%" : "50%", y: "-0%" }}
+        initial={{ x: "50%" }}
+        animate={{ x: isHovered ? "250%" : "50%" }}
         transition={{ duration: 0.3 }}
       >
         <MdOutlineArrowForwardIos
           className="lg:text-5xl text-xl"
-          color="#000"
+          color={item?.iconColorA}
         />
       </motion.p>
       <motion.p
@@ -328,21 +338,24 @@ export const SliderRightButton = ({ className }: ISlider) => {
       >
         <MdOutlineArrowForwardIos
           className="lg:text-5xl text-xl"
-          color="#fff"
+          color={item?.iconColorB}
         />
       </motion.p>
     </div>
   );
 };
 
-export const SliderLeftButton = ({ className }: ISlider) => {
+export const SliderLeftButton = ({ item }: ISlider) => {
   const [isHovered, setIsHovered] = useState(false);
+  const color = item?.bg;
+  const br = item?.hoverBorder;
+  console.log(br);
   return (
     <div
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       className={`h-12 w-12 lg:h-28 lg:w-28 relative overflow-hidden flex justify-center transition-all duration-300 items-center border-[1px] rounded-full ${
-        isHovered ? "bg-black border-black" : " bg-none border-black"
+        isHovered ? `bg-[${color}] border-black` : `bg-none ${br}`
       }`}
     >
       <motion.p
@@ -351,15 +364,20 @@ export const SliderLeftButton = ({ className }: ISlider) => {
         animate={{ x: isHovered ? "-200%" : "50%", y: "-0%" }}
         transition={{ duration: 0.3 }}
       >
-        <MdOutlineArrowBackIos className="lg:text-5xl text-xl" color="#000" />
+        <MdOutlineArrowBackIos
+          className="lg:text-5xl text-xl"
+          color={item?.iconColorA}
+        />
       </motion.p>
       <motion.p
-        className=""
         initial={{ x: "200%", y: "-0%" }}
         animate={{ x: isHovered ? "-50%" : "200%", y: "-0%" }}
         transition={{ duration: 0.3 }}
       >
-        <MdOutlineArrowBackIos className="lg:text-5xl text-xl" color="#fff" />
+        <MdOutlineArrowBackIos
+          className="lg:text-5xl text-xl"
+          color={item?.iconColorB}
+        />
       </motion.p>
     </div>
   );

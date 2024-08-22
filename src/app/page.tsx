@@ -24,7 +24,7 @@ const Home = async () => {
         <Services services={home_detail?.ServicesPage} />
       </section>
 
-      <section className="h-full py-10 bg-primary w-full flex flex-col lg:flex-row lg:px-20  lg:items-end lg:min-h-[700px] 2xl:h-2xl ">
+      <section className="h-full py-10 bg-primary w-full lg:px-20 lg:min-h-[700px] 2xl:h-2xl ">
         <RatingSection rating={home_detail.RatingSection} />
       </section>
       <section className="min-h-screen bg-brand_pink-100 pl-4 pr-9 py-10 flex items-center justify-center h-full lg:px-14 lg:min-h-[850px] 2xl:h-screen">

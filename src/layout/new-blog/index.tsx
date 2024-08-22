@@ -91,21 +91,35 @@ const DashboardLayout = () => {
   }, [file, fields]);
 
   const handleTagClick = (selectedTag: string) => {
-    setFields((prevFields: any) => ({
-      ...prevFields,
-      tags: [...prevFields.tags, selectedTag],
-    }));
+    setFields((prevFields: any) => {
+      const alreadySelected = prevFields.tags.includes(selectedTag);
+      const selectedTags = alreadySelected
+        ? prevFields.tags.filter((tag: string) => tag !== selectedTag)
+        : prevFields.tags.length < 5
+        ? [...prevFields.tags, selectedTag]
+        : prevFields.tags;
+
+      return {
+        ...prevFields,
+        tags: selectedTags,
+      };
+    });
   };
 
   return (
     <div className="flex justify-center w-full min-h-screen">
       <div className="md:w-2/3 mx-auto p-4 flex flex-col gap-5">
         <p>Available Tags</p>
-        <div className="flex gap-2">
+        <div className="flex gap-2 flex-wrap">
           {tags.map((tag: any) => (
             <Pills
               key={tag.id}
-              isIcon={false}
+              className={
+                // @ts-ignore
+                fields.tags.includes(tag.name)
+                  ? "bg-blue-500 text-white"
+                  : "bg-gray-200 text-black"
+              }
               handleClick={() => handleTagClick(tag.name)}
             >
               {tag.name}
@@ -179,16 +193,7 @@ const DashboardLayout = () => {
           config={{ ...config, iframe: true, useSplitMode: false }}
           onBlur={(newContent: any) => setContent(newContent)}
         />
-        <div>
-          <p>Tags in your blog</p>
-          <div className="flex gap-5">
-            {fields.tags.map((tag, index) => (
-              <Pills isIcon={false} key={index}>
-                {tag}
-              </Pills>
-            ))}
-          </div>
-        </div>
+
         <div className="flex gap-10 w-8/12 mx-auto">
           <div className="w-full" onClick={() => postData()}>
             <ButtonLayout className="">Submit</ButtonLayout>

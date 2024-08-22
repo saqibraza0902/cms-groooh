@@ -13,16 +13,16 @@ import {
   ButtonLayout,
 } from "@/ui/components/animated-button";
 import { cn } from "@/utils/styles";
+import { HiOutlineSun } from "react-icons/hi2";
+import { useTheme } from "next-themes";
 interface Props {
   open: boolean;
   close: () => void;
 }
 const ToggleSidebar = ({ open, close }: Props) => {
-  const router = useRouter();
-  const user = auth.currentUser;
   const path = usePathname();
-  const [isHovered, setIsHovered] = useState(false);
-  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+  const { setTheme, theme } = useTheme();
+
   const [activeIndex, setActiveIndex] = useState(null);
   const [activeDropdownIndex, setActiveDropdownIndex] = useState(null);
 
@@ -34,14 +34,6 @@ const ToggleSidebar = ({ open, close }: Props) => {
   const handleDropdownItemClick = (index: any) => {
     setActiveDropdownIndex(activeDropdownIndex === index ? null : index);
   };
-
-  const handleItemClick = (index: number, isDropdown: boolean) => {
-    if (isDropdown) {
-      setExpandedIndex(expandedIndex === index ? null : index);
-    } else {
-      close();
-    }
-  };
   return (
     <div
       className={`fixed lg:hidden inset-y-0 w-full md:w-[50%]  !overflow-hidden z-50 lg:w-[25%] bg-white dark:bg-black transition-transform duration-300 transform flex 
@@ -49,13 +41,22 @@ const ToggleSidebar = ({ open, close }: Props) => {
      
       `}
     >
-      <div className=" px-4 w-full py-5 space-y-6 rounded-xl">
-        <div
-          onClick={close}
-          className="bg-brand_blue-300 min-w-[46px] flex md:hidden h-10 w-10 self-end my-3 relative rounded-xl ml-auto"
-        >
-          <div className="absolute capitalize text-sm -top-1 -left-1">
-            <AnimatedCloseNavbarButton className="h-10" />
+      <div className="px-4 w-full py-3 flex flex-col space-y-6 rounded-xl">
+        <div className="flex items-center justify-between md:hidden w-full ">
+          <div
+            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            className="bg-black dark:bg-primary h-fit p-1 w-fit  rounded-lg"
+          >
+            <HiOutlineSun
+              size={28}
+              color={theme === "dark" ? "#000" : "#fff"}
+            />
+          </div>
+          <div
+            onClick={close}
+            className="p-1 rounded-lg bg-black dark:bg-primary w-fit self-end"
+          >
+            <RxCross1 color={theme === "dark" ? "#000" : "#fff"} size={28} />
           </div>
         </div>
 
@@ -72,8 +73,6 @@ const ToggleSidebar = ({ open, close }: Props) => {
                 onClick={() => handleNavItemClick(index, item.isDropdown)}
               >
                 <AnimatedLink
-                  onMouseEnter={() => setIsHovered(true)}
-                  onMouseLeave={() => setIsHovered(false)}
                   className="!text-white !bg-none w-full uppercase flex items-center gap-1"
                   href={item.pathname}
                   text={item.title}
@@ -134,8 +133,8 @@ const ToggleSidebar = ({ open, close }: Props) => {
             </div>
           ))}
         </div>
-        <div className=" flex md:hidden w-44 ">
-          <ButtonLayout className="dark:bg-primary !w-full dark:text-black bg-black text-white">
+        <div className=" ">
+          <ButtonLayout className="dark:bg-primary !w-44 dark:text-black bg-black text-white">
             CONTACT US
           </ButtonLayout>
         </div>

@@ -7,6 +7,8 @@ import NextTopLoader from "nextjs-toploader";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 import ReactToastProvider from "@/providers/toast-provider";
 import fav from "../../public/icons/favicon.png";
+import { hasCookie } from "cookies-next";
+import { cookies } from "next/headers";
 const inter = Inter({ subsets: ["latin"] });
 export const revalidate = 0;
 export const metadata: Metadata = {
@@ -19,10 +21,18 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // console.log("Myconcent", cookies().get("localConcent")?.value);
   return (
     <html lang="en" suppressHydrationWarning>
       <link rel="icon" href="/icons/favicon.png" sizes="any" />
-      <body suppressHydrationWarning={true} className="font-Suisse bg-pr">
+      <body
+        suppressHydrationWarning={true}
+        className={`font-Suisse bg-pr ${
+          cookies().get("localConcent")?.value === undefined
+            ? "overflow-hidden"
+            : ""
+        }`}
+      >
         <NextTopLoader
           color="#e3ff00"
           initialPosition={0.08}
@@ -36,7 +46,7 @@ export default function RootLayout({
         />
         <AppRouterCacheProvider>
           <ReactToastProvider>
-            <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
               <ReduxProvider>{children}</ReduxProvider>
             </ThemeProvider>
           </ReactToastProvider>

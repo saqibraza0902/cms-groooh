@@ -4,6 +4,10 @@ export function addCustomStyling(content: string) {
     /<blockquote>/g,
     '<blockquote class="block-styling"><div class="quote-styling"><img src="/icons/icon-quotes.svg" alt="" class="quote-img" /></div>'
   );
+  content = content.replace(
+    /<p[^>]*>(\s*<img[^>]*>\s*)<\/p>/g,
+    '<p style="width: 100%;"><img style="width: 100%;"$1</p>'
+  );
 
   content = content.replace(
     /<ol[^>]*>([\s\S]*?)<\/ol>/g,

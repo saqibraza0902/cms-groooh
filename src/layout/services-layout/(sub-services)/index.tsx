@@ -4,7 +4,7 @@ import React from "react";
 import HeroComponent from "../(service-components)/hero-component";
 import ExpertiseComponent from "../(service-components)/expertise-component";
 import TechStackComponent from "../(service-components)/techstack-component";
-import BlogSection from "@/layout/home-layout/blog-section";
+import BlogSection from "../(service-components)/blog-section";
 import ContactComponent from "../(service-components)/contact-component";
 
 interface IProp {
@@ -42,9 +42,9 @@ const SubServicesLayout = async ({ slug }: IProp) => {
         </section>
       )}
 
-      {/* <section className="h-full min-h-full bg-brand_blue-300 pl-4 pr-9 py-10 lg:p-20 ">
-        <BlogSection mydata={home_detail.BlogSection} />
-      </section> */}
+      <section className="h-full lg:min-h-[700px] 2xl:min-h-[1080px] bg-brand_green-700 pl-4 pr-9 py-10 lg:p-20 ">
+        <BlogSection slug={slug} mydata={home_detail.BlogSection} />
+      </section>
       <section className="h-full min-h-full bg-primary pl-4 pr-9 py-10 lg:p-20 ">
         <ContactComponent />
       </section>

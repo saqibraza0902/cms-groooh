@@ -20,6 +20,7 @@ import { BsCart } from "react-icons/bs";
 import { PUBLIC_URLS } from "@/utils/urls";
 import { get_collectibles, services_title } from "@/utils/function";
 import Image from "next/image";
+import { HiBars3BottomLeft } from "react-icons/hi2";
 
 const Navbar = ({ toggle }: any) => {
   const path = usePathname();
@@ -41,7 +42,7 @@ const Navbar = ({ toggle }: any) => {
     const gettitles = async () => {
       const data = await services_title();
       const mydata = await get_collectibles("");
-      setCollectibles(mydata.data);
+      setCollectibles(mydata?.data);
       setCARDSARRAY(data);
     };
 
@@ -55,7 +56,7 @@ const Navbar = ({ toggle }: any) => {
     return () => unsubscribe();
   }, [user]);
   return (
-    <nav className="px-6 lg:px-14 py-1 border bg-white  dark:bg-black cursor-pointer dark:border-none flex justify-between items-center text-white">
+    <nav className="px-6 lg:px-14 py-3 lg:py-1 border bg-white  dark:bg-black cursor-pointer dark:border-none flex justify-between items-center text-white">
       <div className="2xl:w-11/12 2xl:mx-auto w-full">
         <ul className="flex gap-4 items-center w-full justify-between h-full">
           <Link href={"/"} className=" w-32 h-10">
@@ -67,10 +68,10 @@ const Navbar = ({ toggle }: any) => {
             />
           </Link>
           <div className="gap-5 hidden md:flex items-center">
-            {WITHOUT_AUTH_PUBLIC_NAV.map((item, index) => {
+            {WITHOUT_AUTH_PUBLIC_NAV?.map((item, index) => {
               const isCollectiblesEmpty =
-                item.pathname === PUBLIC_URLS.COLLECTIBLES &&
-                collectibles.length === 0;
+                item?.pathname === PUBLIC_URLS.COLLECTIBLES &&
+                collectibles?.length === 0;
               return (
                 <div
                   key={index}
@@ -137,7 +138,7 @@ const Navbar = ({ toggle }: any) => {
                 </div>
               </Link>
             ) : (
-              <div className="">
+              <div className="hidden lg:flex">
                 <Link href={PUBLIC_URLS.CONTACT}>
                   <ButtonLayout className="dark:bg-primary dark:text-black bg-black text-white">
                     CONTACT US
@@ -148,11 +149,12 @@ const Navbar = ({ toggle }: any) => {
           </div>
           <div
             onClick={() => toggle()}
-            className="bg-brand_blue-300 min-w-[46px] flex md:hidden h-10 my-3 relative rounded-xl"
+            className="p-1 rounded-lg bg-black flex lg:hidden dark:bg-primary"
           >
-            <div className="absolute capitalize text-sm -top-1 -left-1">
-              <AnimatedHeroHamburger className="h-10" />
-            </div>
+            <HiBars3BottomLeft
+              size={25}
+              color={theme === "dark" ? "#000" : "#fff"}
+            />
           </div>
         </ul>
       </div>

@@ -39,7 +39,7 @@ const ExpertiseComponent = ({ expertise, title }: IProp) => {
             {expertise.map((el, i) => (
               <div
                 key={i}
-                className="bg-secondary w-72 h-96 rounded-2xl flex flex-col justify-between items-center relative"
+                className="bg-secondary w-72 h-96 2xl:w-1/3 rounded-2xl flex flex-col justify-between items-center relative"
               >
                 <div className="relative z-10 w-full h-full flex justify-center items-center">
                   <Image src={el.image} alt="" width={150} height={150} />
