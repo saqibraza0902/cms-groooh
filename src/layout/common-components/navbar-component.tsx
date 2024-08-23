@@ -9,12 +9,7 @@ import { useTheme } from "next-themes";
 import { HiOutlineSun } from "react-icons/hi";
 import { PUBLIC_NAV, WITHOUT_AUTH_PUBLIC_NAV } from "@/mock";
 import Link from "next/link";
-import {
-  AnimatedLink,
-  AnimatedHeroNav,
-  AnimatedHeroHamburger,
-  ButtonLayout,
-} from "@/ui/components/animated-button";
+import { AnimatedLink, ButtonLayout } from "@/ui/components/animated-button";
 import { cn } from "@/utils/styles";
 import { BsCart } from "react-icons/bs";
 import { PUBLIC_URLS } from "@/utils/urls";
@@ -138,7 +133,7 @@ const Navbar = ({ toggle }: any) => {
                 </div>
               </Link>
             ) : (
-              <div className="hidden lg:flex">
+              <div className="hidden md:flex">
                 <Link href={PUBLIC_URLS.CONTACT}>
                   <ButtonLayout className="dark:bg-primary dark:text-black bg-black text-white">
                     CONTACT US
@@ -149,7 +144,7 @@ const Navbar = ({ toggle }: any) => {
           </div>
           <div
             onClick={() => toggle()}
-            className="p-1 rounded-lg bg-black flex lg:hidden dark:bg-primary"
+            className="p-1 rounded-lg bg-black flex md:hidden dark:bg-primary"
           >
             <HiBars3BottomLeft
               size={25}

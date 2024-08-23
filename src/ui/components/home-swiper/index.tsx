@@ -1,11 +1,12 @@
 "use client";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Scrollbar, Autoplay } from "swiper/modules";
+import { Navigation, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import SwiperCore from "swiper";
 import Image from "next/image";
+import { useMediaQuery } from "react-responsive";
 
 SwiperCore.use([Navigation, Autoplay]);
 const HomeSwiper = ({ swiperRef }: any) => {
@@ -20,10 +21,16 @@ const HomeSwiper = ({ swiperRef }: any) => {
       spaceBetween: 10,
     },
   };
+  const isMd = useMediaQuery({
+    query: "(min-width: 641px) and (max-width: 1023px)",
+  });
 
+  const isLgOrAbove = useMediaQuery({
+    query: "(min-width: 1024px)",
+  });
   return (
     <Swiper
-      direction="vertical"
+      direction={isMd || isLgOrAbove ? "vertical" : "horizontal"}
       breakpoints={breakpoints}
       spaceBetween={50}
       ref={swiperRef}

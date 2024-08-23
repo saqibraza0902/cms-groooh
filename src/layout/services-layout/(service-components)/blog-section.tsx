@@ -1,9 +1,6 @@
-import ContentBox from "@/ui/components/content-box";
 import ContentLayout from "@/ui/components/content-layout";
-import { get_featured_blogs, suggested_blogs } from "@/utils/function";
+import { suggested_blogs } from "@/utils/function";
 import { IBlog, IBlogSection } from "@/utils/types";
-import Image from "next/image";
-import Link from "next/link";
 interface IProp {
   mydata: IBlogSection;
   slug: string;

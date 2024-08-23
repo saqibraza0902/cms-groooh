@@ -6,7 +6,7 @@ import { home_details } from "@/utils/function";
 import Offers from "./Offers";
 import Link from "next/link";
 import { PUBLIC_URLS } from "@/utils/urls";
-import { AnimatedHeroNav } from "@/ui/components/animated-button";
+import { ButtonLayout } from "@/ui/components/animated-button";
 import ContentBox from "@/ui/components/content-box";
 
 interface IProp {
@@ -17,7 +17,7 @@ const ServicesLayout = async ({ data }: IProp) => {
   const { HeroSection, DesignProcessSection, OffersSection } = data;
   return (
     <div className="h-full w-full">
-      <section className="h-full pl-4 pr-9 lg:px-20 py-20 w-full">
+      <section className="h-full pl-4 pr-9 lg:px-14 py-20 w-full">
         <ContentBox className="bg-brand_blue-300 " childClass="bg-black">
           <div className="flex flex-col w-full h-full justify-center ">
             <div className="flex flex-col lg:flex-row lg:h-5/6 w-full items-center">
@@ -144,15 +144,11 @@ const ServicesLayout = async ({ data }: IProp) => {
             Need it simpler and faster? We have a solution for you!
           </h3>
           <div className="flex justify-center ">
-            <div className="bg-white min-w-36 w-min h-10 my-3 relative rounded-xl">
-              <Link
-                href={PUBLIC_URLS.CONTACT}
-                className="absolute capitalize text-sm -top-1 -left-1"
-              >
-                <AnimatedHeroNav
-                  className="bg-black h-10 min-w-36"
-                  text="CONTACT US"
-                />
+            <div className="bg-white min-w-36 w-min h-10 my-3 rounded-xl">
+              <Link href={PUBLIC_URLS.CONTACT} className=" capitalize text-sm ">
+                <ButtonLayout className="bg-black h-10 min-w-36">
+                  CONTACT US
+                </ButtonLayout>
               </Link>
             </div>
           </div>

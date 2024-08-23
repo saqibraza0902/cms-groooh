@@ -27,13 +27,13 @@ const RatingSection = ({ rating }: IProp) => {
   return (
     <div className="h-full flex flex-col md:flex-row ">
       <div className="flex flex-row justify-between items-center lg:items-start lg:justify-end lg:px-0 lg:flex-col  text-white">
-        <div className="lg:w-1/2 flex px-4 lg:px-0 flex-col">
+        <div className="lg:w-1/2 flex pl-6 lg:px-0 flex-col">
           <span className="text-4xl font-SuisseBold text-black">4.9</span>
           <span className="text-3xl  text-black font-SuisseMedium">
             {rating?.title}
           </span>
         </div>
-        <div className="flex gap-10 px-4 lg:px-0 lg:mt-6">
+        <div className="flex gap-10 pr-6 lg:px-0 lg:mt-6">
           <span onClick={prevSlide} className="cursor-pointer">
             <SliderLeftButton
               item={{

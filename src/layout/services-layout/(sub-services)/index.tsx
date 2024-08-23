@@ -30,22 +30,22 @@ const SubServicesLayout = async ({ slug }: IProp) => {
           image={matchingService?.hero_section?.image}
         />
       </section>
-      <section className="bg-brand_green-700 h-full pl-1 pr-4 py-10 lg:p-20 ">
+      <section className="bg-brand_green-700 h-full pl-6 pr-11 py-10 lg:py-20 lg:px-14">
         <ExpertiseComponent
           expertise={matchingService?.expertise_section?.expertise}
           title={matchingService?.expertise_section?.title}
         />
       </section>
       {matchingService.tech_stack.length > 0 && (
-        <section className="h-full px-5 py-10 lg:px-20">
+        <section className="h-full px-6 py-10 lg:py-20 lg:px-14">
           <TechStackComponent partners={matchingService.tech_stack} />
         </section>
       )}
 
-      <section className="h-full lg:min-h-[700px] 2xl:min-h-[1080px] bg-brand_green-700 pl-4 pr-9 py-10 lg:p-20 ">
+      <section className="h-full lg:min-h-[700px] 2xl:min-h-[1080px] bg-brand_green-700 pl-6 pr-11 py-10 lg:py-20 lg:px-14">
         <BlogSection slug={slug} mydata={home_detail.BlogSection} />
       </section>
-      <section className="h-full min-h-full bg-primary pl-4 pr-9 py-10 lg:p-20 ">
+      <section className="h-full min-h-full bg-primary px-6 py-10 lg:py-20 lg:px-14">
         <ContactComponent />
       </section>
     </div>

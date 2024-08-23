@@ -40,7 +40,7 @@ export const RatingSwiper = ({ swiperRef, array }: any) => {
       className="h-full w-full !py-5"
     >
       {array?.map((item: any, i: number) => (
-        <SwiperSlide key={i} className="!h-6k pl-4 w-full pr-9 ">
+        <SwiperSlide key={i} className="!h-6k pl-6 w-full pr-11">
           <ContentBox>
             <div className="w-full flex flex-col justify-center  gap-1 h-full min-h-full">
               <div className="flex items-center h-1/6 gap-4">

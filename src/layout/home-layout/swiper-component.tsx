@@ -42,7 +42,7 @@ export const WorkSlider = ({ swiperRef, data }: any) => {
           <Image
             height={1200}
             width={1200}
-            className="h-full w-full object-cover rounded-3xl"
+            className="h-full w-full min-h-[400px] lg:minh-full object-cover rounded-t-3xl lg:rounded-xl"
             src={item.gallery[0]?.url}
             alt={item.gallery[0]?.alt}
           />
@@ -80,8 +80,10 @@ export const WorkContentSlider = ({ swiperRef, data }: any) => {
         <SwiperSlide key={i} className="h-full">
           <div className="w-full">
             <div className="  text-white gap-2 p-3 ">
-              <h3 className="text-xl  font-SuisseSemiBold">{item?.title}</h3>
-              <p>{item?.desc}</p>
+              <h3 className="text-xl line-clamp-1 font-SuisseSemiBold">
+                {item?.title}
+              </h3>
+              <p className="line-clamp-2">{item?.desc}</p>
             </div>
           </div>
         </SwiperSlide>

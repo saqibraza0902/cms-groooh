@@ -5,13 +5,7 @@ import { RxCross1 } from "react-icons/rx";
 import { WITHOUT_AUTH_PUBLIC_NAV } from "@/mock";
 import { auth } from "@/utils/firebase";
 import { motion } from "framer-motion";
-import {
-  AnimatedCloseNavbarButton,
-  AnimatedHeroHamburger,
-  AnimatedHeroNav,
-  AnimatedLink,
-  ButtonLayout,
-} from "@/ui/components/animated-button";
+import { AnimatedLink, ButtonLayout } from "@/ui/components/animated-button";
 import { cn } from "@/utils/styles";
 import { HiOutlineSun } from "react-icons/hi2";
 import { useTheme } from "next-themes";
@@ -22,6 +16,8 @@ interface Props {
 const ToggleSidebar = ({ open, close }: Props) => {
   const path = usePathname();
   const { setTheme, theme } = useTheme();
+
+  console.log("Path name", path);
 
   const [activeIndex, setActiveIndex] = useState(null);
   const [activeDropdownIndex, setActiveDropdownIndex] = useState(null);
@@ -45,7 +41,7 @@ const ToggleSidebar = ({ open, close }: Props) => {
         <div className="flex items-center justify-between md:hidden w-full ">
           <div
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            className="bg-black dark:bg-primary h-fit p-1 w-fit  rounded-lg"
+            className="bg-black cursor-pointer dark:bg-primary h-fit p-1 w-fit  rounded-lg"
           >
             <HiOutlineSun
               size={28}
@@ -54,7 +50,7 @@ const ToggleSidebar = ({ open, close }: Props) => {
           </div>
           <div
             onClick={close}
-            className="p-1 rounded-lg bg-black dark:bg-primary w-fit self-end"
+            className="p-1 rounded-lg cursor-pointer bg-black dark:bg-primary w-fit self-end"
           >
             <RxCross1 color={theme === "dark" ? "#000" : "#fff"} size={28} />
           </div>
@@ -64,8 +60,8 @@ const ToggleSidebar = ({ open, close }: Props) => {
           {WITHOUT_AUTH_PUBLIC_NAV.map((item, index) => (
             <div
               key={index}
-              className={`flex transition-all duration-300 ease-in-out flex-col px-3 bg-brand_blue-300 w-full relative gap-2 ${
-                path === item.pathname && "!bg-brand_orange-400"
+              className={`flex transition-all duration-300 ease-in-out flex-col px-3 text-black bg-primary w-full relative gap-2 ${
+                path === item.pathname && "!bg-secondary"
               }`}
             >
               <div
@@ -73,7 +69,7 @@ const ToggleSidebar = ({ open, close }: Props) => {
                 onClick={() => handleNavItemClick(index, item.isDropdown)}
               >
                 <AnimatedLink
-                  className="!text-white !bg-none w-full uppercase flex items-center gap-1"
+                  className="!text-black !bg-none w-full uppercase flex items-center gap-1"
                   href={item.pathname}
                   text={item.title}
                   showIcon={item.isDropdown}
@@ -115,8 +111,7 @@ const ToggleSidebar = ({ open, close }: Props) => {
                                 key={subCatIndex}
                                 className={cn(
                                   `rounded-none w-full pl-2 uppercase flex items-center gap-1   ${
-                                    path === subCategory.link &&
-                                    "!bg-brand_orange-400"
+                                    path === subCategory.link && "!bg-secondary"
                                   }`
                                 )}
                                 href={subCategory.link}

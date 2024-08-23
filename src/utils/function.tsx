@@ -7,6 +7,7 @@ export const home_details = async () => {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/home`, {
       method: "GET",
+      cache: "no-cache",
     });
     if (!res.ok) {
       return console.log("Blog function not working");
@@ -20,6 +21,7 @@ export const contact_details = async () => {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/contact`, {
       method: "GET",
+      cache: "force-cache",
     });
     if (!res.ok) {
       return console.log("Blog function not working");
@@ -33,7 +35,7 @@ export const services_page = async () => {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/services`, {
       method: "GET",
-      cache: "no-cache",
+      cache: "force-cache",
     });
     if (!res.ok) {
       return console.log("Error ");
@@ -158,13 +160,16 @@ export const get_tags = async () => {
     return error;
   }
 };
-export const get_featured_blogs = async () => {
+export const featured_blogs = async () => {
   try {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_URL}/api/featuredblogs`,
       {
         method: "GET",
-        cache: "no-cache",
+        cache: "force-cache",
+        next: {
+          revalidate: 3600,
+        },
       }
     );
     if (!res.ok) {
@@ -259,7 +264,7 @@ export const get_processes = async () => {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/processes`, {
       method: "GET",
-      cache: "no-cache",
+      cache: "force-cache",
     });
     if (!res.ok) {
       throw new Error("Failed");

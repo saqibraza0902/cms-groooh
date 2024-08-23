@@ -1,14 +1,12 @@
-import ContentBox from "@/ui/components/content-box";
 import ContentLayout from "@/ui/components/content-layout";
-import { get_featured_blogs } from "@/utils/function";
+import { featured_blogs } from "@/utils/function";
 import { IBlog, IBlogSection } from "@/utils/types";
-import Image from "next/image";
 import Link from "next/link";
 interface IProp {
   mydata: IBlogSection;
 }
 const BlogSection = async ({ mydata }: IProp) => {
-  const data = await get_featured_blogs();
+  const data = await featured_blogs();
   if (data.length < 1) {
     return;
   }

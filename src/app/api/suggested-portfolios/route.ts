@@ -20,7 +20,7 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
     if (!tags) {
       return new NextResponse(JSON.stringify({ message: "Tags are required" }));
     }
-    console.log(tags);
+
     const blogRef = collection(db, "Portfolio");
     let q = query(blogRef, where("tags", "array-contains-any", tags));
     const querySnapshot = await getDocs(q);

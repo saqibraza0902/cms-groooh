@@ -1,4 +1,4 @@
-import { AnimatedHeroNav, ButtonLayout } from "@/ui/components/animated-button";
+import { ButtonLayout } from "@/ui/components/animated-button";
 import ContentBox from "@/ui/components/content-box";
 import { PUBLIC_URLS } from "@/utils/urls";
 import Image from "next/image";
@@ -12,7 +12,7 @@ interface IProp {
 
 const HeroComponent = ({ image, title }: IProp) => {
   return (
-    <section className="h-full dark:bg-black pl-4 pr-9 lg:px-20 py-20 w-full">
+    <section className="h-full dark:bg-black pl-6 pr-11 lg:px-14 py-20 w-full">
       <ContentBox className="bg-primary " childClass="bg-secondary">
         <div className="flex flex-col w-full h-full justify-center ">
           <div className="flex flex-col lg:flex-row lg:h-5/6 w-full items-center">

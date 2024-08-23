@@ -27,12 +27,12 @@ const ContentLayout = ({ item }: IProp) => {
             alt={item.image}
             src={item?.image}
             height={1200}
-            className="h-full w-full min-h-96 lg:min-h-80 rounded-[20px] group-hover:opacity-80 object-center transition-all duration-300"
+            className=" w-full h-96 lg:h-80 rounded-[20px] group-hover:opacity-80 object-cover "
             width={1200}
           />
-          <div className="absolute bottom-0 bg-black flex flex-col justify-end py-3 px-5 gap-3 text-white rounded-[20px] w-full">
-            <p className="line-clamp-1 font-bold text-xl">{item.title}</p>
-            <p className="line-clamp-2">{item.desc}</p>
+          <div className="absolute bottom-0 h-28 group-hover:opacity-80 bg-black flex flex-col justify-center py-3 group-hover:h-full px-5 gap-3 transition-all duration-300 text-white rounded-[20px] w-full">
+            <p className="line-clamp-1 font-SuisseBold text-xl">{item.title}</p>
+            <p className="line-clamp-2 font-Suisse">{item.desc}</p>
           </div>
         </Link>
       </div>

@@ -14,7 +14,7 @@ const Portfolio = async () => {
     <CommonLayout>
       <div className="dark:bg-black min-h-screen">
         {newposts?.length > 0 ? (
-          <div className="grid grid-cols-1 pr-8 pl-3 py-10 lg:px-14 md:grid-cols-2 gap-10">
+          <div className="grid grid-cols-1 pr-11 pl-6 py-10 lg:px-14 lg:py-20 md:grid-cols-2 gap-10">
             {newposts?.map((item: IPortfolio, index: number) => (
               <ContentLayout
                 key={index}

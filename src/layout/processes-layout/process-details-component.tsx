@@ -48,12 +48,12 @@ const ProcessesDetailsSection = ({ prop }: IProp) => {
   return (
     <>
       <div className="w-full lg:w-5/12 xl:w-3/12  flex flex-row justify-between items-center lg:items-start lg:px-0 lg:justify-end lg:flex-col 2xl:justify-end  text-white">
-        <div className="lg:w-1/2 flex px-4 lg:px-0 flex-col">
+        <div className="lg:w-1/2 flex pl-6 lg:px-0 flex-col">
           <span className="text-3xl  text-black font-SuisseMedium">
             {prop.title}
           </span>
         </div>
-        <div className="flex gap-10 px-4 lg:px-0 lg:mt-6">
+        <div className="flex gap-10 pr-6 lg:px-0 lg:mt-6">
           <span onClick={prevSlide} className="cursor-pointer">
             <SliderLeftButton
               item={{
@@ -83,7 +83,7 @@ const ProcessesDetailsSection = ({ prop }: IProp) => {
           onPrevSlide={prevSlide}
         >
           {prop?.processes?.map((el, i: number) => (
-            <SwiperSlide key={i} className="h-full pl-4 pr-9 py-10">
+            <SwiperSlide key={i} className="h-full pl-6 pr-11 py-10">
               <ContentBox className="!px-0">
                 <div className="w-full flex flex-col justify-center  gap-1 h-full min-h-full">
                   <div

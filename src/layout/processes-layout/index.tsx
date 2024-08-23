@@ -16,13 +16,13 @@ const ProcessesLayout = async () => {
           image={data?.hero_section?.image}
         />
       </section>
-      <section className="h-full bg-primary 2xl:h-screen flex flex-col lg:flex-row  w-full lg:px-20 py-10">
+      <section className="h-full bg-primary 2xl:h-screen flex flex-col lg:flex-row  w-full lg:px-14 py-10">
         <ProcessesDetailsSection prop={data?.processes_section} />
       </section>
-      <section className="px-12 bg-white py-10 h-screen flex items-center">
+      <section className="px-14 bg-white py-10 h-screen flex items-center">
         <CTOMessageComponent prop={data?.cto_section} />
       </section>
-      <section className="h-full min-h-full bg-primary pl-4 pr-9 py-10 lg:p-20 ">
+      <section className="h-full min-h-full bg-primary px-6 py-10 lg:py-20 lg:px-14">
         <ContactComponent />
       </section>
     </div>

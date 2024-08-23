@@ -187,6 +187,35 @@ const DashboardLayout = () => {
             />
           </div>
         </div>
+        <div>
+          <p>Set this blog featured</p>
+          <div className="flex gap-10">
+            <RadioInput
+              checked={fields.isFeatured}
+              type="radio"
+              name="featured"
+              label="Yes"
+              onChange={() =>
+                setFields((prevFields) => ({
+                  ...prevFields,
+                  isFeatured: true,
+                }))
+              }
+            />
+            <RadioInput
+              checked={!fields.isFeatured}
+              type="radio"
+              name="featured"
+              label="No"
+              onChange={() =>
+                setFields((prevFields) => ({
+                  ...prevFields,
+                  isFeatured: false,
+                }))
+              }
+            />
+          </div>
+        </div>
         <JoditEditor
           ref={editor}
           value={content}
