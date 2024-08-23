@@ -24,7 +24,7 @@ const SubServicesLayout = async ({ slug }: IProp) => {
   }
   return (
     <div>
-      <section>
+      <section className="w-full h-full dark:bg-black pl-6 pr-11 lg:px-14 py-20">
         <HeroComponent
           title={matchingService?.hero_section?.text}
           image={matchingService?.hero_section?.image}
@@ -42,7 +42,7 @@ const SubServicesLayout = async ({ slug }: IProp) => {
         </section>
       )}
 
-      <section className="h-full lg:min-h-[700px] 2xl:min-h-[1080px] bg-brand_green-700 pl-6 pr-11 py-10 lg:py-20 lg:px-14">
+      <section className="h-full lg:min-h-[700px] 2xl:min-h-fit bg-brand_green-700 pl-6 pr-11 py-10 lg:py-20 lg:px-14">
         <BlogSection slug={slug} mydata={home_detail.BlogSection} />
       </section>
       <section className="h-full min-h-full bg-primary px-6 py-10 lg:py-20 lg:px-14">

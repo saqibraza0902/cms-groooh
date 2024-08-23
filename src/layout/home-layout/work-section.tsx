@@ -60,59 +60,61 @@ const WorkSection = ({ title }: IProp) => {
     return <p>Loading...</p>;
   }
   return (
-    <ContentBox className="bg-primary !p-5" childClass="!bg-secondary">
-      <div className="flex flex-col-reverse z-0 h-full lg:flex-row relative lg:p-5 lg:gap-5">
-        <div className="lg:w-1/2 h-full flex 2xl:justify-end flex-col z-40  -mt-12 md:mt-0 gap-4">
-          <h2 className="text-4xl hidden lg:flex w-1/12 lg:text-[70px] font-SuisseBold lg:leading-[65px] text-black ">
-            {title}
-          </h2>
-          <div className=" bg-black flex p-3 flex-col w-full rounded-[40px] ">
-            <div>
-              <WorkContentSlider
-                data={data}
-                swiperRef={swiperRefs}
-                onNextSlide={nextSlide}
-                onPrevSlide={prevSlide}
-              />
-            </div>
-            <div className="flex gap-10 ">
-              <span onClick={prevSlide} className="cursor-pointer">
-                <SliderLeftButton
-                  item={{
-                    hoverBorder: "#000",
-                    iconColorA: "#fff",
-                    iconColorB: "#fff",
-                    bg: "#fff",
-                  }}
+    <div className="w-full h-full 2xl:w-[85%] 2xl:h-[85%]">
+      <ContentBox className="bg-primary !p-5" childClass="!bg-secondary">
+        <div className="flex flex-col-reverse z-0 h-full lg:flex-row relative lg:p-5 lg:gap-5">
+          <div className="lg:w-1/2 h-full flex 2xl:justify-end flex-col z-40  -mt-12 md:mt-0 gap-4">
+            <h2 className="text-4xl hidden lg:flex w-1/12 lg:text-[70px] font-SuisseBold lg:leading-[65px] text-black ">
+              {title}
+            </h2>
+            <div className=" bg-black flex p-3 flex-col w-full rounded-[40px] ">
+              <div>
+                <WorkContentSlider
+                  data={data}
+                  swiperRef={swiperRefs}
+                  onNextSlide={nextSlide}
+                  onPrevSlide={prevSlide}
                 />
-              </span>
-              <span onClick={nextSlide} className="cursor-pointer">
-                <SliderRightButton
-                  item={{
-                    hoverBorder: "#fff",
-                    iconColorA: "#fff",
-                    iconColorB: "#fff",
-                    bg: "#fff",
-                  }}
-                />
-              </span>
+              </div>
+              <div className="flex gap-10 ">
+                <span onClick={prevSlide} className="cursor-pointer">
+                  <SliderLeftButton
+                    item={{
+                      hoverBorder: "#000",
+                      iconColorA: "#fff",
+                      iconColorB: "#fff",
+                      bg: "#fff",
+                    }}
+                  />
+                </span>
+                <span onClick={nextSlide} className="cursor-pointer">
+                  <SliderRightButton
+                    item={{
+                      hoverBorder: "#fff",
+                      iconColorA: "#fff",
+                      iconColorB: "#fff",
+                      bg: "#fff",
+                    }}
+                  />
+                </span>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className="lg:w-1/2 lg:pr-4 z-0">
-          <h2 className="text-4xl flex lg:hidden w-1/12 lg:text-[70px] font-SuisseBold lg:leading-[65px] text-black ">
-            {title}
-          </h2>
-          <WorkSlider
-            data={data}
-            swiperRef={swiperRef}
-            onNextSlide={nextSlide}
-            onPrevSlide={prevSlide}
-          />
+          <div className="lg:w-1/2 lg:pr-4 z-0">
+            <h2 className="text-4xl flex lg:hidden w-1/12 lg:text-[70px] font-SuisseBold lg:leading-[65px] text-black ">
+              {title}
+            </h2>
+            <WorkSlider
+              data={data}
+              swiperRef={swiperRef}
+              onNextSlide={nextSlide}
+              onPrevSlide={prevSlide}
+            />
+          </div>
         </div>
-      </div>
-    </ContentBox>
+      </ContentBox>
+    </div>
   );
 };
 

@@ -12,7 +12,7 @@ interface IProp {
 
 const HeroComponent = ({ image, title }: IProp) => {
   return (
-    <section className="h-full dark:bg-black pl-6 pr-11 lg:px-14 py-20 w-full">
+    <section className="h-full  w-full 2xl:w-[92%] mx-auto">
       <ContentBox className="bg-primary " childClass="bg-secondary">
         <div className="flex flex-col w-full h-full justify-center ">
           <div className="flex flex-col lg:flex-row lg:h-5/6 w-full items-center">

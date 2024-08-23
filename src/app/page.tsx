@@ -24,16 +24,16 @@ const Home = async () => {
         <Services services={home_detail?.ServicesPage} />
       </section>
 
-      <section className="h-full py-10 bg-primary w-full lg:px-14 lg:min-h-[700px] 2xl:h-2xl ">
+      <section className="h-full py-10 bg-primary w-full lg:px-14 lg:min-h-[700px] 2xl:h-fit ">
         <RatingSection rating={home_detail.RatingSection} />
       </section>
-      <section className="min-h-screen bg-brand_pink-100 pl-6 pr-11 py-10 flex items-center justify-center h-full lg:px-14 lg:min-h-[850px] 2xl:h-screen">
+      <section className="min-h-screen bg-brand_pink-100 pl-6 pr-11 py-10 flex items-center justify-center h-full lg:px-14 lg:min-h-[850px] 2xl:h-2xl">
         <WorkSection title={home_detail?.WorksSection?.title} />
       </section>
       <section className="h-full px-6 py-10 lg:p-20 flex justify-center items-center bg-brand_green-700">
         <PartnerSection partners={home_detail.PartnersSection} />
       </section>
-      <section className="h-full min-h-screen bg-white pl-6 pr-11 py-10 lg:px-14 lg:py-20 ">
+      <section className="h-full min-h-screen 2xl:min-h-fit bg-white pl-6 pr-11 py-10 lg:px-14 lg:py-20 ">
         <BlogSection mydata={home_detail.BlogSection} />
       </section>
     </CommonLayout>

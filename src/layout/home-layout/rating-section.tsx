@@ -25,7 +25,7 @@ const RatingSection = ({ rating }: IProp) => {
     }
   };
   return (
-    <div className="h-full flex flex-col md:flex-row ">
+    <div className="h-full flex flex-col md:flex-row 2xl:w-[85%] mx-auto">
       <div className="flex flex-row justify-between items-center lg:items-start lg:justify-end lg:px-0 lg:flex-col  text-white">
         <div className="lg:w-1/2 flex pl-6 lg:px-0 flex-col">
           <span className="text-4xl font-SuisseBold text-black">4.9</span>

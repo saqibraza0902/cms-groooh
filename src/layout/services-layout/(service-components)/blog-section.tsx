@@ -13,7 +13,7 @@ const BlogSection = async ({ mydata, slug }: IProp) => {
   }
 
   return (
-    <div className="flex flex-col gap-10">
+    <div className="flex flex-col gap-10 2xl:w-[92%] mx-auto">
       <h2 className="font-SuisseBold md:w-1/12 lg:w-full text-6xl text-white">
         {mydata?.title}
       </h2>

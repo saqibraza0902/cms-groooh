@@ -46,7 +46,7 @@ const ProcessesDetailsSection = ({ prop }: IProp) => {
     setHoverStates(newHoverStates);
   };
   return (
-    <>
+    <div className="w-full h-full 2xl:w-[85%] flex flex-col lg:flex-row mx-auto">
       <div className="w-full lg:w-5/12 xl:w-3/12  flex flex-row justify-between items-center lg:items-start lg:px-0 lg:justify-end lg:flex-col 2xl:justify-end  text-white">
         <div className="lg:w-1/2 flex pl-6 lg:px-0 flex-col">
           <span className="text-3xl  text-black font-SuisseMedium">
@@ -76,7 +76,7 @@ const ProcessesDetailsSection = ({ prop }: IProp) => {
           </span>
         </div>
       </div>
-      <div className="w-full lg:w-8/12 xl:w-9/12 flex items-center justify-center  h-full">
+      <div className="w-full lg:w-8/12 xl:w-9/12 flex items-center justify-center  ">
         <SwiperComponent
           swiperRef={swiperRef}
           onNextSlide={nextSlide}
@@ -135,7 +135,7 @@ const ProcessesDetailsSection = ({ prop }: IProp) => {
           ))}
         </SwiperComponent>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -29,7 +29,7 @@ const ExpertiseComponent = ({ expertise, title }: IProp) => {
     setHoverStates(newHoverStates);
   };
   return (
-    <div className="w-full h-full mx-auto">
+    <div className="w-full h-full mx-auto 2xl:w-[92%]">
       <ContentBox className="!bg-primary" childClass="!bg-secondary">
         <div className="flex flex-col gap-5">
           <h1 className="lg:w-1/6 text-4xl lg:text-7xl text-black font-SuisseBold ">

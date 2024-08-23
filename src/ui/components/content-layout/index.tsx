@@ -27,7 +27,7 @@ const ContentLayout = ({ item }: IProp) => {
             alt={item.image}
             src={item?.image}
             height={1200}
-            className=" w-full h-96 lg:h-80 rounded-[20px] group-hover:opacity-80 object-cover "
+            className=" w-full h-96 lg:h-80 2xl:h-96 rounded-[20px] group-hover:opacity-80 object-cover "
             width={1200}
           />
           <div className="absolute bottom-0 h-28 group-hover:opacity-80 bg-black flex flex-col justify-center py-3 group-hover:h-full px-5 gap-3 transition-all duration-300 text-white rounded-[20px] w-full">

@@ -23,7 +23,7 @@ export const SwiperComponent = ({ swiperRef, children }: any) => {
       spaceBetween: 10,
     },
     1536: {
-      slidesPerView: 2.5,
+      slidesPerView: 2,
       spaceBetween: 10,
     },
   };
@@ -37,7 +37,7 @@ export const SwiperComponent = ({ swiperRef, children }: any) => {
       scrollbar={{ draggable: true }}
       autoplay={{ delay: 3000 }}
       loop={true}
-      className="h-full 2xl:h-[90vh]"
+      className="h-full 2xl:min-h-[500px]"
     >
       {children}
       {/* {array?.map((item: any, i: number) => (
