@@ -21,4 +21,3 @@ export const GET = async (req: Request) => {
     );
   }
 };
-export const revalidate = 0;

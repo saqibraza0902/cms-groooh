@@ -7,7 +7,9 @@ export const home_details = async () => {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/home`, {
       method: "GET",
-      cache: "no-cache",
+      next: {
+        revalidate: 3600,
+      },
     });
     if (!res.ok) {
       return console.log("Blog function not working");
@@ -21,7 +23,9 @@ export const contact_details = async () => {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/contact`, {
       method: "GET",
-      cache: "force-cache",
+      next: {
+        revalidate: 3600,
+      },
     });
     if (!res.ok) {
       return console.log("Blog function not working");
@@ -35,7 +39,9 @@ export const services_page = async () => {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/services`, {
       method: "GET",
-      cache: "force-cache",
+      next: {
+        revalidate: 3600,
+      },
     });
     if (!res.ok) {
       return console.log("Error ");
@@ -51,7 +57,9 @@ export const services_title = async () => {
       `${process.env.NEXT_PUBLIC_URL}/api/servicestitle`,
       {
         method: "GET",
-        cache: "force-cache",
+        next: {
+          revalidate: 3600,
+        },
       }
     );
     if (!res.ok) {
@@ -79,7 +87,6 @@ export const get_portfolios = async () => {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/portfolio`, {
       method: "GET",
-      cache: "no-cache",
     });
     if (!res.ok) {
       throw new Error("Failed");
@@ -95,7 +102,6 @@ export const getSinglePost = cache(async (slug: string) => {
       `${process.env.NEXT_PUBLIC_URL}/api/posts/${slug}`,
       {
         method: "GET",
-        cache: "no-cache",
       }
     );
     if (!res.ok) {
@@ -112,7 +118,6 @@ export const getSinglePortfolio = async (slug: string) => {
       `${process.env.NEXT_PUBLIC_URL}/api/portfolio/${slug}`,
       {
         method: "GET",
-        cache: "no-cache",
       }
     );
     if (!res.ok) {
@@ -166,7 +171,7 @@ export const featured_blogs = async () => {
       `${process.env.NEXT_PUBLIC_URL}/api/featuredblogs`,
       {
         method: "GET",
-        cache: "force-cache",
+
         next: {
           revalidate: 3600,
         },
@@ -186,7 +191,6 @@ export const suggested_blogs = async (tags: string[], id: string) => {
       `${process.env.NEXT_PUBLIC_URL}/api/suggested-blogs?tags=${tags}&id=${id}`,
       {
         method: "GET",
-        cache: "no-cache",
       }
     );
     if (!res.ok) {
@@ -203,7 +207,6 @@ export const auther_details = async (id: string) => {
       `${process.env.NEXT_PUBLIC_URL}/api/autherdetails?id=${id}`,
       {
         method: "GET",
-        cache: "no-cache",
       }
     );
     if (!res.ok) {
@@ -220,7 +223,6 @@ export const suggested_projects = async (tags: string[], id: string) => {
       `${process.env.NEXT_PUBLIC_URL}/api/suggested-portfolios?tags=${tags}&id=${id}`,
       {
         method: "GET",
-        cache: "no-cache",
         headers: {
           "Content-Type": "application/json",
         },
@@ -249,7 +251,6 @@ export const get_collectibles = async (paramtype: string) => {
       }`,
       {
         method: "GET",
-        cache: "force-cache",
       }
     );
     if (!res.ok) {
@@ -264,7 +265,6 @@ export const get_processes = async () => {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/processes`, {
       method: "GET",
-      cache: "force-cache",
     });
     if (!res.ok) {
       throw new Error("Failed");

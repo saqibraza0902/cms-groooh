@@ -170,7 +170,7 @@ interface ICard {
 }
 const Cards = ({ item }: ICard) => {
   return (
-    <div className="h-64 relative bg-secondary  w-52 rounded-[27px]">
+    <div className="min-h-72  relative bg-secondary  w-52 rounded-[27px]">
       <div className="h-full text-black bg-primary absolute -top-2 right-2 p-3 w-full rounded-[19px]">
         <Image
           src={item.icon}

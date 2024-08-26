@@ -1,12 +1,9 @@
 import CommonLayout from "@/layout";
-import ContentBox from "@/ui/components/content-box";
 import ContentLayout from "@/ui/components/content-layout";
 import { get_blogs } from "@/utils/function";
 import { IBlog } from "@/utils/types";
-import Image from "next/image";
-import Link from "next/link";
 import React from "react";
-export const revalidate = 0;
+
 export default async function Blog() {
   const blogPosts = await get_blogs();
   return (

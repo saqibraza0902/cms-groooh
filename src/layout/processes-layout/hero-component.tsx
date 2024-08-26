@@ -14,9 +14,9 @@ const HeroComponent = ({ image, title }: IProp) => {
   return (
     <section className="h-full  w-full 2xl:w-[92%] mx-auto">
       <ContentBox className="bg-primary " childClass="bg-secondary">
-        <div className="flex flex-col w-full h-full justify-center ">
+        <div className="flex flex-col w-full h-full justify-center items-center lg:items-start">
           <div className="flex flex-col lg:flex-row lg:h-5/6 w-full items-center">
-            <div className="lg:w-1/2 h-96 flex items-center px-5 rounded-2xl">
+            <div className="lg:w-1/2 h-52 md:h-96 flex items-center px-5 rounded-2xl">
               <h1 className="font-extrabold z-40 w-full text-center lg:text-left text-3xl lg:text-6xl font-SuisseBold xl:text-[80px] lg:leading-[100px] text-black uppercase ">
                 {title}
               </h1>

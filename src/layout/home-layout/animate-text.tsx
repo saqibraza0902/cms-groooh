@@ -23,7 +23,7 @@ const AnimatedText = () => {
   return (
     <div className="w-full text-center">
       <p className="font-SuisseMedium relative z-40 w-full text-center lg:text-left text-3xl lg:text-4xl lg:leading-[60px]  xl:text-[60px] xl:leading-[80px] text-black uppercase">
-        <p className="text-[2.3rem]">Innovate the Future: </p>
+        <p className="text-[1.5rem] lg:text-[2.3rem]">Innovate the Future: </p>
         <p>Your Next Big</p>{" "}
         <motion.p
           key={words[currentWordIndex]}

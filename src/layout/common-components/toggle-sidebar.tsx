@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { RxCross1 } from "react-icons/rx";
 import { WITHOUT_AUTH_PUBLIC_NAV } from "@/mock";
@@ -9,19 +9,25 @@ import { AnimatedLink, ButtonLayout } from "@/ui/components/animated-button";
 import { cn } from "@/utils/styles";
 import { HiOutlineSun } from "react-icons/hi2";
 import { useTheme } from "next-themes";
+import { services_title } from "@/utils/function";
 interface Props {
   open: boolean;
   close: () => void;
 }
+interface item {
+  title: string;
+  icon: string;
+  sub_services: {
+    title: string;
+    url: string;
+  }[];
+}
 const ToggleSidebar = ({ open, close }: Props) => {
   const path = usePathname();
   const { setTheme, theme } = useTheme();
-
-  console.log("Path name", path);
-
   const [activeIndex, setActiveIndex] = useState(null);
   const [activeDropdownIndex, setActiveDropdownIndex] = useState(null);
-
+  const [CARDSARRAY, setCARDSARRAY] = useState([]);
   const handleNavItemClick = (index: any, isDropdown: any) => {
     setActiveIndex(activeIndex === index ? null : index);
     setActiveDropdownIndex(null); // Reset dropdown state when toggling main item
@@ -30,6 +36,14 @@ const ToggleSidebar = ({ open, close }: Props) => {
   const handleDropdownItemClick = (index: any) => {
     setActiveDropdownIndex(activeDropdownIndex === index ? null : index);
   };
+  useEffect(() => {
+    const gettitles = async () => {
+      const data = await services_title();
+      setCARDSARRAY(data);
+    };
+
+    gettitles();
+  }, []);
   return (
     <div
       className={`fixed lg:hidden inset-y-0 w-full md:w-[50%]  !overflow-hidden z-50 lg:w-[25%] bg-white dark:bg-black transition-transform duration-300 transform flex 
@@ -76,54 +90,54 @@ const ToggleSidebar = ({ open, close }: Props) => {
                 />
               </div>
               {item.isDropdown && activeIndex === index && (
-                <motion.div
-                  initial={{ height: 0 }}
-                  animate={{ height: activeIndex === index ? "auto" : 0 }}
-                  transition={{ duration: 0.3, ease: "easeInOut" }}
-                  className="space-y-2 bg-none p-2 mb-2 transition-all overflow-hidden"
-                  layout
+                <div
+                  ref={(el) => {
+                    if (el) {
+                      if (activeIndex === index) {
+                        el.style.maxHeight = `${el.scrollHeight}px`;
+                      } else {
+                        el.style.maxHeight = "0px";
+                      }
+                    }
+                  }}
+                  className={`space-y-2 bg-none p-2 mb-2 transition-[max-height] duration-500 ease-in-out overflow-hidden`}
                 >
-                  {item.dropdownItems?.map((dropdownItem, subIndex) => (
-                    <div key={subIndex}>
-                      <div
-                        className="flex transition-all duration-300 ease-in-out items-center cursor-pointer"
-                        onClick={() => handleDropdownItemClick(subIndex)}
-                      >
-                        <AnimatedLink
-                          className="rounded-none !bg-transparent w-full uppercase flex items-center gap-1"
-                          href={"#"}
-                          text={dropdownItem.title}
-                        />
-                      </div>
-                      {activeDropdownIndex === subIndex && (
-                        <motion.div
-                          initial={{ height: 0 }}
-                          animate={{
-                            height:
-                              activeDropdownIndex === subIndex ? "auto" : 0,
-                          }}
-                          transition={{ duration: 0.3, ease: "easeInOut" }}
-                          className="pl-4 space-y-1 overflow-hidden"
+                  {CARDSARRAY?.map((item: item, subIndex) => {
+                    return (
+                      <div key={subIndex}>
+                        <div
+                          className="flex transition-all duration-300 ease-in-out items-center cursor-pointer"
+                          onClick={() => handleDropdownItemClick(subIndex)}
                         >
-                          {dropdownItem.sub_categories.map(
-                            (subCategory, subCatIndex) => (
-                              <AnimatedLink
-                                key={subCatIndex}
-                                className={cn(
-                                  `rounded-none w-full pl-2 uppercase flex items-center gap-1   ${
-                                    path === subCategory.link && "!bg-secondary"
-                                  }`
-                                )}
-                                href={subCategory.link}
-                                text={subCategory.title}
-                              />
-                            )
-                          )}
-                        </motion.div>
-                      )}
-                    </div>
-                  ))}
-                </motion.div>
+                          <AnimatedLink
+                            className="rounded-none !bg-transparent w-full uppercase flex items-center gap-1"
+                            href={"#"}
+                            text={item?.title}
+                          />
+                        </div>
+                        {activeDropdownIndex === subIndex && (
+                          <div className="pl-4 space-y-1 overflow-hidden">
+                            {item.sub_services.map(
+                              (subCategory, subCatIndex) => (
+                                <AnimatedLink
+                                  key={subCatIndex}
+                                  className={cn(
+                                    `rounded-none w-full pl-2 uppercase flex items-center gap-1 ${
+                                      path === subCategory.url &&
+                                      "!bg-secondary"
+                                    }`
+                                  )}
+                                  href={subCategory.url}
+                                  text={subCategory.title}
+                                />
+                              )
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
               )}
             </div>
           ))}

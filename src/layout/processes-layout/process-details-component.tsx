@@ -86,10 +86,7 @@ const ProcessesDetailsSection = ({ prop }: IProp) => {
             <SwiperSlide key={i} className="h-full pl-6 pr-11 py-10">
               <ContentBox className="!px-0">
                 <div className="w-full flex flex-col justify-center  gap-1 h-full min-h-full">
-                  <div
-                    key={i}
-                    className="bg-white w-full h-96 rounded-2xl flex flex-col justify-between items-center relative"
-                  >
+                  <div className="bg-white w-full h-96 rounded-2xl flex flex-col justify-between items-center relative">
                     <div className="relative z-10 w-full h-full flex justify-center items-center">
                       <Image src={el.image} alt="" width={150} height={150} />
                     </div>

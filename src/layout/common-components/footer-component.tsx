@@ -2,49 +2,43 @@
 import { ContactLink, FooterLink } from "@/ui/components/animated-button";
 import React, { useState } from "react";
 import { BiPlus } from "react-icons/bi";
-import { FcCallback } from "react-icons/fc";
+import { MdPhoneCallback } from "react-icons/md";
 import { Subscribe } from "@/ui/components/subscribe-component";
+import { FaWhatsapp } from "react-icons/fa";
+import { useRouter } from "next/navigation";
 const FOOTER_LINKS = [
   {
     name: "Our Services",
     hasIcon: false,
-    pathname: "/",
+    pathname: "/services/uiux-services",
   },
   {
     name: "Projects",
     hasIcon: true,
-    pathname: "/",
+    pathname: "/portfolio",
   },
   {
     name: "Our Process",
     hasIcon: true,
-    pathname: "/",
+    pathname: "/processes",
   },
-  {
-    name: "Open Source",
-    hasIcon: true,
-    pathname: "/",
-  },
-  {
-    name: "Referal Program",
-    hasIcon: true,
-    pathname: "/",
-  },
+
   {
     name: "Contacts",
     hasIcon: true,
-    pathname: "/",
+    pathname: "/contact",
   },
   {
     name: "Blog",
     hasIcon: true,
-    pathname: "/",
+    pathname: "/blog",
   },
 ];
 const Footer = () => {
   const [isHovered, setIsHovered] = useState(false);
+  const router = useRouter();
   return (
-    <div>
+    <div className="relative">
       <div className="h-full w-full flex flex-col gap-5 lg:flex-row justify-between bg-brand_green-700  px-4 lg:px-20 py-10">
         <div className="lg:w-4/12 flex flex-col gap-5">
           <p className="text-white  font-bold text-xl">
@@ -79,12 +73,21 @@ const Footer = () => {
           <div>
             <p className="font-light text-xs dark:text-[#ccc]">Call US</p>
             <div className="flex gap-4 items-center">
-              <FcCallback size={25} />
+              <MdPhoneCallback color="#fff" size={25} />
               <ContactLink className="" href="" text="+1 (920) 948 309" />
             </div>
           </div>
         </div>
       </div>
+      <a
+        href="https://wa.me/923116931514"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-0 right-0 z-[1000] rounded-l-xl px-2 py-1 gap-1 bg-[#25D366] flex items-center"
+      >
+        <FaWhatsapp size={28} />
+        <span>chat on Whatsapp</span>
+      </a>
     </div>
   );
 };

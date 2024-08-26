@@ -24,7 +24,7 @@ const SubServicesLayout = async ({ slug }: IProp) => {
   }
   return (
     <div>
-      <section className="w-full h-full dark:bg-black pl-6 pr-11 lg:px-14 py-20">
+      <section className="w-full h-fit dark:bg-black pl-6 pr-11 lg:px-14 py-20">
         <HeroComponent
           title={matchingService?.hero_section?.text}
           image={matchingService?.hero_section?.image}
