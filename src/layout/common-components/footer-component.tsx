@@ -83,7 +83,7 @@ const Footer = () => {
         href="https://wa.me/923116931514"
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-0 right-0 z-[1000] rounded-l-xl px-2 py-1 gap-1 bg-[#25D366] flex items-center"
+        className="fixed bottom-0 right-0 z-[1000] rounded-l-xl p-2 gap-2 bg-[#25D366] flex items-center"
       >
         <FaWhatsapp size={28} />
         <span>chat on Whatsapp</span>

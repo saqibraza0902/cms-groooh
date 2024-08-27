@@ -22,7 +22,7 @@ const Services = ({ services }: IProp) => {
           {services?.services?.map((item, i) => (
             <div
               key={i}
-              className="bg-black py-10 flex flex-col lg:flex-row items-center lg:items-start 2xl:h-80 gap-3 lg:p-5 rounded-3xl "
+              className="bg-black py-10 flex flex-col lg:flex-row items-center lg:items-start 2xl:h-80 gap-3 2xl:flex-col lg:p-5 rounded-3xl "
             >
               <div className="flex gap-5 lg:gap-0">
                 <span className="">

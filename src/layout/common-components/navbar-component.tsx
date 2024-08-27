@@ -188,7 +188,7 @@ const Cards = ({ item }: ICard) => {
             <Link
               key={i}
               href={`/services/${subItem.url}`}
-              className="font-SuisseMedium !transition-all !duration-300  hover:text-brand_blue-400"
+              className="font-SuisseMedium !transition-all !duration-300  hover:text-brand_green-700"
             >
               {subItem.title}
             </Link>

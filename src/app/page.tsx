@@ -14,7 +14,7 @@ const Home = async () => {
   const home_detail: IHome = await home_details();
   return (
     <CommonLayout>
-      <section className="bg-white dark:bg-black h-full py-10 lg:h-lg 2xl:h-2xl">
+      <section className="bg-white dark:bg-black h-full py-10 lg:h-lg 2xl:h-9k 2xl:py-0">
         <HomeSection hero={home_detail?.HeroSection} />
       </section>
       <section className="bg-white  pl-11 pr-6 py-20 lg:mt-0 lg:px-28 h-full lg:h-full 2xl:h-screen flex  flex-col justify-center items-center">

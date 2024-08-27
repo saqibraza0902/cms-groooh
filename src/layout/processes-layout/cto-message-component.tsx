@@ -18,7 +18,10 @@ const CTOMessageComponent = ({ prop }: IProp) => {
         </div>
       </div>
       <div className="lg:w-9/12 space-y-5">
-        <ParagraphComponent className="!text-3xl " text={prop.client_text} />
+        <ParagraphComponent
+          className="!text-xl !xl:text-3xl "
+          text={prop.client_text}
+        />
         <p className="text-lg text-brand_pink-200">{prop.text}</p>
       </div>
     </div>

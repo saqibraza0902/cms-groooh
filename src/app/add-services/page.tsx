@@ -38,7 +38,6 @@ const AddNewService = () => {
     expertise: [],
     techStack: [],
   });
-  const storage = getStorage(app);
 
   useEffect(() => {
     const getAllImages = async () => {
@@ -165,7 +164,7 @@ const AddNewService = () => {
     const id = uuidv4();
     const newDoc = {
       url: `${slugify(pageTitle)}`,
-      title: pageTitle.toUpperCase(),
+      title: pageTitle,
       id: id,
       hero_section: {
         image: heroImageUrl,
@@ -181,7 +180,6 @@ const AddNewService = () => {
       },
       tech_stack: tech_stack.map(({ title, image }) => ({ title, image })),
     };
-
     const docRef = doc(db, "Pages", "SERVICES");
     await updateDoc(docRef, {
       [`${mainCategory}.services`]: arrayUnion(newDoc),
@@ -229,7 +227,9 @@ const AddNewService = () => {
               type="text"
               images={galleryStates.heroImage ? imageUrls : []}
               value={heroImage}
-              onSelectImage={(url) => setHeroImage(url)}
+              onSelectImage={(url) => {
+                setHeroImageUrl(url);
+              }}
               placeholder="Enter the url of image"
               onOpenGallery={() => handleOpenGallery("heroImage")}
               onCloseGallery={() => handleCloseGallery("heroImage")}

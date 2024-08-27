@@ -265,6 +265,9 @@ export const get_processes = async () => {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/processes`, {
       method: "GET",
+      next: {
+        revalidate: 3600,
+      },
     });
     if (!res.ok) {
       throw new Error("Failed");

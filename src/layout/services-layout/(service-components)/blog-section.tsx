@@ -3,11 +3,9 @@ import { suggested_blogs } from "@/utils/function";
 import { IBlog, IBlogSection } from "@/utils/types";
 interface IProp {
   mydata: IBlogSection;
-  slug: string;
+  data: IBlog[];
 }
-const BlogSection = async ({ mydata, slug }: IProp) => {
-  const tags = [slug];
-  const data = await suggested_blogs(tags, "");
+const BlogSection = async ({ mydata, data }: IProp) => {
   if (data.length < 1) {
     return;
   }

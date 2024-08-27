@@ -1,4 +1,4 @@
-import { home_details, services_page } from "@/utils/function";
+import { home_details, services_page, suggested_blogs } from "@/utils/function";
 import { IHome, IPageService, IServicesPage } from "@/utils/types";
 import React from "react";
 import HeroComponent from "../(service-components)/hero-component";
@@ -13,6 +13,8 @@ interface IProp {
 const SubServicesLayout = async ({ slug }: IProp) => {
   const home_detail: IHome = await home_details();
   const services_details: IPageService[] = await services_page();
+  const tags = [slug];
+  const data = await suggested_blogs(tags, "");
   if (!services_details) {
     return <div>loading...</div>;
   }
@@ -41,10 +43,11 @@ const SubServicesLayout = async ({ slug }: IProp) => {
           <TechStackComponent partners={matchingService.tech_stack} />
         </section>
       )}
-
-      <section className="h-full lg:min-h-[700px] 2xl:min-h-fit bg-brand_green-700 pl-6 pr-11 py-10 lg:py-20 lg:px-14">
-        <BlogSection slug={slug} mydata={home_detail.BlogSection} />
-      </section>
+      {data?.length > 0 && (
+        <section className="h-full lg:min-h-[700px] 2xl:min-h-fit bg-brand_green-700 pl-6 pr-11 py-10 lg:py-20 lg:px-14">
+          <BlogSection data={data} mydata={home_detail.BlogSection} />
+        </section>
+      )}
       <section className="h-full min-h-full bg-primary px-6 py-10 lg:py-20 lg:px-14">
         <ContactComponent />
       </section>

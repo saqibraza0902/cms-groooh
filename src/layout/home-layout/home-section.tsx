@@ -11,7 +11,7 @@ interface IProp {
 const HomeSection = ({ hero }: IProp) => {
   return (
     <div className="h-full flex justify-center flex-col gap-10 sm:items-center md:flex-row md:px-14 ">
-      <div className="h-full w-full pr-11 pl-6 sm:w-2/3 md:w-7/12 md:pl-0 md:pr-0 lg:w-2/3 xl:w-8/12 xl:h-[99%] 2xl:h-4/6 2xl:w-7/12">
+      <div className="h-full w-full pr-11 pl-6 sm:w-2/3 md:w-7/12 md:pl-0 md:pr-0 lg:w-2/3 xl:w-8/12 xl:h-[99%] 2xl:h-[80%] 2xl:w-7/12">
         <ContentBox
           className="!bg-primary p-0 "
           childClass="!bg-secondary dark:!bg-secondary  "
@@ -39,7 +39,7 @@ const HomeSection = ({ hero }: IProp) => {
           </div>
         </ContentBox>
       </div>
-      <div className="h-7k w-full px-6 sm:w-2/3 md:h-6.6k md:w-5/12 md:px-0 lg:w-1/3 lg:h-6.7k xl:w-4/12 2xl:w-3/12">
+      <div className="h-7k w-full px-6 sm:w-2/3 md:h-6.6k md:w-5/12 md:px-0 lg:w-1/3 lg:h-6.7k xl:w-4/12 2xl:w-3/12 2xl:!h-7.3k">
         <HomeSwiper />
       </div>
     </div>
