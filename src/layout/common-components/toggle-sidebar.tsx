@@ -127,7 +127,7 @@ const ToggleSidebar = ({ open, close }: Props) => {
                                       "!bg-secondary"
                                     }`
                                   )}
-                                  href={subCategory.url}
+                                  href={`/services/${subCategory.url}`}
                                   text={subCategory.title}
                                 />
                               )
