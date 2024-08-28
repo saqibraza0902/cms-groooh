@@ -122,6 +122,7 @@ export interface IContact {
   icon: string;
   contact: {
     title: string;
+    icon: string;
     description: string;
   }[];
 }

@@ -12,10 +12,10 @@ const BlogSection = async ({ mydata }: IProp) => {
   }
   return (
     <div className="flex flex-col gap-10 2xl:w-[85%] mx-auto">
-      <h2 className="font-SuisseBold md:w-1/12 lg:w-full text-6xl text-black">
+      <h2 className="font-SuisseBold md:w-1/12 lg:w-full text-6xl text-white">
         {mydata?.title}
       </h2>
-      <p className="font-Suisse text-lg text-black">{mydata?.description}</p>
+      <p className="font-Suisse text-lg text-white">{mydata?.description}</p>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:ml-0">
         {data?.map((item: IBlog, i: number) => (
           <ContentLayout

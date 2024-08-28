@@ -23,7 +23,7 @@ const ParagraphComponent = ({ text, className }: IProp) => {
     <p
       ref={element}
       className={cn(
-        "flex flex-wrap leading-7  text-black md:leading-10 font-semibold md:text-4xl text-xl",
+        "flex flex-wrap leading-7  text-black dark:text-white md:leading-10 font-semibold md:text-4xl text-xl",
         className
       )}
     >

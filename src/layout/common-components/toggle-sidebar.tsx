@@ -10,6 +10,7 @@ import { cn } from "@/utils/styles";
 import { HiOutlineSun } from "react-icons/hi2";
 import { useTheme } from "next-themes";
 import { services_title } from "@/utils/function";
+import { useAppSelector } from "@/hooks/Hooks";
 interface Props {
   open: boolean;
   close: () => void;
@@ -27,7 +28,7 @@ const ToggleSidebar = ({ open, close }: Props) => {
   const { setTheme, theme } = useTheme();
   const [activeIndex, setActiveIndex] = useState(null);
   const [activeDropdownIndex, setActiveDropdownIndex] = useState(null);
-  const [CARDSARRAY, setCARDSARRAY] = useState([]);
+  const { services } = useAppSelector((s) => s.services);
   const handleNavItemClick = (index: any, isDropdown: any) => {
     setActiveIndex(activeIndex === index ? null : index);
     setActiveDropdownIndex(null); // Reset dropdown state when toggling main item
@@ -36,14 +37,7 @@ const ToggleSidebar = ({ open, close }: Props) => {
   const handleDropdownItemClick = (index: any) => {
     setActiveDropdownIndex(activeDropdownIndex === index ? null : index);
   };
-  useEffect(() => {
-    const gettitles = async () => {
-      const data = await services_title();
-      setCARDSARRAY(data);
-    };
 
-    gettitles();
-  }, []);
   return (
     <div
       className={`fixed lg:hidden inset-y-0 w-full md:w-[50%]  !overflow-hidden z-50 lg:w-[25%] bg-white dark:bg-black transition-transform duration-300 transform flex 
@@ -102,7 +96,7 @@ const ToggleSidebar = ({ open, close }: Props) => {
                   }}
                   className={`space-y-2 bg-none p-2 mb-2 transition-[max-height] duration-500 ease-in-out overflow-hidden`}
                 >
-                  {CARDSARRAY?.map((item: item, subIndex) => {
+                  {services?.map((item: item, subIndex) => {
                     return (
                       <div key={subIndex}>
                         <div

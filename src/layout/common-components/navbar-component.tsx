@@ -1,13 +1,13 @@
 "use client";
-import { useAppSelector } from "@/hooks/Hooks";
+import { useAppDispatch, useAppSelector } from "@/hooks/Hooks";
 import { auth } from "@/utils/firebase";
-import { User, onAuthStateChanged, signOut } from "firebase/auth";
-import { usePathname, useRouter } from "next/navigation";
+import { User, onAuthStateChanged } from "firebase/auth";
+import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useTheme } from "next-themes";
 import { HiOutlineSun } from "react-icons/hi";
-import { PUBLIC_NAV, WITHOUT_AUTH_PUBLIC_NAV } from "@/mock";
+import { WITHOUT_AUTH_PUBLIC_NAV } from "@/mock";
 import Link from "next/link";
 import { AnimatedLink, ButtonLayout } from "@/ui/components/animated-button";
 import { cn } from "@/utils/styles";
@@ -16,6 +16,7 @@ import { PUBLIC_URLS } from "@/utils/urls";
 import { get_collectibles, services_title } from "@/utils/function";
 import Image from "next/image";
 import { HiBars3BottomLeft } from "react-icons/hi2";
+import { addservices } from "@/redux/slices/services-slices";
 
 const Navbar = ({ toggle }: any) => {
   const path = usePathname();
@@ -23,31 +24,22 @@ const Navbar = ({ toggle }: any) => {
   const [user, setUser] = useState<User | null>();
   const { items } = useAppSelector((s) => s.cart);
   const [isHovered, setIsHovered] = useState(false);
-  const [CARDSARRAY, setCARDSARRAY] = useState([]);
   const [collectibles, setCollectibles] = useState([]);
-
-  const handleSignOut = () => {
-    try {
-      signOut(auth);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const dispatch = useAppDispatch();
+  const { services } = useAppSelector((s) => s.services);
   useEffect(() => {
     const gettitles = async () => {
       const data = await services_title();
       const mydata = await get_collectibles("");
       setCollectibles(mydata?.data);
-      setCARDSARRAY(data);
+      dispatch(addservices(data));
     };
-
     gettitles();
   }, []);
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
     });
-
     return () => unsubscribe();
   }, [user]);
   return (
@@ -98,7 +90,7 @@ const Navbar = ({ toggle }: any) => {
                       )}
                     >
                       <div className="flex justify-center w-full gap-5">
-                        {CARDSARRAY.map((el, i) => {
+                        {services.map((el, i) => {
                           return <Cards item={el} key={i} />;
                         })}
                         {/* <Cards arr={c1} text="Product Branding" />
@@ -113,7 +105,7 @@ const Navbar = ({ toggle }: any) => {
           <div className="flex gap-5 items-center">
             <div
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="bg-black dark:bg-primary cursor-pointer  hidden md:flex w-12 h-12 my-3 justify-center items-center rounded-lg"
+              className="bg-black  max-h-11  dark:bg-primary cursor-pointer  hidden md:flex w-11 h-11 my-3 justify-center items-center rounded-lg"
             >
               <HiOutlineSun
                 size={20}
@@ -135,8 +127,18 @@ const Navbar = ({ toggle }: any) => {
             ) : (
               <div className="hidden md:flex">
                 <Link href={PUBLIC_URLS.CONTACT}>
-                  <ButtonLayout className="dark:bg-primary dark:text-black bg-black text-white">
-                    CONTACT US
+                  <ButtonLayout
+                    Icon={
+                      <Image
+                        alt=""
+                        src="https://firebasestorage.googleapis.com/v0/b/groooh-com.appspot.com/o/navbar-icons%2FChat-Dot.svg?alt=media&token=7f7ae362-84ff-4e89-9fab-19b45ce9744d"
+                        height={30}
+                        width={30}
+                      />
+                    }
+                    className="dark:bg-primary max-h-11  dark:text-black bg-black text-white"
+                  >
+                    Contact Us
                   </ButtonLayout>
                 </Link>
               </div>

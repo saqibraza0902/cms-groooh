@@ -4,6 +4,9 @@ import HomeSwiper from "@/ui/components/home-swiper";
 import { IHeroSection } from "@/utils/types";
 import React from "react";
 import AnimatedText from "./animate-text";
+import Image from "next/image";
+import Link from "next/link";
+import { PUBLIC_URLS } from "@/utils/urls";
 
 interface IProp {
   hero: IHeroSection;
@@ -14,7 +17,7 @@ const HomeSection = ({ hero }: IProp) => {
       <div className="h-full w-full pr-11 pl-6 sm:w-2/3 md:w-7/12 md:pl-0 md:pr-0 lg:w-2/3 xl:w-8/12 xl:h-[99%] 2xl:h-[80%] 2xl:w-7/12">
         <ContentBox
           className="!bg-primary p-0 "
-          childClass="!bg-secondary dark:!bg-secondary  "
+          childClass="!bg-secondary !p-0 dark:!bg-secondary  "
         >
           <div className="w-full flex gap-14 lg:gap-5 flex-col justify-center items-start p-10 h-full ">
             <AnimatedText />
@@ -32,9 +35,24 @@ const HomeSection = ({ hero }: IProp) => {
                   7Y OF TEST DRIVEN PRODUCTION DEVELOPMENT
                 </span>
               </div>
-              <div className="lg:w-1/6  text-black uppercase lg:mr-20 xl:mr-10">
-                <ButtonLayout className="min-w-36">Lets Talk</ButtonLayout>
-              </div>
+              <Link
+                href={PUBLIC_URLS.CONTACT}
+                className="lg:w-1/6   lg:mr-20 xl:mr-8 2xl:mr-0"
+              >
+                <ButtonLayout
+                  Icon={
+                    <Image
+                      alt=""
+                      src="https://firebasestorage.googleapis.com/v0/b/groooh-com.appspot.com/o/navbar-icons%2FChat-Dot.svg?alt=media&token=7f7ae362-84ff-4e89-9fab-19b45ce9744d"
+                      height={30}
+                      width={30}
+                    />
+                  }
+                  className="min-w-36 max-h-11"
+                >
+                  Lets Talk
+                </ButtonLayout>
+              </Link>
             </div>
           </div>
         </ContentBox>

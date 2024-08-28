@@ -38,9 +38,11 @@ interface ISlider {
 export const ButtonLayout = ({
   className,
   children,
+  Icon,
 }: {
   className?: string;
   children: React.ReactNode;
+  Icon?: any;
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -71,7 +73,7 @@ export const ButtonLayout = ({
         </motion.p>
       </div>
 
-      <div className="h-5 w-5 rounded-full bg-gray-600 "></div>
+      <div className="h-6 w-6 p-1 rounded-full bg-white ">{Icon}</div>
     </div>
   );
 };
@@ -132,63 +134,6 @@ export const AnimatedLink = ({
               )}
             </>
           )}
-        </motion.p>
-      </div>
-    </Link>
-  );
-};
-
-export const FooterLink = ({
-  text = "Hello",
-  href = "/",
-  className,
-  showIcon,
-  onMouseEnter,
-  onMouseLeave,
-}: ILinkProp) => {
-  const [isHovered, setIsHovered] = useState(false);
-
-  return (
-    <Link
-      href={href}
-      className={cn(
-        ` border-black h-8 w-max flex-nowrap text-nowrap  flex items-center justify-center rounded-lg relative overflow-hidden ${className}`
-      )}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      <div
-        className="w-full "
-        onMouseEnter={showIcon ? onMouseEnter : () => console.log("first")}
-        onMouseLeave={showIcon ? onMouseLeave : () => console.log("first")}
-      >
-        <motion.p
-          className=" flex-nowrap text-nowrap  flex m-auto items-center gap-1"
-          initial={{ y: "50%" }}
-          animate={{ y: isHovered ? "-150%" : "50%" }}
-          transition={{ duration: 0.3 }}
-        >
-          {text}
-        </motion.p>
-
-        <motion.p
-          className="flex-nowrap text-nowrap  flex m-auto items-center gap-1"
-          initial={{ y: isHovered ? "-50%" : "100%" }}
-          animate={{ y: isHovered ? "-50%" : "100%" }}
-          transition={{ duration: 0.3 }}
-        >
-          {text}
-          <motion.span
-            initial={{ opacity: 0, x: -20, y: 20 }}
-            animate={{
-              opacity: isHovered ? 1 : 0,
-              x: isHovered ? 0 : -20,
-              y: isHovered ? 0 : 20,
-            }}
-            transition={{ duration: 0.3 }}
-          >
-            {showIcon && <GoArrowUpRight />}
-          </motion.span>
         </motion.p>
       </div>
     </Link>

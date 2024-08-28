@@ -20,7 +20,6 @@ const nextConfig = {
     ],
     dangerouslyAllowSVG: true,
   },
-
 };
 
 export default nextConfig;

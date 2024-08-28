@@ -10,6 +10,7 @@ import { MdOutlineMailOutline } from "react-icons/md";
 import { db } from "@/utils/firebase";
 import { addDoc, collection } from "firebase/firestore";
 import { toast } from "react-toastify";
+import Image from "next/image";
 export const Subscribe = () => {
   const customTheme = (outerTheme: Theme) =>
     createTheme({
@@ -104,26 +105,38 @@ const HoverIcon = ({ onClick }: any) => {
       onMouseLeave={() => setIsHovered(false)}
     >
       <div
-        className={`w-7 h-7 p-2 flex justify-center transition-all duration-300 items-center  rounded-full ${
-          isHovered ? "bg-blue-700" : "bg-white"
+        className={`w-7 h-7 flex justify-center transition-all duration-300 items-center  rounded-full ${
+          isHovered ? "bg-primary" : "bg-white"
         }`}
       >
-        <motion.p
-          className=""
+        <motion.span
+          className="h-full w-full min-w-5 min-h-5  "
           initial={{ x: "50%" }}
-          animate={{ x: isHovered ? "200%" : "50%" }}
+          animate={{ x: isHovered ? "250%" : "50%" }}
           transition={{ duration: 0.3 }}
         >
-          <MdOutlineMailOutline color="#000" size={20} />
-        </motion.p>
-        <motion.p
-          className=" "
-          initial={{ x: "-200%" }}
-          animate={{ x: isHovered ? "-50%" : "-200%" }}
+          <Image
+            src="https://firebasestorage.googleapis.com/v0/b/groooh-com.appspot.com/o/footer-icons%2FLetter.svg?alt=media&token=f961a189-e076-4e8d-9e3a-93adc6f44d98"
+            alt=""
+            className="h-full w-full"
+            height={1550}
+            width={1550}
+          />
+        </motion.span>
+        <motion.span
+          className="h-full w-full min-w-5 min-h-5  "
+          initial={{ x: "-250%" }}
+          animate={{ x: isHovered ? "-50%" : "-250%" }}
           transition={{ duration: 0.3 }}
         >
-          <MdOutlineMailOutline color="#fff" size={20} />
-        </motion.p>
+          <Image
+            src="https://firebasestorage.googleapis.com/v0/b/groooh-com.appspot.com/o/footer-icons%2FLetter.svg?alt=media&token=f961a189-e076-4e8d-9e3a-93adc6f44d98"
+            alt=""
+            className="h-full w-full"
+            height={1550}
+            width={1550}
+          />
+        </motion.span>
       </div>
     </div>
   );

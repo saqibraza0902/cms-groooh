@@ -46,7 +46,7 @@ export const RatingSwiper = ({ swiperRef, array }: any) => {
               <div className="flex items-center h-1/6 gap-4">
                 <p className="!text-black text-xl font-bold">{item.rating}</p>
                 <span className="flex gap-1">
-                  {[0, 1, 2, 3].map((i) => (
+                  {Array.from({ length: item.rating }, (_, i) => (
                     <FaStar color="#FDC448" key={i} />
                   ))}
                 </span>

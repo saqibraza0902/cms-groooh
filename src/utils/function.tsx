@@ -8,7 +8,7 @@ export const home_details = async () => {
     const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/home`, {
       method: "GET",
       next: {
-        revalidate: 3600,
+        revalidate: 10,
       },
     });
     if (!res.ok) {

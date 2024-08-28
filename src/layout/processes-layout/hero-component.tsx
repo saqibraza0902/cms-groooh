@@ -34,7 +34,19 @@ const HeroComponent = ({ image, title }: IProp) => {
           <div className="lg:w-4/6 lg:h-1/6 pl-6 flex flex-col lg:flex-row lg:items-end pt-2">
             <div className="flex items-center gap-4">
               <Link href={PUBLIC_URLS.CONTACT}>
-                <ButtonLayout>Contact Us</ButtonLayout>
+                <ButtonLayout
+                  Icon={
+                    <Image
+                      alt=""
+                      src="https://firebasestorage.googleapis.com/v0/b/groooh-com.appspot.com/o/navbar-icons%2FChat-Dot.svg?alt=media&token=7f7ae362-84ff-4e89-9fab-19b45ce9744d"
+                      height={30}
+                      width={30}
+                    />
+                  }
+                  className="min-w-36 max-h-11"
+                >
+                  Contact Us
+                </ButtonLayout>
               </Link>
             </div>
           </div>

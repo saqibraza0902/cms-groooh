@@ -1,17 +1,16 @@
 "use client";
-import { ContactLink, FooterLink } from "@/ui/components/animated-button";
-import React, { useState } from "react";
+import { ContactLink } from "@/ui/components/animated-button";
+import React, { useEffect, useState } from "react";
 import { BiPlus } from "react-icons/bi";
 import { MdPhoneCallback } from "react-icons/md";
 import { Subscribe } from "@/ui/components/subscribe-component";
 import { FaWhatsapp } from "react-icons/fa";
 import { useRouter } from "next/navigation";
+import { services_title } from "@/utils/function";
+import { FooterLink } from "@/ui/components/footer-link";
+import Link from "next/link";
+import { useAppSelector } from "@/hooks/Hooks";
 const FOOTER_LINKS = [
-  {
-    name: "Our Services",
-    hasIcon: false,
-    pathname: "/services/uiux-services",
-  },
   {
     name: "Projects",
     hasIcon: true,
@@ -35,8 +34,13 @@ const FOOTER_LINKS = [
   },
 ];
 const Footer = () => {
-  const [isHovered, setIsHovered] = useState(false);
-  const router = useRouter();
+  const { services } = useAppSelector((s) => s.services);
+  const [expandedServiceId, setExpandedServiceId] = useState(null);
+  const handleToggle = (id: string | any) => {
+    setExpandedServiceId(expandedServiceId === id ? null : id);
+  };
+
+  // console.log(data);
   return (
     <div className="relative">
       <div className="h-full w-full flex flex-col gap-5 lg:flex-row justify-between bg-brand_green-700  px-4 lg:px-20 py-10">
@@ -50,17 +54,63 @@ const Footer = () => {
         </div>
         <div className="lg:w-3/12 flex flex-col lg:items-center ">
           {FOOTER_LINKS.map((item, i) => (
-            <span className="flex items-center lg:w-8/12 justify-start" key={i}>
+            <Link
+              href={item.pathname}
+              className="flex items-center lg:w-8/12 justify-start"
+              key={i}
+            >
               <FooterLink
                 className="text-white  text-lg font-bold"
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
-                href={item.pathname}
                 showIcon={item.hasIcon}
                 text={item.name}
               />
               {!item.hasIcon && <BiPlus color="#fff" />}
-            </span>
+            </Link>
+          ))}
+        </div>
+        <div className="lg:w-3/12 flex flex-col lg:items-center ">
+          <span className="flex items-center lg:w-9/12 justify-start">
+            <FooterLink
+              className="text-white  text-lg font-bold"
+              showIcon={false}
+              text={"Services"}
+            />
+          </span>
+          {services.map((item, i) => (
+            <div
+              className="w-full lg:w-9/12"
+              key={i}
+              onClick={() => handleToggle(item.id)}
+            >
+              <span className="flex cursor-pointer items-center lg:w-full justify-start">
+                <FooterLink
+                  className="text-white  text-lg font-bold"
+                  showIcon={false}
+                  text={item.title}
+                />
+                {true && <BiPlus color="#fff" />}
+              </span>
+
+              <div
+                className={`overflow-hidden transition-all ${
+                  expandedServiceId === item.id
+                    ? "max-h-52 duration-500 ease-in"
+                    : "max-h-0 duration-[480ms] ease-in-out"
+                }`}
+              >
+                <span className="grid grid-cols-1 space-y-1 py-2">
+                  {item.sub_services.map((subService, index) => (
+                    <Link
+                      href={`/services/${subService.url}`}
+                      key={index}
+                      className="block font-Suisse  text-white text-xs"
+                    >
+                      {subService.title}
+                    </Link>
+                  ))}
+                </span>
+              </div>
+            </div>
           ))}
         </div>
         <div className="lg:w-3/12 text-white  flex flex-col gap-5">
