@@ -35,7 +35,7 @@ const AnimatedText = () => {
         >
           {words[currentWordIndex]}
         </motion.p>{" "}
-        <p> Stats Here</p>
+        <p> Starts Here</p>
       </p>
       <div className="lg:absolute z-50 lg:right-0 flex justify-center lg:bottom-[35%] 1.5xl:bottom-[40%] 1.5xl:right-[1%] 2xl:bottom-1/3 2xl:right-0">
         <motion.div
