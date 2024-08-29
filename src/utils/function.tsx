@@ -8,7 +8,7 @@ export const home_details = async () => {
     const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/home`, {
       method: "GET",
       next: {
-        revalidate: 10,
+        revalidate: 300,
       },
     });
     if (!res.ok) {
@@ -24,7 +24,7 @@ export const contact_details = async () => {
     const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/contact`, {
       method: "GET",
       next: {
-        revalidate: 3600,
+        revalidate: 300,
       },
     });
     if (!res.ok) {
@@ -40,7 +40,7 @@ export const services_page = async () => {
     const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/services`, {
       method: "GET",
       next: {
-        revalidate: 3600,
+        revalidate: 300,
       },
     });
     if (!res.ok) {
@@ -58,7 +58,7 @@ export const services_title = async () => {
       {
         method: "GET",
         next: {
-          revalidate: 3600,
+          revalidate: 300,
         },
       }
     );
@@ -74,6 +74,9 @@ export const get_blogs = async () => {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/posts`, {
       method: "GET",
+      next: {
+        revalidate: 300,
+      },
     });
     if (!res.ok) {
       return console.log("Blog function not working");
@@ -87,6 +90,9 @@ export const get_portfolios = async () => {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/portfolio`, {
       method: "GET",
+      next: {
+        revalidate: 300,
+      },
     });
     if (!res.ok) {
       throw new Error("Failed");
@@ -171,9 +177,8 @@ export const featured_blogs = async () => {
       `${process.env.NEXT_PUBLIC_URL}/api/featuredblogs`,
       {
         method: "GET",
-
         next: {
-          revalidate: 3600,
+          revalidate: 300,
         },
       }
     );
@@ -191,6 +196,9 @@ export const suggested_blogs = async (tags: string[], id: string) => {
       `${process.env.NEXT_PUBLIC_URL}/api/suggested-blogs?tags=${tags}&id=${id}`,
       {
         method: "GET",
+        next: {
+          revalidate: 300,
+        },
       }
     );
     if (!res.ok) {
@@ -223,6 +231,9 @@ export const suggested_projects = async (tags: string[], id: string) => {
       `${process.env.NEXT_PUBLIC_URL}/api/suggested-portfolios?tags=${tags}&id=${id}`,
       {
         method: "GET",
+        next: {
+          revalidate: 300,
+        },
         headers: {
           "Content-Type": "application/json",
         },
@@ -266,7 +277,7 @@ export const get_processes = async () => {
     const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/processes`, {
       method: "GET",
       next: {
-        revalidate: 3600,
+        revalidate: 300,
       },
     });
     if (!res.ok) {

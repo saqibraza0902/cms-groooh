@@ -15,3 +15,8 @@ pl-6 pr-11
 px-14
 px-6
 py-20
+
+TASKS
+
+needed to add icons in cookies concent buttons
+needed to manage button icons images through firestore

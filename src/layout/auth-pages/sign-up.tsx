@@ -1,25 +1,19 @@
 "use client";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { auth, db } from "@/utils/firebase";
 import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   fetchSignInMethodsForEmail,
   signInWithPopup,
-  getAuth,
-  GithubAuthProvider,
 } from "firebase/auth";
-import { addDoc, collection, doc, setDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 const initialState = {
   email: "",
   passwordOne: "",
 };
 const SignUpLayout = () => {
-  // const [email, setEmail] = useState("");
-  // const [passwordOne, setPasswordOne] = useState("");
   const [detail, setDetails] = useState(initialState);
-  const router = useRouter();
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();

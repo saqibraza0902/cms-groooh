@@ -1,7 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { hasCookie, setCookie } from "cookies-next";
-import { cn } from "@/utils/styles";
 import { ButtonLayout } from "@/ui/components/animated-button";
 import Modal from "@/ui/components/modal-component";
 const CookiesConcent = () => {
@@ -13,10 +12,6 @@ const CookiesConcent = () => {
       setShowmodal(true);
     }
   }, []);
-  // const acceptCookies = () => {
-  //   setCookie("localConcent", "true", {});
-  //   setShowmodal(false);
-  // };
 
   return (
     <Modal isOpen={showmodal}>
