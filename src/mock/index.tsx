@@ -296,3 +296,26 @@ export const SERVICE_ARRAY = [
     icon: "https://assets-global.website-files.com/63f38a8c92397a024fcb9ae8/65675dd0c75e045c8d26fa87_icon-three.svg",
   },
 ];
+export const FOOTER_LINKS = [
+  {
+    name: "Projects",
+    hasIcon: true,
+    pathname: PUBLIC_URLS.PROJECTS,
+  },
+  {
+    name: "Our Process",
+    hasIcon: true,
+    pathname: PUBLIC_URLS.PROCESSES,
+  },
+
+  {
+    name: "Contacts",
+    hasIcon: true,
+    pathname: PUBLIC_URLS.CONTACT,
+  },
+  {
+    name: "Blog",
+    hasIcon: true,
+    pathname: PUBLIC_URLS.BLOG,
+  },
+];

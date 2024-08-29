@@ -67,7 +67,7 @@ const WorkSection = ({ title }: IProp) => {
             <h2 className="text-4xl hidden lg:flex w-1/12 lg:text-[70px] font-SuisseBold lg:leading-[65px] text-black ">
               {title}
             </h2>
-            <div className=" bg-black flex p-3 flex-col w-full rounded-[40px] ">
+            <div className=" bg-black flex p-3 flex-col w-full rounded-3xl ">
               <div>
                 <WorkContentSlider
                   data={data}

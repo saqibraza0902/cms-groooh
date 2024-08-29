@@ -24,7 +24,6 @@ import useSWR from "swr";
 const fetcher = async (url: string) => {
   const res = await fetch(url);
   const data = await res.json();
-  console.log("New data", data);
   if (!res.ok) {
     const error = new Error(data.message);
     throw error;
@@ -36,6 +35,7 @@ const BlogActions = () => {
   const { theme } = useTheme();
   const [editOpen, setEditOpen] = useState(false);
   const [fields, setFields] = useState<any>();
+  const [slug, setSlug] = useState("");
   const [file, setFile] = useState<null | any>();
   const [id, setId] = useState("");
   const { data, mutate, isLoading } = useSWR(
@@ -46,10 +46,7 @@ const BlogActions = () => {
     data: postData,
     mutate: mutatePost,
     isLoading: isPostLoading,
-  } = useSWR(
-    `${process.env.NEXT_PUBLIC_URL}/api/singlepost?newid=${id}`,
-    fetcher
-  );
+  } = useSWR(`${process.env.NEXT_PUBLIC_URL}/api/posts/${slug}`, fetcher);
 
   const deleteCollectible = async (documentId: string) => {
     try {
@@ -72,7 +69,6 @@ const BlogActions = () => {
   };
 
   useEffect(() => {
-    console.log(postData);
     setFields(postData);
   }, [postData]);
   const handleUpdate = async (id: string) => {
@@ -150,6 +146,7 @@ const BlogActions = () => {
                   onClick={() => {
                     setEditOpen(true);
                     setId(post.id);
+                    setSlug(post.slug);
                   }}
                   className="absolute cursor-pointer top-5 right-5"
                   color="#a0a0a0"

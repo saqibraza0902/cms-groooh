@@ -3,7 +3,6 @@ import CommonLayout from "@/layout";
 import { SHARE_ICONS } from "@/mock";
 import { ShareIcon } from "@/ui/components/animated-icons";
 import ContentLayout from "@/ui/components/content-layout";
-import PortfolioBox from "@/ui/components/portfolio-box";
 import { calculateDuration } from "@/utils/calculate-date";
 import { suggested_projects } from "@/utils/function";
 import extractStrongText from "@/utils/text";

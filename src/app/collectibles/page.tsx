@@ -6,6 +6,7 @@ import CollectiblesBox from "@/ui/components/collectibles-box";
 import Loader from "@/ui/components/loader-component";
 import { db } from "@/utils/firebase";
 import { ICollectible } from "@/utils/types";
+import { PUBLIC_URLS } from "@/utils/urls";
 import { collection, getDocs } from "firebase/firestore";
 import Image from "next/image";
 import Link from "next/link";
@@ -50,7 +51,11 @@ const Collectibles = () => {
             <Link
               className={`bg-brand_blue-100 cursor-pointer w-36 h-10 my-3 relative rounded-xl `}
               key={i}
-              href={el === "All" ? "/collectibles" : `/collectibles/?t=${el}`}
+              href={
+                el === "All"
+                  ? PUBLIC_URLS.COLLECTIBLES
+                  : `${PUBLIC_URLS.COLLECTIBLES}/?t=${el}`
+              }
             >
               <span
                 className={`absolute capitalize flex justify-center items-center bg-black h-full rounded-lg text-white w-full text-sm -top-1 -left-1 ${

@@ -54,13 +54,13 @@ const LoggedinNavbar = ({ toggle }: any) => {
         {!user && (
           <>
             <li
-              onClick={() => router.push("/signin")}
+              onClick={() => router.push(PUBLIC_URLS.SIGNIN)}
               className="cursor-pointer"
             >
               Sign In
             </li>
             <li
-              onClick={() => router.push("/signup")}
+              onClick={() => router.push(PUBLIC_URLS.SIGNUP)}
               className="cursor-pointer"
             >
               Sign Up
@@ -78,7 +78,7 @@ const LoggedinNavbar = ({ toggle }: any) => {
             <HiOutlineSun color={theme === "dark" ? "#fff" : "#fff"} />
           </p>
         </li>
-        <Link href="/cart" className="relative cursor-pointer">
+        <Link href={PUBLIC_URLS.CART} className="relative cursor-pointer">
           <BsCart size={25} color={theme === "dark" ? "#fff" : "#000"} />
           <span className="absolute -top-2 bg-brand_red-800 w-4 text-sm h-5 flex justify-center items-center rounded-full -right-2">
             {items.length}

@@ -1,3 +1,11 @@
+export interface IHomeHeroSection {
+  animatedtext: [string];
+  animatedimages: [string];
+  statictext: [string];
+  bottomstatictext: [string];
+  carouselslides: string[];
+}
+
 export interface IUser {
   avatar: string;
   description: string;
@@ -70,11 +78,7 @@ export interface ICollectible {
   downloadUrl: string;
   content: string;
 }
-export interface IHeroSection {
-  text1: string;
-  text2: string;
-  text3: string;
-}
+
 export interface IServices {
   title: string;
   services: {
@@ -108,7 +112,7 @@ export interface IBlogSection {
   description: string;
 }
 export interface IHome {
-  HeroSection: IHeroSection;
+  HeroSection: IHomeHeroSection;
   ScrollText: string;
   ServicesPage: IServices;
   RatingSection: IRating;
@@ -125,15 +129,6 @@ export interface IContact {
     icon: string;
     description: string;
   }[];
-}
-
-export interface IHeroSection {
-  text1: string;
-  text2: string;
-  text3: string;
-  text4: string;
-  text5: string;
-  image: string;
 }
 
 export interface IDesignProcess {
@@ -164,7 +159,7 @@ export interface IOffersSection {
 }
 
 export interface IWebServices {
-  HeroSection: IHeroSection;
+  HeroSection: IHomeHeroSection;
   DesignProcessSection: IDesignProcess;
   OffersSection: IOffersSection;
 }

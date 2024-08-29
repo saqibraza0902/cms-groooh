@@ -6,9 +6,6 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import SwiperCore from "swiper";
-import { useEffect } from "react";
-import { SwiperNavButtons } from "./slides-component";
-import { FaStar } from "react-icons/fa6";
 import Image from "next/image";
 SwiperCore.use([Navigation]);
 
@@ -38,11 +35,14 @@ export const WorkSlider = ({ swiperRef, data }: any) => {
       className="h-full w-full"
     >
       {data?.map((item: any, i: number) => (
-        <SwiperSlide key={i} className="h-full w-full">
+        <SwiperSlide
+          key={i}
+          className="h-full cursor-pointer  bg-black rounded-t-3xl lg:rounded-3xl w-full"
+        >
           <Image
             height={1200}
             width={1200}
-            className="h-full w-full min-h-[400px] lg:minh-full object-cover rounded-t-3xl lg:rounded-xl"
+            className="h-full w-full hover:opacity-70 !transition-all cursor-pointer !duration-700 min-h-[400px] lg:minh-full object-cover rounded-t-3xl lg:rounded-3xl "
             src={item.gallery[0]?.url}
             alt={item.gallery[0]?.alt}
           />

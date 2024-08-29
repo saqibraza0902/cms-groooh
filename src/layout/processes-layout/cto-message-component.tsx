@@ -11,7 +11,7 @@ const CTOMessageComponent = ({ prop }: IProp) => {
       <div className="lg:w-3/12 space-y-3">
         <div className="h-40 w-32 bg-gray-500" />
         <div className="flex flex-col">
-          <span className="font-Suisse text-black">{prop.cto_name}</span>
+          <span className="font-Suisse">{prop.cto_name}</span>
           <span className="text-sm text-brand_pink-200">
             {prop.cto_position}
           </span>

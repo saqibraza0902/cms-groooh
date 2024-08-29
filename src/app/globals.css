@@ -17,6 +17,43 @@
   font-family: "SuisseBold";
   src: url("../../public//fonts/SuisseIntl-Bold.ttf");
 }
+
+h1 {
+  display: block;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+h2 {
+  display: block;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+h3 {
+  display: block;
+  font-size: 1.17em;
+  font-weight: bold;
+}
+
+h4 {
+  display: block;
+  font-size: 1em;
+  font-weight: bold;
+}
+
+h5 {
+  display: block;
+  font-size: 0.83em;
+  font-weight: bold;
+}
+
+h6 {
+  display: block;
+  font-size: 0.67em;
+  font-weight: bold;
+}
+
 .mui-9ddj71-MuiInputBase-root-MuiOutlinedInput-root {
   border-radius: 40px !important;
   /* border: 1px solid white !important; */

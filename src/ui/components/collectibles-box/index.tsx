@@ -5,6 +5,7 @@ import React from "react";
 import { CartButton } from "../animated-button";
 import { useAppDispatch } from "@/hooks/Hooks";
 import { addItem } from "@/redux/slices/cart-slices";
+import { PUBLIC_URLS } from "@/utils/urls";
 
 interface IProp {
   item: ICollectible;
@@ -24,7 +25,7 @@ const CollectiblesBox = ({ item }: IProp) => {
       <div className="bg-white !h-full rounded-[30px] absolute -top-4 w-full -left-4">
         <div className="w-full ">
           <div className="h-full p-4 w-full mx-auto">
-            <Link href={`/collectibles/${item.id}`}>
+            <Link href={`${PUBLIC_URLS.COLLECTIBLES}/${item.id}`}>
               <Image
                 width={300}
                 height={300}
@@ -34,7 +35,7 @@ const CollectiblesBox = ({ item }: IProp) => {
               />
             </Link>
             <Link
-              href={`/collectibles/${item.id}`}
+              href={`${PUBLIC_URLS.COLLECTIBLES}/${item.id}`}
               className="line-clamp-2 min-h-14 text-black font-bold my-2 text-xl"
             >
               {item.title}

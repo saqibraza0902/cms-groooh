@@ -6,7 +6,6 @@ import TextField from "@mui/material/TextField";
 import { inputLabelClasses, outlinedInputClasses } from "@mui/material";
 import { motion } from "framer-motion";
 import { cn } from "@/utils/styles";
-import { MdOutlineMailOutline } from "react-icons/md";
 import { db } from "@/utils/firebase";
 import { addDoc, collection } from "firebase/firestore";
 import { toast } from "react-toastify";

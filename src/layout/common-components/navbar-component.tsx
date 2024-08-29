@@ -46,7 +46,7 @@ const Navbar = ({ toggle }: any) => {
     <nav className="px-6 lg:px-14 py-3 lg:py-1 border bg-white  dark:bg-black cursor-pointer dark:border-none flex justify-between items-center text-white">
       <div className="2xl:w-11/12 2xl:mx-auto w-full">
         <ul className="flex gap-4 items-center w-full justify-between h-full">
-          <Link href={"/"} className=" w-32 h-10">
+          <Link href={PUBLIC_URLS.HOME} className=" w-32 h-10">
             <Image
               src={theme === "dark" ? "/icons/logo-w.svg" : "/icons/logo.svg"}
               alt="logo"
@@ -82,7 +82,6 @@ const Navbar = ({ toggle }: any) => {
                       onMouseEnter={() => setIsHovered(true)}
                       onMouseLeave={() => setIsHovered(false)}
                       initial={{ y: "0%" }}
-                      // animate={{ y: isHovered ? "-150%" : "50%" }}
                       transition={{ duration: 0.3 }}
                       className={cn(
                         " top-12 -left-2/4  absolute z-50 dark:bg-black bg-white py-5 pl-7 pr-5  shadow-md rounded-b-[41px] ",
@@ -93,8 +92,6 @@ const Navbar = ({ toggle }: any) => {
                         {services.map((el, i) => {
                           return <Cards item={el} key={i} />;
                         })}
-                        {/* <Cards arr={c1} text="Product Branding" />
-                      <Cards /> */}
                       </div>
                     </motion.div>
                   )}
@@ -112,9 +109,9 @@ const Navbar = ({ toggle }: any) => {
                 color={theme === "dark" ? "#000" : "#fff"}
               />
             </div>
-            {path.includes("/collectibles") ? (
+            {path.includes(PUBLIC_URLS.COLLECTIBLES) ? (
               <Link
-                href={"/cart"}
+                href={PUBLIC_URLS.CART}
                 className="bg-brand_blue-300 z-0 hidden md:flex min-w-10 h-10 my-3 relative rounded-xl"
               >
                 <span className="absolute -top-2 z-40 -right-1 h-5 w-5 flex justify-center items-center text-xs rounded-full bg-brand_red-800 font-semibold">
@@ -182,14 +179,14 @@ const Cards = ({ item }: ICard) => {
           unoptimized
           height={50}
         />
-        <h3 className="text-2xl !font-SuisseBold">{item.title}</h3>
+        <span className="text-2xl !font-SuisseBold">{item.title}</span>
 
         {item?.title && <div className="w-2/3 mx-auto bg-black h-[1px] my-2" />}
         <div className="flex flex-col gap-2">
           {item?.sub_services?.map((subItem, i) => (
             <Link
               key={i}
-              href={`/services/${subItem.url}`}
+              href={`${PUBLIC_URLS.SERVICES}/${subItem.url}`}
               className="font-SuisseMedium !transition-all !duration-300  hover:text-brand_green-700"
             >
               {subItem.title}

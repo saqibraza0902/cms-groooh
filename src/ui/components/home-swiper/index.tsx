@@ -9,12 +9,11 @@ import Image from "next/image";
 import { useMediaQuery } from "react-responsive";
 
 SwiperCore.use([Navigation, Autoplay]);
-const HomeSwiper = ({ swiperRef }: any) => {
-  const images = [
-    "https://firebasestorage.googleapis.com/v0/b/groooh-com.appspot.com/o/slide1.png?alt=media&token=1c6e6a9b-90ac-48c1-9ecd-5e737d7e91a9",
-    "https://firebasestorage.googleapis.com/v0/b/groooh-com.appspot.com/o/slide2.png?alt=media&token=686e095e-fd68-48d9-81c2-8cc685ee4423",
-    "https://firebasestorage.googleapis.com/v0/b/groooh-com.appspot.com/o/slide3.png?alt=media&token=4915dd73-06df-4652-a512-1dd90bf39ec7",
-  ];
+
+interface IProp {
+  slides: string[];
+}
+const HomeSwiper = ({ slides }: IProp) => {
   const breakpoints = {
     768: {
       slidesPerView: 1,
@@ -33,14 +32,14 @@ const HomeSwiper = ({ swiperRef }: any) => {
       direction={isMd || isLgOrAbove ? "vertical" : "horizontal"}
       breakpoints={breakpoints}
       spaceBetween={50}
-      ref={swiperRef}
+      // speed={5000}
       slidesPerView={1}
       scrollbar={{ draggable: true }}
       autoplay={{ delay: 5000 }}
       loop={true}
       className="h-full w-full lg:h-[102%]"
     >
-      {images.map((item, i) => (
+      {slides?.map((item, i) => (
         <SwiperSlide key={i} className="h-full w-full relative overflow-hidden">
           <Image
             src={item}

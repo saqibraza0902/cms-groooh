@@ -2,6 +2,7 @@ import React from "react";
 import ContentBox from "../content-box";
 import Link from "next/link";
 import Image from "next/image";
+import { PUBLIC_URLS } from "@/utils/urls";
 
 interface IProp {
   item: {
@@ -15,7 +16,9 @@ interface IProp {
 }
 
 const ContentLayout = ({ item }: IProp) => {
-  const url = item.isBlog ? "/blog" : item.isPortfolio && "/portfolio";
+  const url = item.isBlog
+    ? PUBLIC_URLS.BLOG
+    : item.isPortfolio && PUBLIC_URLS.PROJECTS;
   return (
     <ContentBox className="bg-primary !p-5" childClass="bg-secondary">
       <div className="w-full h-full relative group">
@@ -27,7 +30,7 @@ const ContentLayout = ({ item }: IProp) => {
             alt={item.image}
             src={item?.image}
             height={1200}
-            className=" w-full h-96 lg:h-80 2xl:h-96 rounded-[20px] group-hover:opacity-80 object-cover "
+            className=" w-full h-96 lg:h-80 2xl:h-96 rounded-[20px] object-cover "
             width={1200}
           />
           <div className="absolute bottom-0 h-28 group-hover:opacity-80 bg-black flex flex-col justify-center py-3 group-hover:h-full px-5 gap-3 transition-all duration-300 text-white rounded-[20px] w-full">

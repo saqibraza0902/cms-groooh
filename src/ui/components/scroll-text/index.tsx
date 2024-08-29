@@ -1,10 +1,8 @@
 "use client";
-import { cn } from "@/utils/styles";
 /* eslint-disable react-hooks/rules-of-hooks */
+import { cn } from "@/utils/styles";
 import { useScroll, useTransform, motion } from "framer-motion";
 import React, { useRef } from "react";
-const Content =
-  "For a decade in Pakistan, honing our Design & Development skills. We endeavor to support ambitious clients in their pursuit of perfection. Success, we believe, is a collaborative effort. let's join forces to reach the pinnacle together!";
 
 interface IProp {
   text: string;

@@ -205,7 +205,7 @@ export const SliderRightButton = ({ item }: ISlider) => {
     <div
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`h-12 w-12 lg:h-28 lg:w-28 relative overflow-hidden flex justify-center transition-all duration-300 items-center border-[1px] rounded-full ${
+      className={`h-12 w-12 lg:h-28 lg:w-28 relative overflow-hidden flex justify-center transition-all duration-300 items-center border-[2px] rounded-full ${
         isHovered
           ? `bg-[${color}] border-black`
           : `bg-none border-[${item?.hoverBorder}]`
@@ -241,12 +241,12 @@ export const SliderLeftButton = ({ item }: ISlider) => {
   const [isHovered, setIsHovered] = useState(false);
   const color = item?.bg;
   const br = item?.hoverBorder;
-  console.log(br);
+
   return (
     <div
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`h-12 w-12 lg:h-28 lg:w-28 relative overflow-hidden flex justify-center transition-all duration-300 items-center border-[1px] rounded-full ${
+      className={`h-12 w-12 lg:h-28 lg:w-28 relative overflow-hidden flex justify-center transition-all duration-300 items-center border-[2px] rounded-full ${
         isHovered ? `bg-[${color}] border-black` : `bg-none ${br}`
       }`}
     >

@@ -15,9 +15,9 @@ const Services = ({ services }: IProp) => {
         childClass="!bg-secondary"
         className="bg-primary px-0 h-full py-5 lg:p-10"
       >
-        <h2 className="text-4xl w-1/12  lg:text-[70px] font-SuisseBold lg:leading-[65px] text-black px-10 ">
+        <h1 className="text-4xl w-1/12  lg:text-[70px] font-SuisseBold lg:leading-[65px] text-black px-10 ">
           {services?.title}
-        </h2>
+        </h1>
         <div className=" grid grid-cols-1 lg:grid-cols-2 content-start p-4 lg:p-10 gap-4 h-full ">
           {services?.services?.map((item, i) => (
             <div
@@ -34,10 +34,9 @@ const Services = ({ services }: IProp) => {
                     alt=""
                   />
                 </span>
-                ?
               </div>
-              <div className="flex w-11/12 lg:w-10/12 flex-col gap-1 lg:gap-5">
-                <h3 className="text-white text-2xl">{item?.title}</h3>
+              <div className="flex w-11/12 lg:w-10/12 flex-col">
+                <h2 className="text-white">{item?.title}</h2>
                 <p className="text-white">{item?.description}</p>
               </div>
             </div>

@@ -7,7 +7,6 @@ import { addCustomStyling } from "@/utils/transformation";
 import React from "react";
 import { CiCalendar } from "react-icons/ci";
 import Image from "next/image";
-import BlogBox from "@/ui/components/blog-box";
 import { ShareIcon } from "@/ui/components/animated-icons";
 import { SHARE_ICONS } from "@/mock";
 import { Metadata } from "next";
@@ -87,13 +86,6 @@ export default async function SinglePost({ params }: IProp) {
                   </h3>
                 </div>
                 <div className="flex gap-1">
-                  {/* <Image
-                    src={autherdetail.avatar}
-                    alt=""
-                    width={40}
-                    height={40}
-                    className="rounded-full h-10 object-contain w-10"
-                  /> */}
                   <div className="flex flex-col text-sm gap-1">
                     {/* <span>{autherdetail.name} </span> */}
                     <span>CEO of Halo Lab</span>

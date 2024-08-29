@@ -11,6 +11,7 @@ import { HiOutlineSun } from "react-icons/hi2";
 import { useTheme } from "next-themes";
 import { services_title } from "@/utils/function";
 import { useAppSelector } from "@/hooks/Hooks";
+import { PUBLIC_URLS } from "@/utils/urls";
 interface Props {
   open: boolean;
   close: () => void;
@@ -121,7 +122,7 @@ const ToggleSidebar = ({ open, close }: Props) => {
                                       "!bg-secondary"
                                     }`
                                   )}
-                                  href={`/services/${subCategory.url}`}
+                                  href={`${PUBLIC_URLS.SERVICES}/${subCategory.url}`}
                                   text={subCategory.title}
                                 />
                               )

@@ -1,46 +1,22 @@
 "use client";
 import { ContactLink } from "@/ui/components/animated-button";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { BiPlus } from "react-icons/bi";
 import { MdPhoneCallback } from "react-icons/md";
 import { Subscribe } from "@/ui/components/subscribe-component";
 import { FaWhatsapp } from "react-icons/fa";
-import { useRouter } from "next/navigation";
-import { services_title } from "@/utils/function";
 import { FooterLink } from "@/ui/components/footer-link";
 import Link from "next/link";
 import { useAppSelector } from "@/hooks/Hooks";
-const FOOTER_LINKS = [
-  {
-    name: "Projects",
-    hasIcon: true,
-    pathname: "/portfolio",
-  },
-  {
-    name: "Our Process",
-    hasIcon: true,
-    pathname: "/processes",
-  },
+import { FOOTER_LINKS } from "@/mock";
+import { PUBLIC_URLS } from "@/utils/urls";
 
-  {
-    name: "Contacts",
-    hasIcon: true,
-    pathname: "/contact",
-  },
-  {
-    name: "Blog",
-    hasIcon: true,
-    pathname: "/blog",
-  },
-];
 const Footer = () => {
   const { services } = useAppSelector((s) => s.services);
   const [expandedServiceId, setExpandedServiceId] = useState(null);
   const handleToggle = (id: string | any) => {
     setExpandedServiceId(expandedServiceId === id ? null : id);
   };
-
-  // console.log(data);
   return (
     <div className="relative">
       <div className="h-full w-full flex flex-col gap-5 lg:flex-row justify-between bg-brand_green-700  px-4 lg:px-20 py-10">
@@ -101,7 +77,7 @@ const Footer = () => {
                 <span className="grid grid-cols-1 space-y-1 py-2">
                   {item.sub_services.map((subService, index) => (
                     <Link
-                      href={`/services/${subService.url}`}
+                      href={`${PUBLIC_URLS.SERVICES}/${subService.url}`}
                       key={index}
                       className="block font-Suisse  text-white text-xs"
                     >
