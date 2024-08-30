@@ -49,6 +49,7 @@ const DashboardLayout = () => {
       });
       console.log("Data written with ID:", docRef.id);
       setFields(initialState);
+      alert("Blog posted");
       setContent("");
     } catch (error) {
       console.error("Error posting data:", error);
