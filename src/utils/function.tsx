@@ -74,7 +74,7 @@ export const get_blogs = async () => {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/posts`, {
       method: "GET",
-      cache: "no-cache",
+      cache: "no-store",
     });
     if (!res.ok) {
       return console.log("Blog function not working");
@@ -88,7 +88,7 @@ export const get_portfolios = async () => {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/portfolio`, {
       method: "GET",
-      cache: "no-cache",
+      cache: "no-store",
     });
     if (!res.ok) {
       throw new Error("Failed");

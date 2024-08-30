@@ -6,6 +6,7 @@ import React from "react";
 
 export default async function Blog() {
   const blogPosts = await get_blogs();
+  console.log(blogPosts.length);
   return (
     <CommonLayout>
       <div className="dark:bg-black min-h-screen ">
