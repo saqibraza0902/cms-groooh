@@ -40,7 +40,10 @@ const HomeSwiper = ({ slides }: IProp) => {
       className="h-full w-full lg:h-[102%]"
     >
       {slides?.map((item, i) => (
-        <SwiperSlide key={i} className="h-full w-full relative overflow-hidden">
+        <SwiperSlide
+          key={i}
+          className="h-full w-full relative group cursor-pointer overflow-hidden"
+        >
           <Image
             src={item}
             alt=""
@@ -48,6 +51,11 @@ const HomeSwiper = ({ slides }: IProp) => {
             layout="fill"
             objectFit="cover"
           />
+          <div className="absolute -bottom-32 group-hover:bottom-0 h-28 bg-gradient-to-b from-transparent to-black flex flex-col justify-end p-7 group-hover:h-full gap-3 transition-all duration-300 text-white rounded-[20px] w-full">
+            <p className=" font-SuisseBold text-2xl">
+              support ambitious clients in their pursuit of perfection..
+            </p>
+          </div>
         </SwiperSlide>
       ))}
     </Swiper>
