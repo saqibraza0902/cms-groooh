@@ -21,6 +21,7 @@ import React, { useEffect, useState } from "react";
 import { BiEdit, BiTrash } from "react-icons/bi";
 import { MdManageHistory } from "react-icons/md";
 import useSWR from "swr";
+import { QuillEditor } from "@/utils/quill-editor";
 const fetcher = async (url: string) => {
   const res = await fetch(url);
   const data = await res.json();
@@ -250,7 +251,7 @@ const BlogActions = () => {
                     name={file?.name}
                     className="w-full"
                   />
-                  <JoditEditor
+                  {/* <JoditEditor
                     value={fields?.content}
                     config={{
                       ...config,
@@ -259,6 +260,12 @@ const BlogActions = () => {
                       },
                     }}
                     onBlur={(newContent) =>
+                      setFields({ ...fields, content: newContent })
+                    }
+                  /> */}
+                  <QuillEditor
+                    value={fields.content}
+                    onChange={(newContent) =>
                       setFields({ ...fields, content: newContent })
                     }
                   />

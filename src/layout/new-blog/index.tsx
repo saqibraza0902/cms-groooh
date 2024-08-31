@@ -16,7 +16,9 @@ import { uploadFile } from "@/utils/uploadFile";
 import { User } from "firebase/auth";
 import { ButtonLayout } from "@/ui/components/animated-button";
 import dynamic from "next/dynamic";
+import { QuillEditor } from "@/utils/quill-editor";
 const JoditEditor = dynamic(() => import("jodit-react"), { ssr: false });
+
 const initialState = {
   title: "",
   desc: "",
@@ -35,7 +37,6 @@ const DashboardLayout = () => {
   const [fields, setFields] = useState(initialState);
   const [content, setContent] = useState("");
   const [file, setFile] = useState<null | any>(null);
-  const editor = useRef<any>(null);
 
   const postData = async () => {
     try {
@@ -217,13 +218,16 @@ const DashboardLayout = () => {
             />
           </div>
         </div>
-        <JoditEditor
+        {/* <JoditEditor
           ref={editor}
           value={content}
           config={{ ...config, iframe: true, useSplitMode: false }}
           onBlur={(newContent: any) => setContent(newContent)}
+        /> */}
+        <QuillEditor
+          value={content}
+          onChange={(newContent: any) => setContent(newContent)}
         />
-
         <div className="flex gap-10 w-8/12 mx-auto">
           <div className="w-full" onClick={() => postData()}>
             <ButtonLayout className="">Submit</ButtonLayout>

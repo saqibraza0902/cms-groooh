@@ -1,3 +1,5 @@
+import hljs from "highlight.js";
+import "highlight.js/styles/github.css";
 export function addCustomStyling(content: string) {
   content = content.replace(/<pre>/g, '<pre class="custom-styling">');
   content = content.replace(
@@ -25,6 +27,11 @@ export function addCustomStyling(content: string) {
       return gridContent;
     }
   );
+  let index = 0;
+  content = content.replace(/<h3>/g, () => {
+    index++;
+    return `<h3 id="section-${index}">`;
+  });
 
   content = content.replace(
     /<a\s+(?=[^>]*class="iframe")[^>]*href="([^"]*)"[^>]*>.*?<\/a>/g,
@@ -40,6 +47,14 @@ export function addCustomStyling(content: string) {
     }
   );
   //   console.log(content);
+  content = content.replace(
+    /<code>([\s\S]*?)<\/code>/g,
+    function (match, codeContent) {
+      const highlightedCode = hljs.highlightAuto(codeContent).value;
+      return `<code>${highlightedCode}</code>`;
+    }
+  );
+
   return content;
 }
 const getHrefFromAnchor = (anchorTagString: any) => {

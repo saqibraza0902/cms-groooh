@@ -23,6 +23,7 @@ import React, { useEffect, useState } from "react";
 import { BiEdit, BiTrash } from "react-icons/bi";
 import { RxCross1 } from "react-icons/rx";
 import useSWR from "swr";
+import { QuillEditor } from "@/utils/quill-editor";
 const fetcher = async (url: string) => {
   const res = await fetch(url);
   const data = await res.json();
@@ -316,10 +317,14 @@ const ColAction = () => {
                   </div>
                 </div>
                 <div className="flex flex-col md:flex-row w-full py-4 gap-10 justify-center">
-                  <JoditEditor
+                  {/* <JoditEditor
                     value={content}
                     config={config}
                     onBlur={(newContent) => setContent(newContent)}
+                  /> */}
+                  <QuillEditor
+                    value={content}
+                    onChange={(newContent) => setContent(newContent)}
                   />
                 </div>
                 <div className="flex flex-col md:flex-row mx-auto py-4 lg:w-2/3 gap-10 justify-center">

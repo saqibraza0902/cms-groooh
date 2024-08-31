@@ -11,6 +11,7 @@ import dynamic from "next/dynamic";
 const JoditEditor = dynamic(() => import("jodit-react"), { ssr: false });
 import React, { useEffect, useState } from "react";
 import { BiPlus } from "react-icons/bi";
+import { QuillEditor } from "@/utils/quill-editor";
 
 const initialState = {
   title: "",
@@ -146,10 +147,14 @@ const NewCollectibles = () => {
           /> */}
         </div>
         <div className="flex flex-col md:flex-row w-full py-4 gap-10 justify-center">
-          <JoditEditor
+          {/* <JoditEditor
             value={content}
             config={config}
             onBlur={(newContent) => setContent(newContent)}
+          /> */}
+          <QuillEditor
+            value={content}
+            onChange={(newContent) => setContent(newContent)}
           />
         </div>
         <div className="flex flex-col md:flex-row mx-auto py-4 lg:w-2/3 gap-10 justify-center">

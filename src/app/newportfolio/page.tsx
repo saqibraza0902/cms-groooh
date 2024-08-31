@@ -17,6 +17,7 @@ import { slugify } from "@/utils/slugify";
 import Image from "next/image";
 import { deleteObject, getStorage, ref } from "firebase/storage";
 import { ButtonLayout } from "@/ui/components/animated-button";
+import { QuillEditor } from "@/utils/quill-editor";
 export interface IItem {
   url: string;
   alt: string;
@@ -270,14 +271,20 @@ const NewPortfolio = () => {
               />
             </div>
           </div>
-          <JoditEditor
+          {/* <JoditEditor
             value={fields.content}
             config={config}
             onBlur={(newContent) =>
               setFields({ ...fields, content: newContent })
             }
           />
-
+           */}
+          <QuillEditor
+            value={fields.content}
+            onChange={(newContent) =>
+              setFields({ ...fields, content: newContent })
+            }
+          />
           <div className="flex gap-10 w-8/12 mx-auto">
             <div className="w-full" onClick={() => postData()}>
               <ButtonLayout className="">Submit</ButtonLayout>

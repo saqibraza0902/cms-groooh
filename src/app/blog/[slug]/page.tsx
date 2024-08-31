@@ -17,7 +17,9 @@ export async function generateMetadata(props: any): Promise<Metadata> {
   return {
     title: post?.title,
     description: post?.desc,
-    icons: post?.featuredImage?.url,
+    icons: {
+      icon: post?.featuredImage?.url,
+    },
   };
 }
 interface IProp {
@@ -104,18 +106,18 @@ export default async function SinglePost({ params }: IProp) {
                 <div className="w-3/12 hidden lg:block start-1">
                   <div className="border-[#b2b2b2]  sticky top-10  rounded-xl border-[1px] w-full h-min   p-[1px]">
                     <div className="relative">
-                      <Image
-                        alt="Icon"
-                        src="/icons/toc-collar_tablet.svg"
-                        width={20}
-                        height={30}
-                        className="absolute w-10 -right-[2px] -top-[2px] bg-white"
-                      />
-                      <div className=" w-full h-max text-black rounded-xl flex flex-col gap-5 p-8">
+                      <div className=" w-full h-max text-black rounded-xl flex flex-col py-5 px-8">
                         <h4 className="uppercase">Table of contents</h4>
                         <ol className="list-decimal flex flex-col text-sm gap-3">
                           {strongText.map((el: string, i: number) => (
-                            <li key={i}>{el}</li>
+                            <li key={i}>
+                              <a
+                                href={`#section-${i + 1}`}
+                                className="hover:underline"
+                              >
+                                {el}
+                              </a>
+                            </li>
                           ))}
                         </ol>
                       </div>

@@ -2,6 +2,7 @@
 import CommonLayout from "@/layout";
 import { config } from "@/utils/editor";
 import { db } from "@/utils/firebase";
+import { QuillEditor } from "@/utils/quill-editor";
 import { addDoc, collection } from "firebase/firestore";
 import dynamic from "next/dynamic";
 const JoditEditor = dynamic(() => import("jodit-react"), { ssr: false });
@@ -64,10 +65,14 @@ const NewQuery = () => {
           value={fields.type}
           onChange={(e) => setFields({ ...fields, type: e.target.value })}
         />
-        <JoditEditor
+        {/* <JoditEditor
           value={projectInfo}
           config={config}
           onBlur={(newContent) => setProjectInfo(newContent)}
+        /> */}
+        <QuillEditor
+          value={projectInfo}
+          onChange={(newContent) => setProjectInfo(newContent)}
         />
         <button
           onClick={() => handleSubmit()}

@@ -21,10 +21,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // console.log("Myconcent", cookies().get("localConcent")?.value);
   return (
     <html lang="en" suppressHydrationWarning>
-      <link rel="icon" href="/icons/favicon.png" sizes="any" />
       <body
         suppressHydrationWarning={true}
         className={`font-Suisse bg-pr ${

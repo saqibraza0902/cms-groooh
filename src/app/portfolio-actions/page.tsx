@@ -19,6 +19,7 @@ import { uploadFile } from "@/utils/uploadFile";
 import FileInput from "@/ui/form/file-input";
 import Image from "next/image";
 import Loader from "@/ui/components/loader-component";
+import { QuillEditor } from "@/utils/quill-editor";
 const fetcher = async (url: string) => {
   const res = await fetch(url);
   const data = await res.json();
@@ -262,10 +263,17 @@ const PortfolioActions = () => {
                   name={file?.name}
                   className="w-full"
                 />
-                <JoditEditor
+                {/* <JoditEditor
                   value={fields?.content}
                   config={config}
                   onBlur={(newContent) =>
+                    setFields({ ...fields, content: newContent })
+                  }
+                /> */}
+
+                <QuillEditor
+                  value={fields.content}
+                  onChange={(newContent) =>
                     setFields({ ...fields, content: newContent })
                   }
                 />
