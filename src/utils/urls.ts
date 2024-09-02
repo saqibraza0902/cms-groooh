@@ -10,3 +10,10 @@ export const PUBLIC_URLS = {
   SIGNUP: "/signup",
   CART: "/cart",
 };
+export const PRIVATE_URLS = {};
+export const FIREBASE_URLS = {
+  BLOGS_IMAGES: "/blog-images",
+  COLLECTIBLES_FILES: "/collectibles-files",
+  COLLECTIBLES_IMAGES: "/collectibles-images",
+  PROJECTS_IMAGES: "/projects-images",
+};

@@ -24,6 +24,7 @@ import { BiEdit, BiTrash } from "react-icons/bi";
 import { RxCross1 } from "react-icons/rx";
 import useSWR from "swr";
 import { QuillEditor } from "@/utils/quill-editor";
+import { FIREBASE_URLS } from "@/utils/urls";
 const fetcher = async (url: string) => {
   const res = await fetch(url);
   const data = await res.json();
@@ -36,6 +37,8 @@ const fetcher = async (url: string) => {
 const ColAction = () => {
   const [collectible, setCollectible] = useState<any>([]);
   const [loading, setloading] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [fileprogress, setFileProgress] = useState(0);
   const [delOpen, setDelOpen] = useState(false);
   const [editOpen, setEditOpen] = useState(false);
   const [id, setId] = useState("");
@@ -95,13 +98,21 @@ const ColAction = () => {
   useEffect(() => {
     const runs = async () => {
       if (files.image) {
-        const imageUrl = await uploadFile(files.image);
+        const imageUrl = await uploadFile(
+          files.image,
+          FIREBASE_URLS.COLLECTIBLES_IMAGES,
+          setProgress
+        );
         setFields({ ...fields, image: imageUrl });
         setFiles({ ...files, image: null });
       }
 
       if (files.file) {
-        const fileUrl = await uploadFile(files.file);
+        const fileUrl = await uploadFile(
+          files.file,
+          FIREBASE_URLS.COLLECTIBLES_FILES,
+          setFileProgress
+        );
         setFields({ ...fields, downloadUrl: fileUrl });
         setFiles({ ...files, file: null });
       }
@@ -260,6 +271,9 @@ const ColAction = () => {
                 </div>
                 <div className="flex flex-col md:flex-row w-full py-4 gap-10 justify-center">
                   <div className="w-full">
+                    {fileprogress > 0 && (
+                      <p>Upload progress: {fileprogress}%</p>
+                    )}
                     {fields?.downloadUrl ? (
                       <div className="relative">
                         <RxCross1
@@ -286,6 +300,7 @@ const ColAction = () => {
                     )}
                   </div>
                   <div className="w-full">
+                    {progress > 0 && <p>Upload progress: {progress}%</p>}
                     {fields?.image ? (
                       <div className="relative">
                         <Image

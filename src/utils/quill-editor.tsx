@@ -29,7 +29,11 @@ export const QuillEditor = ({ onChange, value = "" }: IProp) => {
         [{ color: [] }, { background: [] }],
         ["clean"],
       ],
+      clipboard: {
+        matchVisual: false, // Prevent Quill from automatically converting characters
+      },
     },
+
     formats: [
       "header",
       "font",
@@ -41,7 +45,6 @@ export const QuillEditor = ({ onChange, value = "" }: IProp) => {
       "blockquote",
       "code",
       "list",
-      "bullet",
       "indent",
       "link",
       "image",

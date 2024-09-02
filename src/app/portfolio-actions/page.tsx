@@ -20,6 +20,7 @@ import FileInput from "@/ui/form/file-input";
 import Image from "next/image";
 import Loader from "@/ui/components/loader-component";
 import { QuillEditor } from "@/utils/quill-editor";
+import { FIREBASE_URLS } from "@/utils/urls";
 const fetcher = async (url: string) => {
   const res = await fetch(url);
   const data = await res.json();
@@ -34,12 +35,13 @@ const PortfolioActions = () => {
   const [editOpen, setEditOpen] = useState(false);
   const [fields, setFields] = useState<any>();
   const [file, setFile] = useState<null | any>();
+  const [progress, setProgress] = useState(0);
   const [id, setId] = useState("");
+  const [slug, setSlug] = useState("");
   const { data, mutate, isLoading } = useSWR(
     `${process.env.NEXT_PUBLIC_URL}/api/portfolio`,
     fetcher
   );
-  const slug = id;
   const {
     data: postData,
     mutate: mutatePost,
@@ -66,12 +68,12 @@ const PortfolioActions = () => {
   };
   useEffect(() => {
     if (postData) {
-      setFields(postData[0]);
+      setFields(postData);
     }
   }, [postData]);
   const handleUpdate = async (id: string) => {
     const washingtonRef = doc(db, "Portfolio", id);
-    const abc = await updateDoc(washingtonRef, fields);
+    await updateDoc(washingtonRef, fields);
     mutate();
   };
   const deleteDocument = async (documentId: string) => {
@@ -86,7 +88,11 @@ const PortfolioActions = () => {
   useEffect(() => {
     const runs = async () => {
       if (file) {
-        const imageUrl = await uploadFile(file);
+        const imageUrl = await uploadFile(
+          file,
+          FIREBASE_URLS.PROJECTS_IMAGES,
+          setProgress
+        );
         setFields((prev: any) => ({
           ...prev,
           gallery: [
@@ -134,6 +140,7 @@ const PortfolioActions = () => {
                     onClick={() => {
                       setEditOpen(true);
                       setId(post.id);
+                      setSlug(post.slug);
                     }}
                     className="absolute cursor-pointer top-5 right-5"
                     color="#a0a0a0"
@@ -238,6 +245,7 @@ const PortfolioActions = () => {
                     </div>
                   </div>
                 </div>
+                {progress > 0 && <p>Upload progress: {progress}%</p>}
                 {fields?.gallery?.length > 0 && (
                   <div className=" grid grid-cols-4">
                     {fields.gallery.map((item: IItem, index: number) => (
@@ -272,7 +280,7 @@ const PortfolioActions = () => {
                 /> */}
 
                 <QuillEditor
-                  value={fields.content}
+                  value={fields?.content}
                   onChange={(newContent) =>
                     setFields({ ...fields, content: newContent })
                   }

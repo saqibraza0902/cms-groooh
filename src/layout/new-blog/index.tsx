@@ -1,23 +1,22 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
-import { app, auth, db } from "@/utils/firebase"; // Make sure to import storage
+import React, { useEffect, useState } from "react";
+import { db, storage } from "@/utils/firebase"; // Make sure to import storage
 import { Timestamp, addDoc, collection } from "firebase/firestore";
-import { deleteObject, getStorage, ref } from "firebase/storage"; // Import deleteObject and ref
-import { config } from "@/utils/editor";
+import { deleteObject, ref } from "firebase/storage";
 import Input from "@/ui/form/input-component";
 import InputFile from "@/ui/form/file-input";
 import RadioInput from "@/ui/form/radio-component";
-import Button from "@/ui/form/button-component";
 import Pills from "@/ui/components/pills-component";
 import ImageWithFallback from "@/utils/image-with-fallback";
 import { get_tags } from "@/utils/function";
 import { slugify } from "@/utils/slugify";
 import { uploadFile } from "@/utils/uploadFile";
-import { User } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 import { ButtonLayout } from "@/ui/components/animated-button";
-import dynamic from "next/dynamic";
 import { QuillEditor } from "@/utils/quill-editor";
-const JoditEditor = dynamic(() => import("jodit-react"), { ssr: false });
+import { toast } from "react-toastify";
+import { BlogSchema } from "@/schema";
+import { FIREBASE_URLS } from "@/utils/urls";
 
 const initialState = {
   title: "",
@@ -29,34 +28,55 @@ const initialState = {
   },
   isArchived: false,
   isFeatured: false,
-  autherId: "gfjsrcOKFafEsa0cggW5",
+  autherId: "",
 };
 
 const DashboardLayout = () => {
   const [tags, setTags] = useState<any>([]);
+  const [progress, setProgress] = useState(0);
   const [fields, setFields] = useState(initialState);
   const [content, setContent] = useState("");
   const [file, setFile] = useState<null | any>(null);
-
+  const [errors, setErrors] = useState<any[]>([]);
+  const auth = getAuth();
+  const user = auth.currentUser;
   const postData = async () => {
     try {
       const timestamp = Timestamp.now();
-      const docRef = await addDoc(collection(db, "Blogs"), {
+      const response = BlogSchema.safeParse({
+        title: fields.title,
+        desc: fields.desc,
+        tags: fields.tags,
+        url: fields.featuredImage.url,
+        content: content,
+      });
+      if (!response.success) {
+        let errArr: any[] = [];
+        const { errors: err } = response.error;
+        for (var i = 0; i < err.length; i++) {
+          errArr.push({ for: err[i].path[0], message: err[i].message });
+        }
+        setErrors(errArr);
+        throw err;
+      }
+
+      setErrors([]);
+      await addDoc(collection(db, "Blogs"), {
         ...fields,
         slug: slugify(fields.title),
+        autherId: user?.uid,
         content,
         createdAt: timestamp,
         updatedAt: timestamp,
       });
-      console.log("Data written with ID:", docRef.id);
       setFields(initialState);
-      alert("Blog posted");
+      toast.success("Blog posted");
       setContent("");
     } catch (error) {
-      console.error("Error posting data:", error);
+      toast.error("Error posting blog");
     }
   };
-  const storage = getStorage(app);
+
   const handleDiscard = async () => {
     if (fields.featuredImage.url) {
       const imageRef = ref(storage, fields.featuredImage.url);
@@ -67,7 +87,6 @@ const DashboardLayout = () => {
         console.error("Error deleting image:", error);
       }
     }
-    // Reset all fields and content
     setFields(initialState);
     setContent("");
   };
@@ -81,11 +100,17 @@ const DashboardLayout = () => {
 
     const runs = async () => {
       if (file) {
-        const imageUrl = await uploadFile(file);
+        const imageUrl = await uploadFile(
+          file,
+          FIREBASE_URLS.BLOGS_IMAGES,
+          setProgress
+        );
+
         setFields({
           ...fields,
           featuredImage: { url: imageUrl, alt: imageUrl },
         });
+        setProgress(0);
         setFile(null);
       }
     };
@@ -107,11 +132,19 @@ const DashboardLayout = () => {
       };
     });
   };
-
   return (
-    <div className="flex justify-center w-full min-h-screen">
+    <div className="flex justify-center w-full h-full min-h-screen">
       <div className="md:w-2/3 mx-auto p-4 flex flex-col gap-5">
+        <div className="mt-1 text-xs text-red-500">
+          {errors.map((error) => (
+            <div key={error.for}>
+              <span className="capitalize">*{error.for} : </span>
+              <span>{error.message}</span>
+            </div>
+          ))}
+        </div>
         <p>Available Tags</p>
+
         <div className="flex gap-2 flex-wrap">
           {tags.map((tag: any) => (
             <Pills
@@ -135,6 +168,7 @@ const DashboardLayout = () => {
             value={fields.title}
             onChange={(e) => setFields({ ...fields, title: e.target.value })}
           />
+          {progress > 0 && <p>Upload progress: {progress}%</p>}
           {fields.featuredImage.url ? (
             <div className="h-full w-full">
               <ImageWithFallback
@@ -218,17 +252,13 @@ const DashboardLayout = () => {
             />
           </div>
         </div>
-        {/* <JoditEditor
-          ref={editor}
-          value={content}
-          config={{ ...config, iframe: true, useSplitMode: false }}
-          onBlur={(newContent: any) => setContent(newContent)}
-        /> */}
-        <QuillEditor
-          value={content}
-          onChange={(newContent: any) => setContent(newContent)}
-        />
-        <div className="flex gap-10 w-8/12 mx-auto">
+        <div className="h-72">
+          <QuillEditor
+            value={content}
+            onChange={(newContent: any) => setContent(newContent)}
+          />
+        </div>
+        <div className="flex items-end gap-10 w-8/12 h-40 mx-auto">
           <div className="w-full" onClick={() => postData()}>
             <ButtonLayout className="">Submit</ButtonLayout>
           </div>

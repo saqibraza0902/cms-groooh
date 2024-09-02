@@ -1,10 +1,8 @@
 "use client";
 import { useAppSelector } from "@/hooks/Hooks";
 import ImageWithFallback from "@/utils/image-with-fallback";
-import { auth, db, mydb } from "@/utils/firebase";
+import { auth } from "@/utils/firebase";
 import { User, onAuthStateChanged, signOut } from "firebase/auth";
-import { ref } from "firebase/database";
-import { collection, getDoc, getDocs, doc } from "firebase/firestore";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { BsCart } from "react-icons/bs";
@@ -40,16 +38,15 @@ const LoggedinNavbar = ({ toggle }: any) => {
     <nav className=" dark:bg-black bg-white h-16 flex justify-between items-center text-white px-6">
       <ul className="flex gap-4 items-center h-full">
         {PUBLIC_NAV.map((item, index) => (
-          <Link className="hidden md:flex" key={index} href={item.pathname}>
-            <AnimatedLink
-              className={cn(
-                `!text-white !bg-none  uppercase flex items-center gap-1`
-              )}
-              href={item.pathname}
-              text={item.title}
-              showIcon={false}
-            />
-          </Link>
+          <AnimatedLink
+            key={index}
+            className={cn(
+              `dark:text-white text-black !bg-none  uppercase flex items-center gap-1`
+            )}
+            href={item.pathname}
+            text={item.title}
+            showIcon={false}
+          />
         ))}
         {!user && (
           <>

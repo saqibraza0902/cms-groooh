@@ -22,6 +22,7 @@ import { BiEdit, BiTrash } from "react-icons/bi";
 import { MdManageHistory } from "react-icons/md";
 import useSWR from "swr";
 import { QuillEditor } from "@/utils/quill-editor";
+import { FIREBASE_URLS } from "@/utils/urls";
 const fetcher = async (url: string) => {
   const res = await fetch(url);
   const data = await res.json();
@@ -34,6 +35,7 @@ const fetcher = async (url: string) => {
 const BlogActions = () => {
   const [delOpen, setDelOpen] = useState(false);
   const { theme } = useTheme();
+  const [progress, setProgress] = useState(0);
   const [editOpen, setEditOpen] = useState(false);
   const [fields, setFields] = useState<any>();
   const [slug, setSlug] = useState("");
@@ -74,16 +76,7 @@ const BlogActions = () => {
   }, [postData]);
   const handleUpdate = async (id: string) => {
     const timestamp = Timestamp.now();
-    const createdAtMilliseconds = fields.createdAt.seconds * 1000;
-
-    const createdAtDate = new Date(createdAtMilliseconds);
-
-    // Format dates as desired
-    const createdAtFormatted =
-      createdAtDate.toDateString() + " " + createdAtDate.toTimeString();
-
     const washingtonRef = doc(db, "Blogs", id);
-    console.log("Date", createdAtDate);
     const abc = await updateDoc(washingtonRef, {
       autherId: fields.autherId,
       content: fields.content,
@@ -100,12 +93,15 @@ const BlogActions = () => {
     console.log(abc);
     setId("");
   };
-  // const timestamp = convertSecondsToTimestamp(1715153738); // Replace 1620470522 with your seconds value
-  // console.log(timestamp);
+
   useEffect(() => {
     const runs = async () => {
       if (file) {
-        const imageUrl = await uploadFile(file);
+        const imageUrl = await uploadFile(
+          file,
+          FIREBASE_URLS.BLOGS_IMAGES,
+          setProgress
+        );
         setFields({
           ...fields,
           featuredImage: { url: imageUrl, alt: imageUrl },
@@ -216,16 +212,15 @@ const BlogActions = () => {
                     }
                   />
                   <Input
-                    placeholder="Portfolio title"
+                    placeholder="Blog title"
                     value={fields?.desc}
                     onChange={(e) =>
                       setFields({ ...fields, desc: e.target.value })
                     }
                   />
-
+                  {progress > 0 && <p>Upload progress: {progress}%</p>}
                   {fields?.featuredImage?.url && (
                     <div className=" grid grid-cols-4">
-                      {/* {fields.featuredImage.map((item: IItem, index: number) => ( */}
                       <div className="h-20 w-20">
                         <Image
                           width={80}
@@ -241,7 +236,6 @@ const BlogActions = () => {
                           Remove
                         </button>
                       </div>
-                      {/* ))} */}
                     </div>
                   )}
                   <FileInput
@@ -264,7 +258,7 @@ const BlogActions = () => {
                     }
                   /> */}
                   <QuillEditor
-                    value={fields.content}
+                    value={fields?.content}
                     onChange={(newContent) =>
                       setFields({ ...fields, content: newContent })
                     }

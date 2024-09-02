@@ -18,6 +18,9 @@ import Image from "next/image";
 import { deleteObject, getStorage, ref } from "firebase/storage";
 import { ButtonLayout } from "@/ui/components/animated-button";
 import { QuillEditor } from "@/utils/quill-editor";
+import { FIREBASE_URLS } from "@/utils/urls";
+import { ProjectSchema } from "@/schema";
+import { toast } from "react-toastify";
 export interface IItem {
   url: string;
   alt: string;
@@ -45,16 +48,49 @@ const initialState = {
 const NewPortfolio = () => {
   const [tags, setTags] = useState<any>([]);
   const [fields, setFields] = useState(initialState);
+  const [progress, setProgress] = useState(0);
+  const [content, setContent] = useState("");
+  const [errors, setErrors] = useState<any[]>([]);
   const [file, setFile] = useState<null | any>();
   const postData = async () => {
     try {
-      const docRef = await addDoc(collection(db, "Portfolio"), {
+      const response = ProjectSchema.safeParse({
+        title: fields.title,
+        desc: fields.desc,
+        content: content,
+        gallery: fields.gallery.map((image: any) => ({
+          url: image.url,
+          alt: image.alt,
+        })),
+        clientName: fields.client.name,
+        clientCountry: fields.client.country,
+        startDate: fields.timeline.start,
+        endDate: fields.timeline.end,
+        tags: fields.tags,
+      });
+      if (!response.success) {
+        let errArr: any[] = [];
+        const { errors: err } = response.error;
+        for (var i = 0; i < err.length; i++) {
+          errArr.push({ for: err[i].path[0], message: err[i].message });
+        }
+        setErrors(errArr);
+        throw err;
+      }
+      await addDoc(collection(db, "Portfolio"), {
         ...fields,
+        content: content,
         slug: slugify(fields.title),
       });
-      console.log("Data written with ID:", docRef.id);
+      console.log(content);
       setFields(initialState);
+      setContent("");
+      setFile(null);
+      setErrors([]);
+      toast.success("Project Added");
     } catch (error) {
+      toast.error("Error processing this request");
+
       console.error("Error posting data:", error);
     }
   };
@@ -76,7 +112,12 @@ const NewPortfolio = () => {
     getTags();
     const runs = async () => {
       if (file) {
-        const imageUrl = await uploadFile(file);
+        const imageUrl = await uploadFile(
+          file,
+          FIREBASE_URLS.PROJECTS_IMAGES,
+          setProgress
+        );
+        setProgress(0);
         setFields((prev: any) => ({
           ...prev,
           gallery: [
@@ -130,9 +171,6 @@ const NewPortfolio = () => {
     <CommonLayout>
       <div className="flex justify-center w-full min-h-screen">
         <div className="md:w-2/3 mx-auto p-4 flex flex-col gap-5">
-          <h2 className="text-center font-semibold text-3xl">
-            Add new portfolio Item
-          </h2>
           <p>Available Tags</p>
           <div className="flex gap-2 flex-wrap">
             {tags.map((tag: { name: string; id: string }) => (
@@ -150,12 +188,22 @@ const NewPortfolio = () => {
               </Pills>
             ))}
           </div>
+          {errors.find((error) => error.for === "tags") && (
+            <div className="mt-1 text-xs text-red-500">
+              {errors.find((error) => error.for === "tags")?.message}
+            </div>
+          )}
           <div className="flex flex-col w-full gap-5">
             <Input
               placeholder="Portfolio title"
               value={fields.title}
               onChange={(e) => setFields({ ...fields, title: e.target.value })}
             />
+            {errors.find((error) => error.for === "title") && (
+              <div className="mt-1 text-xs text-red-500">
+                {errors.find((error) => error.for === "title")?.message}
+              </div>
+            )}
             {fields.gallery.length > 0 && (
               <div className=" grid grid-cols-4">
                 {fields.gallery.map((item: IItem, index) => (
@@ -171,7 +219,8 @@ const NewPortfolio = () => {
                 ))}
               </div>
             )}
-            <div className="flex justify-between gap-5">
+            <div className="space-y-5">
+              {progress > 0 && <p>Upload progress: {progress}%</p>}
               <FileInput
                 label="Image"
                 onChange={(e: any) => setFile(e.target.files[0])}
@@ -180,22 +229,42 @@ const NewPortfolio = () => {
                 className="w-full"
               />
             </div>
-
+            {errors.find((error) => error.for === "gallery") && (
+              <div className="mt-1 text-xs text-red-500">
+                {errors.find((error) => error.for === "gallery")?.message}
+              </div>
+            )}
             <Input
               placeholder="description"
               value={fields.desc}
               onChange={(e) => setFields({ ...fields, desc: e.target.value })}
             />
+            {errors.find((error) => error.for === "desc") && (
+              <div className="mt-1 text-xs text-red-500">
+                {errors.find((error) => error.for === "desc")?.message}
+              </div>
+            )}
+
             <Input
               placeholder="Client Name"
               value={fields.client.name}
               onChange={(e) => handleInputChange(e, "name")}
             />
+            {errors.find((error) => error.for === "clientName") && (
+              <div className="mt-1 text-xs text-red-500">
+                {errors.find((error) => error.for === "clientName")?.message}
+              </div>
+            )}
             <Input
               placeholder="Country"
               value={fields.client.country}
               onChange={(e) => handleInputChange(e, "country")}
             />
+            {errors.find((error) => error.for === "clientCountry") && (
+              <div className="mt-1 text-xs text-red-500">
+                {errors.find((error) => error.for === "clientCountry")?.message}
+              </div>
+            )}
             <div>
               <p>Individual</p>
               <div className="flex gap-10">
@@ -237,7 +306,17 @@ const NewPortfolio = () => {
             <p>Timeline</p>
             <div className="flex flex-col lg:flex-row gap-10">
               <Input type="datetime-local" label="Start Date" />
+              {errors.find((error) => error.for === "startDate") && (
+                <div className="mt-1 text-xs text-red-500">
+                  {errors.find((error) => error.for === "startDate")?.message}
+                </div>
+              )}
               <Input type="datetime-local" label="End Date" />
+              {errors.find((error) => error.for === "endDate") && (
+                <div className="mt-1 text-xs text-red-500">
+                  {errors.find((error) => error.for === "endDate")?.message}
+                </div>
+              )}
             </div>
           </div>
           <div>
@@ -271,21 +350,18 @@ const NewPortfolio = () => {
               />
             </div>
           </div>
-          {/* <JoditEditor
-            value={fields.content}
-            config={config}
-            onBlur={(newContent) =>
-              setFields({ ...fields, content: newContent })
-            }
-          />
-           */}
-          <QuillEditor
-            value={fields.content}
-            onChange={(newContent) =>
-              setFields({ ...fields, content: newContent })
-            }
-          />
-          <div className="flex gap-10 w-8/12 mx-auto">
+          <div className="h-72">
+            <QuillEditor
+              value={content}
+              onChange={(newContent: any) => setContent(newContent)}
+            />
+            {errors.find((error) => error.for === "content") && (
+              <div className="mt-1 text-xs text-red-500">
+                {errors.find((error) => error.for === "content")?.message}
+              </div>
+            )}
+          </div>
+          <div className="flex gap-10 h-40 items-end w-8/12 mx-auto">
             <div className="w-full" onClick={() => postData()}>
               <ButtonLayout className="">Submit</ButtonLayout>
             </div>
@@ -295,6 +371,7 @@ const NewPortfolio = () => {
           </div>
         </div>
       </div>
+      <div dangerouslySetInnerHTML={{ __html: content }} />
     </CommonLayout>
   );
 };
