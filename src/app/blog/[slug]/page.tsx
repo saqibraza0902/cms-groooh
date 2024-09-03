@@ -87,12 +87,6 @@ export default async function SinglePost({ params }: IProp) {
                     {blogPost?.desc}
                   </h3>
                 </div>
-                <div className="flex gap-1">
-                  <div className="flex flex-col text-sm gap-1">
-                    {/* <span>{autherdetail.name} </span> */}
-                    <span>CEO of Halo Lab</span>
-                  </div>
-                </div>
               </div>
               <div className="bg-black my-5 w-full h-[1px]"></div>
               <div className="flex flex-col lg:flex-row gap-10 relative">
