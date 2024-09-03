@@ -371,7 +371,6 @@ const NewPortfolio = () => {
           </div>
         </div>
       </div>
-      <div dangerouslySetInnerHTML={{ __html: content }} />
     </CommonLayout>
   );
 };

@@ -31,7 +31,7 @@ const adminAuth = <P extends object>(
             router.push("/signin");
           }
         } else {
-          router.push("/signin");
+          router.push("/");
         }
       });
 

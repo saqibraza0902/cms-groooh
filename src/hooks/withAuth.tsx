@@ -13,7 +13,7 @@ const WithAuth = <P extends object>(
       const unsubscribe = auth.onAuthStateChanged((user) => {
         setAuthState(user);
         if (!user) {
-          router.push("/signin");
+          router.push("/");
         }
       });
 

@@ -22,6 +22,7 @@ const LoggedinNavbar = ({ toggle }: any) => {
   const { items } = useAppSelector((s) => s.cart);
   const handleSignOut = () => {
     try {
+      router.push(PUBLIC_URLS.HOME);
       signOut(auth);
     } catch (error) {
       console.log(error);
@@ -48,22 +49,6 @@ const LoggedinNavbar = ({ toggle }: any) => {
             showIcon={false}
           />
         ))}
-        {!user && (
-          <>
-            <li
-              onClick={() => router.push(PUBLIC_URLS.SIGNIN)}
-              className="cursor-pointer"
-            >
-              Sign In
-            </li>
-            <li
-              onClick={() => router.push(PUBLIC_URLS.SIGNUP)}
-              className="cursor-pointer"
-            >
-              Sign Up
-            </li>
-          </>
-        )}
       </ul>
       <ul className="flex items-center gap-5">
         <li onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>

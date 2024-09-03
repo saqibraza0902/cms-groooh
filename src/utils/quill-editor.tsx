@@ -1,16 +1,14 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { useQuill } from "react-quilljs";
 import "quill/dist/quill.snow.css";
-
+import Quill from "quill";
 interface IProp {
   onChange: (value: string) => void;
   value?: string;
-  // Optional Quill options if you want to customize further
 }
 
 export const QuillEditor = ({ onChange, value = "" }: IProp) => {
-  const [text, setText] = useState("");
   const { quill, quillRef } = useQuill({
     modules: {
       toolbar: [
@@ -23,7 +21,6 @@ export const QuillEditor = ({ onChange, value = "" }: IProp) => {
           { indent: "-1" },
           { indent: "+1" },
         ],
-
         ["link", "image", "video"],
         [{ align: [] }],
         [{ color: [] }, { background: [] }],
@@ -31,9 +28,27 @@ export const QuillEditor = ({ onChange, value = "" }: IProp) => {
       ],
       clipboard: {
         matchVisual: false, // Prevent Quill from automatically converting characters
+        // Customize how content is pasted to retain special characters
+        matchers: [
+          [
+            "span",
+            (
+              node: { textContent: any },
+              delta: { insert: (arg0: any) => any }
+            ) => {
+              // This matcher ensures that special characters are not converted
+              const hasSpecialChar = /[^\x00-\x7F]/.test(
+                node.textContent || ""
+              );
+              if (hasSpecialChar) {
+                return delta.insert(node.textContent || "");
+              }
+              return delta;
+            },
+          ],
+        ],
       },
     },
-
     formats: [
       "header",
       "font",
@@ -55,7 +70,9 @@ export const QuillEditor = ({ onChange, value = "" }: IProp) => {
     ],
     theme: "snow",
   });
+
   const directionSetRef = useRef(false);
+
   useEffect(() => {
     if (quill && !directionSetRef.current) {
       quill.on("text-change", () => {
@@ -67,6 +84,7 @@ export const QuillEditor = ({ onChange, value = "" }: IProp) => {
       quill.root.innerHTML = value || "";
     }
   }, [quill]);
+
   useEffect(() => {
     if (quill) {
       // Only update the content if it's different
@@ -74,6 +92,7 @@ export const QuillEditor = ({ onChange, value = "" }: IProp) => {
         quill.root.innerHTML = value || "";
       }
     }
-  }, [value, quill, onchange]);
+  }, [value, quill, onChange]);
+
   return <div ref={quillRef} />;
 };

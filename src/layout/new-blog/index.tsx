@@ -17,6 +17,11 @@ import { QuillEditor } from "@/utils/quill-editor";
 import { toast } from "react-toastify";
 import { BlogSchema } from "@/schema";
 import { FIREBASE_URLS } from "@/utils/urls";
+import FroalaEditor, { MyComponentProps } from "react-froala-wysiwyg";
+import {} from "froala-editor";
+import "froala-editor/js/plugins.pkgd.min.js";
+import "froala-editor/css/froala_style.min.css";
+import "froala-editor/css/froala_editor.pkgd.min.css";
 
 const initialState = {
   title: "",
@@ -30,7 +35,9 @@ const initialState = {
   isFeatured: false,
   autherId: "",
 };
-
+let config = {
+  height: 300,
+};
 const DashboardLayout = () => {
   const [tags, setTags] = useState<any>([]);
   const [progress, setProgress] = useState(0);
@@ -69,6 +76,7 @@ const DashboardLayout = () => {
         createdAt: timestamp,
         updatedAt: timestamp,
       });
+      console.log(content);
       setFields(initialState);
       toast.success("Blog posted");
       setContent("");
@@ -143,8 +151,8 @@ const DashboardLayout = () => {
             </div>
           ))}
         </div>
-        <p>Available Tags</p>
 
+        <p>Available Tags</p>
         <div className="flex gap-2 flex-wrap">
           {tags.map((tag: any) => (
             <Pills
@@ -252,10 +260,12 @@ const DashboardLayout = () => {
             />
           </div>
         </div>
-        <div className="h-72">
-          <QuillEditor
-            value={content}
-            onChange={(newContent: any) => setContent(newContent)}
+        <div className="editor !h-">
+          <FroalaEditor
+            tag="textarea"
+            config={config}
+            model={content}
+            onModelChange={(newContent: any) => setContent(newContent)}
           />
         </div>
         <div className="flex items-end gap-10 w-8/12 h-40 mx-auto">

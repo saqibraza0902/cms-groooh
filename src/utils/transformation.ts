@@ -1,7 +1,18 @@
-import hljs from "highlight.js";
-import "highlight.js/styles/github.css";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { all, common, createLowlight } from "lowlight";
+import rehypeReact from "rehype-react";
+import { createElement } from "react";
+import { renderToStaticMarkup } from "react-dom/server";
+import language from "react-syntax-highlighter/dist/esm/languages/hljs/1c";
+import "highlight.js/styles/github.css"; // You can choose other styles as well
+
+const lowlight = createLowlight(common);
 export function addCustomStyling(content: string) {
-  content = content.replace(/<code>/g, '<code class="custom-styling">');
+  content = content.replace(
+    /<pre id="isPasted">/g,
+    '<pre class="custom-styling">'
+  );
+  content = content.replace(/<pre>/g, '<pre class="custom-styling">');
   content = content.replace(
     /<blockquote>/g,
     '<blockquote class="block-styling"><div class="quote-styling"><img src="/icons/icon-quotes.svg" alt="" class="quote-img" /></div>'
@@ -46,16 +57,35 @@ export function addCustomStyling(content: string) {
       );
     }
   );
-  //   console.log(content);
+
   content = content.replace(
-    /<p><code class="custom-styling">([\s\S]*?)<\/code><\/p>/g,
+    /<pre class="custom-styling">([\s\S]*?)<\/pre>/g,
     function (match, codeContent) {
-      // const highlightedCode = hljs.highlightAuto(codeContent).value;
-      return `<code  class="custom-styling">${codeContent}</code>`;
+      const highlighted = lowlight.highlight("js", codeContent.trim());
+
+      // Convert nodes to HTML
+      const highlightedHtml = highlighted.children
+        .map((node) => convertNodeToHtml(node))
+        .join("");
+
+      return `<pre class="custom-styling"><code>${highlightedHtml}</code></pre>`;
     }
   );
 
   return content;
+}
+function convertNodeToHtml(node: any) {
+  if (node.type === "text") {
+    return node.value;
+  }
+
+  const tagName = node.tagName;
+  const className = node.properties.className
+    ? ` class="${node.properties.className.join(" ")}"`
+    : "";
+  const children = node.children.map(convertNodeToHtml).join("");
+
+  return `<${tagName}${className}>${children}</${tagName}>`;
 }
 const getHrefFromAnchor = (anchorTagString: any) => {
   const regex = /href="(.*?)"/g;

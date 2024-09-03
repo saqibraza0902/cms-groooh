@@ -140,7 +140,7 @@ const SinglePortfolio = async (props: any) => {
 
               <div className="bg-black my-5 w-full h-[1px]"></div>
               <div className="flex gap-10 relative">
-                <div className="w-full lg:w-7/12">
+                <div className="w-full text-black lg:w-7/12">
                   <div
                     dangerouslySetInnerHTML={{
                       __html: addCustomStyling(post?.content),
