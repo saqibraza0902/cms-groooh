@@ -1,4 +1,3 @@
-import { IItem } from "@/app/(auth-pages)/add-portfolio/page";
 import CommonLayout from "@/layout";
 import { SHARE_ICONS } from "@/mock";
 import { ShareIcon } from "@/ui/components/animated-icons";
