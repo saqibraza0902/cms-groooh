@@ -6,10 +6,7 @@ import { BiEdit, BiTrash } from "react-icons/bi";
 import Link from "next/link";
 import { MdManageHistory } from "react-icons/md";
 import Modal from "@/ui/components/modal-component";
-import { IItem } from "../newportfolio/page";
-import dynamic from "next/dynamic";
-const JoditEditor = dynamic(() => import("jodit-react"), { ssr: false });
-import { config } from "@/utils/editor";
+import { IItem } from "../add-portfolio/page";
 import { deleteDoc, doc, updateDoc } from "firebase/firestore";
 import { db } from "@/utils/firebase";
 import Input from "@/ui/form/input-component";
@@ -19,8 +16,13 @@ import { uploadFile } from "@/utils/uploadFile";
 import FileInput from "@/ui/form/file-input";
 import Image from "next/image";
 import Loader from "@/ui/components/loader-component";
-import { QuillEditor } from "@/utils/quill-editor";
 import { FIREBASE_URLS } from "@/utils/urls";
+import FroalaEditor from "react-froala-wysiwyg";
+import "froala-editor/js/plugins.pkgd.min.js";
+import "froala-editor/css/froala_style.min.css";
+import "froala-editor/css/froala_editor.pkgd.min.css";
+import ContentLayout from "@/ui/components/content-layout";
+
 const fetcher = async (url: string) => {
   const res = await fetch(url);
   const data = await res.json();
@@ -114,57 +116,40 @@ const PortfolioActions = () => {
           <Loader />
         </div>
       )}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 p-10 ">
+      <div className="grid grid-cols-1 md:grid-cols-2  gap-10 p-10 ">
         {data?.map((post: IPortfolio, index: number) => (
-          <div key={index}>
-            <div>
-              {post?.gallery?.length > 0 ? (
-                <div className="relative h-80 group">
-                  <Image
-                    fill={true}
-                    className="h-80"
-                    alt={post?.gallery[0]?.alt}
-                    src={post?.gallery[0]?.url}
-                  />
-                  <BiTrash
-                    onClick={() => {
-                      setDelOpen(true);
-                      setId(post.id);
-                    }}
-                    className="absolute cursor-pointer top-5 left-5"
-                    color="#a0a0a0"
-                    size={25}
-                  />
+          <div key={index} className="relative">
+            <div className="flex justify-between">
+              <BiTrash
+                onClick={() => {
+                  setDelOpen(true);
+                  setId(post.id);
+                }}
+                className="absolute cursor-pointer z-50 top-6 left-5"
+                color="#a0a0a0"
+                size={25}
+              />
 
-                  <BiEdit
-                    onClick={() => {
-                      setEditOpen(true);
-                      setId(post.id);
-                      setSlug(post.slug);
-                    }}
-                    className="absolute cursor-pointer top-5 right-5"
-                    color="#a0a0a0"
-                    size={25}
-                  />
-                </div>
-              ) : (
-                <div className="h-80 w-full bg-slate-400">
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                    <Link href={`/actions?id=${post?.id}&slug=portfolio`}>
-                      <MdManageHistory />
-                    </Link>
-                  </div>
-                </div>
-              )}
-              <Link
-                className="cursor-pointer"
-                href={`/portfolio/${post.id}`}
-                key={post.id}
-              >
-                <p className="text-xl font-semibold">{post.title}</p>
-                <p className="text-justify line-clamp-2">{post.desc}</p>
-              </Link>
+              <BiEdit
+                onClick={() => {
+                  setEditOpen(true);
+                  setId(post.id);
+                  setSlug(post.slug);
+                }}
+                className="absolute cursor-pointer top-6 z-50 right-5"
+                color="#a0a0a0"
+                size={25}
+              />
             </div>
+            <ContentLayout
+              item={{
+                desc: post?.desc,
+                image: post?.gallery[0]?.url,
+                slug: post.slug,
+                title: post.title,
+                isPortfolio: true,
+              }}
+            />
           </div>
         ))}
       </div>
@@ -180,26 +165,26 @@ const PortfolioActions = () => {
               <div className="flex flex-col w-full gap-5">
                 <Input
                   placeholder="Portfolio title"
-                  value={fields?.title}
+                  value={fields?.title ? fields.title : ""}
                   onChange={(e) =>
                     setFields({ ...fields, title: e.target.value })
                   }
                 />
                 <Input
                   placeholder="Portfolio desc"
-                  value={fields?.desc}
+                  value={fields?.desc ? fields?.desc : ""}
                   onChange={(e) =>
                     setFields({ ...fields, desc: e.target.value })
                   }
                 />
                 <Input
                   placeholder="Client Name"
-                  value={fields?.client?.name}
+                  value={fields?.client?.name ? fields?.client?.name : ""}
                   onChange={(e) => handleInputChange(e, "name")}
                 />
                 <Input
                   placeholder="Country"
-                  value={fields?.client?.country}
+                  value={fields?.client?.country ? fields?.client?.country : ""}
                   onChange={(e) => handleInputChange(e, "country")}
                 />
                 <div>
@@ -271,20 +256,18 @@ const PortfolioActions = () => {
                   name={file?.name}
                   className="w-full"
                 />
-                {/* <JoditEditor
-                  value={fields?.content}
-                  config={config}
-                  onBlur={(newContent) =>
-                    setFields({ ...fields, content: newContent })
-                  }
-                /> */}
-
-                <QuillEditor
-                  value={fields?.content}
-                  onChange={(newContent) =>
-                    setFields({ ...fields, content: newContent })
-                  }
-                />
+                {fields?.content && (
+                  <FroalaEditor
+                    tag="textarea"
+                    config={{
+                      height: 300,
+                    }}
+                    model={fields?.content}
+                    onModelChange={(newContent: any) =>
+                      setFields({ ...fields, content: newContent })
+                    }
+                  />
+                )}
               </div>
               <div className="flex w-full h-10 gap-5 mt-5">
                 <Button

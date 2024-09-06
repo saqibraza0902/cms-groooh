@@ -5,9 +5,7 @@ import Modal from "@/ui/components/modal-component";
 import Loader from "@/ui/components/loader-component";
 import Button from "@/ui/form/button-component";
 import Input from "@/ui/form/input-component";
-import { config } from "@/utils/editor";
 import { db } from "@/utils/firebase";
-import { deleteCollectible } from "@/utils/function";
 import { uploadFile } from "@/utils/uploadFile";
 import {
   collection,
@@ -16,15 +14,17 @@ import {
   getDocs,
   updateDoc,
 } from "firebase/firestore";
-import dynamic from "next/dynamic";
 import Image from "next/image";
-const JoditEditor = dynamic(() => import("jodit-react"), { ssr: false });
 import React, { useEffect, useState } from "react";
 import { BiEdit, BiTrash } from "react-icons/bi";
 import { RxCross1 } from "react-icons/rx";
 import useSWR from "swr";
-import { QuillEditor } from "@/utils/quill-editor";
 import { FIREBASE_URLS } from "@/utils/urls";
+import FroalaEditor from "react-froala-wysiwyg";
+import "froala-editor/js/plugins.pkgd.min.js";
+import "froala-editor/css/froala_style.min.css";
+import "froala-editor/css/froala_editor.pkgd.min.css";
+
 const fetcher = async (url: string) => {
   const res = await fetch(url);
   const data = await res.json();
@@ -332,14 +332,13 @@ const ColAction = () => {
                   </div>
                 </div>
                 <div className="flex flex-col md:flex-row w-full py-4 gap-10 justify-center">
-                  {/* <JoditEditor
-                    value={content}
-                    config={config}
-                    onBlur={(newContent) => setContent(newContent)}
-                  /> */}
-                  <QuillEditor
-                    value={content}
-                    onChange={(newContent) => setContent(newContent)}
+                  <FroalaEditor
+                    tag="textarea"
+                    config={{
+                      height: 300,
+                    }}
+                    model={content}
+                    onModelChange={(newContent: any) => setContent(newContent)}
                   />
                 </div>
                 <div className="flex flex-col md:flex-row mx-auto py-4 lg:w-2/3 gap-10 justify-center">

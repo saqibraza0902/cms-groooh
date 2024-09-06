@@ -22,26 +22,26 @@ export function addCustomStyling(content: string) {
     '<p style="width: 100%;"><img style="width: 100%;"$1</p>'
   );
 
-  content = content.replace(
-    /<ol[^>]*>([\s\S]*?)<\/ol>/g,
-    function (match, innerHTML) {
-      const listContent = innerHTML.trim();
-      // Replace the <li> tags with <div> tags
-      const modifiedContent = listContent.replace(
-        /<li(?:\s+[^>]*)*>([\s\S]*?)<\/li>/g,
-        "<div>$1</div>"
-      );
+  // content = content.replace(
+  //   /<ol[^>]*>([\s\S]*?)<\/ol>/g,
+  //   function (match, innerHTML) {
+  //     const listContent = innerHTML.trim();
+  //     // Replace the <li> tags with <div> tags
+  //     const modifiedContent = listContent.replace(
+  //       /<li(?:\s+[^>]*)*>([\s\S]*?)<\/li>/g,
+  //       "<div>$1</div>"
+  //     );
 
-      // Wrap the modified content in a grid container
-      const gridContent = `<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; justify-items: center">${modifiedContent}</div>`;
+  //     // Wrap the modified content in a grid container
+  //     const gridContent = `<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; justify-items: center">${modifiedContent}</div>`;
 
-      return gridContent;
-    }
-  );
+  //     return gridContent;
+  //   }
+  // );
   let index = 0;
-  content = content.replace(/<h3>/g, () => {
+  content = content.replace(/<h3(\s[^>]*)?>/g, (match, attributes) => {
     index++;
-    return `<h3 id="section-${index}">`;
+    return `<h3 id="section-${index}"${attributes || ""}>`;
   });
 
   content = content.replace(

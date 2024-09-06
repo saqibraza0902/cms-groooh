@@ -5,7 +5,6 @@ import Loader from "@/ui/components/loader-component";
 import { db } from "@/utils/firebase";
 import { collection, getDocs } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
-import { BiArrowFromRight } from "react-icons/bi";
 import { BsArrowDown, BsArrowRight } from "react-icons/bs";
 
 const Queries = () => {

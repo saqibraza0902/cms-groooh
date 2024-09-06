@@ -1,9 +1,7 @@
-import { SERVICES_ARRAY } from "@/mock";
 import ContentBox from "@/ui/components/content-box";
 import { IServices } from "@/utils/types";
 import Image from "next/image";
 import React from "react";
-import { GoArrowUpRight } from "react-icons/go";
 
 interface IProp {
   services: IServices;

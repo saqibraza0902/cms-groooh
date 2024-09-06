@@ -13,7 +13,7 @@ import { slugify } from "@/utils/slugify";
 import { uploadFile } from "@/utils/uploadFile";
 import { getAuth } from "firebase/auth";
 import { ButtonLayout } from "@/ui/components/animated-button";
-import { QuillEditor } from "@/utils/quill-editor";
+// import { QuillEditor } from "@/utils/quill-editor";
 import { toast } from "react-toastify";
 import { BlogSchema } from "@/schema";
 import { FIREBASE_URLS } from "@/utils/urls";

@@ -8,7 +8,7 @@ import {
 } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { useRouter } from "next/navigation";
-import { PUBLIC_URLS } from "@/utils/urls";
+import { AUTH_URLS } from "@/utils/urls";
 
 const SignInLayout = () => {
   const [email, setEmail] = useState("");
@@ -28,7 +28,7 @@ const SignInLayout = () => {
         isAdmin: false,
         isAuther: false,
       });
-      router.push("/newblog");
+      router.push(AUTH_URLS.ADD_BLOG);
     } catch (error) {
       console.log(error);
     }
@@ -42,7 +42,7 @@ const SignInLayout = () => {
         email,
         passwordOne
       );
-      router.push("/newblog");
+      router.push(AUTH_URLS.ADD_BLOG);
     } catch (error) {
       console.log(error);
     }

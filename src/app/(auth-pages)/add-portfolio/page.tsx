@@ -1,10 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import dynamic from "next/dynamic";
-const JoditEditor = dynamic(() => import("jodit-react"), { ssr: false });
 import { app, db } from "@/utils/firebase";
 import { addDoc, collection } from "firebase/firestore";
-import { config } from "@/utils/editor";
 import CommonLayout from "@/layout";
 import { get_tags } from "@/utils/function";
 import Pills from "@/ui/components/pills-component";
@@ -12,15 +9,17 @@ import Input from "@/ui/form/input-component";
 import FileInput from "@/ui/form/file-input";
 import { uploadFile } from "@/utils/uploadFile";
 import RadioInput from "@/ui/form/radio-component";
-import Button from "@/ui/form/button-component";
 import { slugify } from "@/utils/slugify";
 import Image from "next/image";
 import { deleteObject, getStorage, ref } from "firebase/storage";
 import { ButtonLayout } from "@/ui/components/animated-button";
-import { QuillEditor } from "@/utils/quill-editor";
 import { FIREBASE_URLS } from "@/utils/urls";
 import { ProjectSchema } from "@/schema";
 import { toast } from "react-toastify";
+import FroalaEditor from "react-froala-wysiwyg";
+import "froala-editor/js/plugins.pkgd.min.js";
+import "froala-editor/css/froala_style.min.css";
+import "froala-editor/css/froala_editor.pkgd.min.css";
 export interface IItem {
   url: string;
   alt: string;
@@ -351,9 +350,13 @@ const NewPortfolio = () => {
             </div>
           </div>
           <div className="h-72">
-            <QuillEditor
-              value={content}
-              onChange={(newContent: any) => setContent(newContent)}
+            <FroalaEditor
+              tag="textarea"
+              config={{
+                height: 300,
+              }}
+              model={content}
+              onModelChange={(newContent: any) => setContent(newContent)}
             />
             {errors.find((error) => error.for === "content") && (
               <div className="mt-1 text-xs text-red-500">

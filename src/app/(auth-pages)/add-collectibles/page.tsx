@@ -3,17 +3,16 @@ import WithAuthLayout from "@/layout/with-auth-layout";
 import Button from "@/ui/form/button-component";
 import Input from "@/ui/form/input-component";
 import InputFile from "@/ui/form/file-input";
-import { config } from "@/utils/editor";
-import { app, db } from "@/utils/firebase";
+import { db } from "@/utils/firebase";
 import { uploadFile } from "@/utils/uploadFile";
 import { addDoc, collection } from "firebase/firestore";
-import dynamic from "next/dynamic";
-const JoditEditor = dynamic(() => import("jodit-react"), { ssr: false });
 import React, { useEffect, useState } from "react";
 import { BiPlus } from "react-icons/bi";
-import { QuillEditor } from "@/utils/quill-editor";
 import { FIREBASE_URLS } from "@/utils/urls";
-
+import FroalaEditor from "react-froala-wysiwyg";
+import "froala-editor/js/plugins.pkgd.min.js";
+import "froala-editor/css/froala_style.min.css";
+import "froala-editor/css/froala_editor.pkgd.min.css";
 const initialState = {
   title: "",
   price: null,
@@ -149,25 +148,15 @@ const NewCollectibles = () => {
               name={files.image?.name}
             />
           </div>
-          {/* <InputFile
-            label="Image"
-            accept=".jpg, .png, .jpeg"
-            onChange={(e: any) =>
-              setFiles({ ...files, image: e.target.files[0] })
-            }
-            name={files.image?.name}
-            className="w-full"
-          /> */}
         </div>
-        <div className="h-72">
-          {/* <JoditEditor
-            value={content}
-            config={config}
-            onBlur={(newContent) => setContent(newContent)}
-          /> */}
-          <QuillEditor
-            value={content}
-            onChange={(newContent) => setContent(newContent)}
+        <div>
+          <FroalaEditor
+            tag="textarea"
+            config={{
+              height: 300,
+            }}
+            model={content}
+            onModelChange={(newContent: any) => setContent(newContent)}
           />
         </div>
         <div className="flex items-end mx-auto py-4 min-h-40 lg:w-2/3 gap-10 justify-center">

@@ -1,15 +1,12 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/providers/theme-provider";
 import ReduxProvider from "@/providers/redux-provider";
 import NextTopLoader from "nextjs-toploader";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 import ReactToastProvider from "@/providers/toast-provider";
-import fav from "../../public/icons/favicon.png";
-import { hasCookie } from "cookies-next";
+
 import { cookies } from "next/headers";
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Groooh",

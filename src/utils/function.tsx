@@ -105,6 +105,7 @@ export const getSinglePost = cache(async (slug: string) => {
       `${process.env.NEXT_PUBLIC_URL}/api/posts/${slug}`,
       {
         method: "GET",
+        cache: "no-store",
       }
     );
     if (!res.ok) {

@@ -2,10 +2,10 @@
 import CommonLayout from "@/layout";
 import { config } from "@/utils/editor";
 import { db } from "@/utils/firebase";
-import { QuillEditor } from "@/utils/quill-editor";
+// import { QuillEditor } from "@/utils/quill-editor";
 import { addDoc, collection } from "firebase/firestore";
-import dynamic from "next/dynamic";
-const JoditEditor = dynamic(() => import("jodit-react"), { ssr: false });
+// import dynamic from "next/dynamic";
+// const JoditEditor = dynamic(() => import("jodit-react"), { ssr: false });
 import React, { useState } from "react";
 const initialState = {
   name: "",
@@ -70,10 +70,10 @@ const NewQuery = () => {
           config={config}
           onBlur={(newContent) => setProjectInfo(newContent)}
         /> */}
-        <QuillEditor
+        {/* <QuillEditor
           value={projectInfo}
           onChange={(newContent) => setProjectInfo(newContent)}
-        />
+        /> */}
         <button
           onClick={() => handleSubmit()}
           className="w-2/3 mx-auto text-white bg-violet-600 h-10 rounded-md"

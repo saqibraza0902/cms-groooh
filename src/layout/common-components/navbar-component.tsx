@@ -35,7 +35,7 @@ const Navbar = ({ toggle }: any) => {
       dispatch(addservices(data));
     };
     gettitles();
-  }, []);
+  }, [dispatch]);
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);

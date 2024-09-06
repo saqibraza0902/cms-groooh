@@ -24,7 +24,7 @@ const ContentLayout = ({ item }: IProp) => {
       <div className="w-full h-full relative group">
         <Link
           href={`${url}/${item.slug}`}
-          className="h-full w-full relative block bg-black rounded-[20px]"
+          className="h-full w-full relative block rounded-[20px]"
         >
           <Image
             alt={item.image}

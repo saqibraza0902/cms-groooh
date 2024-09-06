@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 export const GET = async (req: Request) => {
   try {
     const colRef = collection(db, "Blogs");
-    const snapshot = await getDocs(query(colRef, orderBy("createdAt")));
+    const snapshot = await getDocs(query(colRef, orderBy("createdAt", "asc")));
     const data = snapshot.docs.map((doc) => ({
       id: doc.id,
       ...doc.data(),

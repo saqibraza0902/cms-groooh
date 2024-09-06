@@ -21,9 +21,9 @@ const HomeSection = ({ hero }: IProp) => {
         >
           <div className="w-full flex gap-14 lg:gap-5 flex-col justify-center items-start p-10 h-full ">
             <AnimatedText
-              images={hero.animatedimages}
-              words={hero.animatedtext}
-              statictext={hero.statictext}
+              images={hero?.animatedimages}
+              words={hero?.animatedtext}
+              statictext={hero?.statictext}
             />
             <div className="flex flex-col gap-5  lg:flex-row w-full justify-between lg:gap-0 items-center">
               <div className="hidden lg:flex text-black items-center w-5/6 2xl:w-full justify-between">
@@ -31,14 +31,14 @@ const HomeSection = ({ hero }: IProp) => {
                   {hero?.bottomstatictext[0]}
                 </span>
                 <span className="text-xl  w-3/4 2xl:text-3xl uppercase font-SuisseMedium ">
-                  {hero.bottomstatictext?.length > 0 &&
+                  {hero?.bottomstatictext?.length > 0 &&
                     // @ts-ignore
                     hero?.bottomstatictext[1]}
                 </span>
               </div>
               <div className="flex text-black lg:hidden">
                 <span className="text-lg text-center uppercase font-SuisseMedium ">
-                  {hero.bottomstatictext.map((el, i) => (
+                  {hero?.bottomstatictext?.map((el, i) => (
                     <span className="px-[1px]" key={i}>
                       {el}
                     </span>

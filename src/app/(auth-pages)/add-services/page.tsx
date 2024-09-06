@@ -5,7 +5,6 @@ import { app, db } from "@/utils/firebase";
 import { get_images_from_firebase } from "@/utils/function";
 import { slugify } from "@/utils/slugify";
 import { arrayUnion, doc, updateDoc } from "firebase/firestore";
-import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import React, { ChangeEvent, useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 interface IExpertise {
