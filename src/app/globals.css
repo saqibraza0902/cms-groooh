@@ -139,7 +139,12 @@ div.sticks {
   margin: 50px;
 }
 
-div[style*="z-index:0000;width:100%;position:relative"] {
+a[href*="https://www.froala.com/wysiwyg-editor?k=u"]
+{
   display: none !important;
+}
+
+a[href*="https://www.froala.com/wysiwyg-editor?k=u"]
+{
   height: 0 !important;
 }
