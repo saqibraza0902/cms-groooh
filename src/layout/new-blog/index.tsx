@@ -140,6 +140,17 @@ const DashboardLayout = () => {
       };
     });
   };
+  if (process.env.NODE_ENV === "production") {
+    document.addEventListener("DOMContentLoaded", function () {
+      const unwantedDiv: any = document.querySelector(
+        'div[style*="z-index:0000;width:100%;position:relative"]'
+      );
+      if (unwantedDiv) {
+        unwantedDiv.style.display = "none";
+        unwantedDiv.style.height = "0";
+      }
+    });
+  }
   return (
     <div className="flex justify-center w-full h-full min-h-screen">
       <div className="md:w-2/3 mx-auto p-4 flex flex-col gap-5">
