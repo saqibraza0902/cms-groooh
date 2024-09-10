@@ -143,11 +143,11 @@ const DashboardLayout = () => {
   if (process.env.NODE_ENV === "production") {
     document.addEventListener("DOMContentLoaded", function () {
       const unwantedDiv: any = document.querySelector(
-        'div[style*="z-index:0000;width:100%;position:relative"]'
+        'a[href*="https://www.froala.com/wysiwyg-editor"]'
       );
       if (unwantedDiv) {
-        unwantedDiv.style.display = "none";
-        unwantedDiv.style.height = "0";
+        unwantedDiv.parentElement.style.display = "none";
+        unwantedDiv.parentElement.style.height = "0";
       }
     });
   }
