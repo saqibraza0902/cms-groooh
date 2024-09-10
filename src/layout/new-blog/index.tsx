@@ -143,7 +143,7 @@ const DashboardLayout = () => {
   if (process.env.NODE_ENV === "production") {
     document.addEventListener("DOMContentLoaded", function () {
       const unwantedDiv: any = document.querySelector(
-        'a[href*="https://www.froala.com/wysiwyg-editor"]'
+        'a[href*="https://www.froala.com/wysiwyg-editor?k=u"]'
       );
       if (unwantedDiv) {
         unwantedDiv.parentElement.style.display = "none";
