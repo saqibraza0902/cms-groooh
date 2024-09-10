@@ -138,3 +138,8 @@ div.sticks {
   justify-content: center;
   margin: 50px;
 }
+
+div[style*="z-index:0000;width:100%;position:relative"] {
+  display: none !important;
+  height: 0 !important;
+}

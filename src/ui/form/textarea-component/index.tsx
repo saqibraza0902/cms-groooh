@@ -15,7 +15,7 @@ const TextArea = ({
   ...rest
 }: IText) => {
   return (
-    <div className={cn(`min-w-72 ${divClass} `)}>
+    <div className={cn(` ${divClass} `)}>
       {label && <label className={cn("", labelClass)}>{label}</label>}
       <textarea
         className={cn(

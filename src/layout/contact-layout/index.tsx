@@ -16,7 +16,7 @@ const ContactLayout = ({ contact }: IProp) => {
             className="bg-primary md:p-16"
             childClass="bg-secondary md:p-16"
           >
-            <h3 className="text-black font-SuisseBold text-3xl lg:text-5xl w-2/6 mb-5">
+            <h3 className="text-black font-SuisseBold text-3xl lg:text-5xl md:w-2/6 mb-5">
               {contact.title}
             </h3>
             <ContactForm />

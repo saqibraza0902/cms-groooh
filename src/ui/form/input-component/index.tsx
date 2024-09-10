@@ -16,7 +16,7 @@ const Input = ({
   ...rest
 }: IInput) => {
   return (
-    <div className={cn(`min-w-72 ${className}`)}>
+    <div className={cn(` ${className}`)}>
       {label && <label className={cn("", labelClass)}>{label}</label>}
       <input
         {...rest}

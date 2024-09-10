@@ -44,7 +44,7 @@ const ContactForm = () => {
     <form className="h-full w-full text-black space-y-3 2xl:space-y-10">
       <div className="flex flex-col lg:flex-row  2xl:space-y-10 lg:space-y-0 lg:space-x-5 ">
         <div className="w-full space-y-1 2xl:space-y-10">
-          <div className="flex flex-col md:flex-row w-full md:space-x-10">
+          <div className="flex flex-col space-y-2 md:flex-row w-full md:space-x-10">
             <Input
               inputClassName="text-black w-full placeholder:text-brand_gray-500 border-none bg-white "
               placeholder="John Doe"
@@ -58,7 +58,7 @@ const ContactForm = () => {
               label="Email"
             />
           </div>
-          <div className="flex w-full flex-col md:flex-row md:space-x-10">
+          <div className="flex w-full space-y-2 flex-col md:flex-row md:space-x-10">
             <Input
               inputClassName="text-black placeholder:text-brand_gray-500 border-none bg-white"
               placeholder="Need A website"
@@ -72,7 +72,7 @@ const ContactForm = () => {
               label="Country"
             />
           </div>
-          <div className="w-full h-full">
+          <div className="w-full mt-2 h-full">
             <TextArea
               rows={getTextAreaRows()}
               label="Message"
