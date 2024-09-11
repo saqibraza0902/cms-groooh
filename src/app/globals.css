@@ -139,12 +139,12 @@ div.sticks {
   margin: 50px;
 }
 
-a[href*="https://www.froala.com/wysiwyg-editor?k=u"]
-{
-  display: none !important;
-}
-
-a[href*="https://www.froala.com/wysiwyg-editor?k=u"]
-{
-  height: 0 !important;
-}
+/* @import "../node_modules/@syncfusion/ej2-base/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-icons/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-buttons/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-splitbuttons/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-inputs/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-lists/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-navigations/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-popups/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-richtexteditor/styles/material.css"; */

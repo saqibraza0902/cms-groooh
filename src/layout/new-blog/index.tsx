@@ -13,15 +13,10 @@ import { slugify } from "@/utils/slugify";
 import { uploadFile } from "@/utils/uploadFile";
 import { getAuth } from "firebase/auth";
 import { ButtonLayout } from "@/ui/components/animated-button";
-// import { QuillEditor } from "@/utils/quill-editor";
 import { toast } from "react-toastify";
 import { BlogSchema } from "@/schema";
 import { FIREBASE_URLS } from "@/utils/urls";
-import FroalaEditor, { MyComponentProps } from "react-froala-wysiwyg";
-import {} from "froala-editor";
-import "froala-editor/js/plugins.pkgd.min.js";
-import "froala-editor/css/froala_style.min.css";
-import "froala-editor/css/froala_editor.pkgd.min.css";
+import RichTextEditor from "@/utils/text-editor";
 
 const initialState = {
   title: "",
@@ -34,9 +29,6 @@ const initialState = {
   isArchived: false,
   isFeatured: false,
   autherId: "",
-};
-let config = {
-  height: 300,
 };
 const DashboardLayout = () => {
   const [tags, setTags] = useState<any>([]);
@@ -76,7 +68,7 @@ const DashboardLayout = () => {
         createdAt: timestamp,
         updatedAt: timestamp,
       });
-      console.log(content);
+      console.log("This is content", content);
       setFields(initialState);
       toast.success("Blog posted");
       setContent("");
@@ -140,17 +132,7 @@ const DashboardLayout = () => {
       };
     });
   };
-  if (process.env.NODE_ENV === "production") {
-    document.addEventListener("DOMContentLoaded", function () {
-      const unwantedDiv: any = document.querySelector(
-        'a[href*="https://www.froala.com/wysiwyg-editor?k=u"]'
-      );
-      if (unwantedDiv) {
-        unwantedDiv.parentElement.style.display = "none";
-        unwantedDiv.parentElement.style.height = "0";
-      }
-    });
-  }
+  // console.log(content);
   return (
     <div className="flex justify-center w-full h-full min-h-screen">
       <div className="md:w-2/3 mx-auto p-4 flex flex-col gap-5">
@@ -271,15 +253,15 @@ const DashboardLayout = () => {
             />
           </div>
         </div>
-        <div className="editor !h-">
-          <FroalaEditor
-            tag="textarea"
-            config={config}
-            model={content}
-            onModelChange={(newContent: any) => setContent(newContent)}
+        <div>
+          <RichTextEditor
+            value={content}
+            onChange={(newContent: any) => {
+              setContent(newContent.value);
+            }}
           />
         </div>
-        <div className="flex items-end gap-10 w-8/12 h-40 mx-auto">
+        <div className="flex  gap-10 w-8/12 mx-auto">
           <div className="w-full" onClick={() => postData()}>
             <ButtonLayout className="">Submit</ButtonLayout>
           </div>

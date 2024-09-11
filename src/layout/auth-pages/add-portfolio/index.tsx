@@ -15,10 +15,7 @@ import { ButtonLayout } from "@/ui/components/animated-button";
 import { FIREBASE_URLS } from "@/utils/urls";
 import { ProjectSchema } from "@/schema";
 import { toast } from "react-toastify";
-import FroalaEditor from "react-froala-wysiwyg";
-import "froala-editor/js/plugins.pkgd.min.js";
-import "froala-editor/css/froala_style.min.css";
-import "froala-editor/css/froala_editor.pkgd.min.css";
+import RichTextEditor from "@/utils/text-editor";
 export interface IItem {
   url: string;
   alt: string;
@@ -348,15 +345,14 @@ const AddPortfolioLayout = () => {
               />
             </div>
           </div>
-          <div className="h-72">
-            <FroalaEditor
-              tag="textarea"
-              config={{
-                height: 300,
+          <div>
+            <RichTextEditor
+              value={content}
+              onChange={(newContent: any) => {
+                setContent(newContent.value);
               }}
-              model={content}
-              onModelChange={(newContent: any) => setContent(newContent)}
             />
+
             {errors.find((error) => error.for === "content") && (
               <div className="mt-1 text-xs text-red-500">
                 {errors.find((error) => error.for === "content")?.message}

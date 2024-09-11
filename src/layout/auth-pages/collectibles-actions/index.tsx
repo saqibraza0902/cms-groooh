@@ -20,10 +20,7 @@ import { BiEdit, BiTrash } from "react-icons/bi";
 import { RxCross1 } from "react-icons/rx";
 import useSWR from "swr";
 import { FIREBASE_URLS } from "@/utils/urls";
-import FroalaEditor from "react-froala-wysiwyg";
-import "froala-editor/js/plugins.pkgd.min.js";
-import "froala-editor/css/froala_style.min.css";
-import "froala-editor/css/froala_editor.pkgd.min.css";
+import RichTextEditor from "@/utils/text-editor";
 
 const fetcher = async (url: string) => {
   const res = await fetch(url);
@@ -332,14 +329,14 @@ const CollectiblesActionLayout = () => {
                   </div>
                 </div>
                 <div className="flex flex-col md:flex-row w-full py-4 gap-10 justify-center">
-                  <FroalaEditor
-                    tag="textarea"
-                    config={{
-                      height: 300,
-                    }}
-                    model={content}
-                    onModelChange={(newContent: any) => setContent(newContent)}
-                  />
+                  <div>
+                    <RichTextEditor
+                      value={content}
+                      onChange={(newContent: any) => {
+                        setContent(newContent.value);
+                      }}
+                    />
+                  </div>
                 </div>
                 <div className="flex flex-col md:flex-row mx-auto py-4 lg:w-2/3 gap-10 justify-center">
                   <Button

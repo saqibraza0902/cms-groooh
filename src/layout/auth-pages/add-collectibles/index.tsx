@@ -9,10 +9,7 @@ import { addDoc, collection } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { BiPlus } from "react-icons/bi";
 import { FIREBASE_URLS } from "@/utils/urls";
-import FroalaEditor from "react-froala-wysiwyg";
-import "froala-editor/js/plugins.pkgd.min.js";
-import "froala-editor/css/froala_style.min.css";
-import "froala-editor/css/froala_editor.pkgd.min.css";
+import RichTextEditor from "@/utils/text-editor";
 const initialState = {
   title: "",
   price: null,
@@ -150,13 +147,11 @@ const AddCollectiblesLayout = () => {
           </div>
         </div>
         <div>
-          <FroalaEditor
-            tag="textarea"
-            config={{
-              height: 300,
+          <RichTextEditor
+            value={content}
+            onChange={(newContent: any) => {
+              setContent(newContent.value);
             }}
-            model={content}
-            onModelChange={(newContent: any) => setContent(newContent)}
           />
         </div>
         <div className="flex items-end mx-auto py-4 min-h-40 lg:w-2/3 gap-10 justify-center">

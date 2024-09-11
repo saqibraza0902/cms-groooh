@@ -17,11 +17,8 @@ import FileInput from "@/ui/form/file-input";
 import Image from "next/image";
 import Loader from "@/ui/components/loader-component";
 import { FIREBASE_URLS } from "@/utils/urls";
-import FroalaEditor from "react-froala-wysiwyg";
-import "froala-editor/js/plugins.pkgd.min.js";
-import "froala-editor/css/froala_style.min.css";
-import "froala-editor/css/froala_editor.pkgd.min.css";
 import ContentLayout from "@/ui/components/content-layout";
+import RichTextEditor from "@/utils/text-editor";
 
 const fetcher = async (url: string) => {
   const res = await fetch(url);
@@ -257,16 +254,14 @@ const PortfolioActionsLayout = () => {
                   className="w-full"
                 />
                 {fields?.content && (
-                  <FroalaEditor
-                    tag="textarea"
-                    config={{
-                      height: 300,
-                    }}
-                    model={fields?.content}
-                    onModelChange={(newContent: any) =>
-                      setFields({ ...fields, content: newContent })
-                    }
-                  />
+                  <div>
+                    <RichTextEditor
+                      value={fields?.content}
+                      onChange={(newContent: any) => {
+                        setFields({ ...fields, content: newContent.value });
+                      }}
+                    />
+                  </div>
                 )}
               </div>
               <div className="flex w-full h-10 gap-5 mt-5">
