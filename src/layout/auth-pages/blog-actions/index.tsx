@@ -20,6 +20,7 @@ import useSWR from "swr";
 import { FIREBASE_URLS } from "@/utils/urls";
 import ContentLayout from "@/ui/components/content-layout";
 import RichTextEditor from "@/utils/text-editor";
+import RadioInput from "@/ui/form/radio-component";
 const fetcher = async (url: string) => {
   const res = await fetch(url);
   const data = await res.json();
@@ -149,48 +150,6 @@ const BlogActionsLayout = () => {
                 isBlog: true,
               }}
             />
-            {/* {post.featuredImage.url ? (
-              <div className="relative h-80 group">
-                <Image
-                  fill={true}
-                  className=""
-                  alt={post.featuredImage?.alt}
-                  src={post.featuredImage?.url}
-                />
-                <BiTrash
-                  onClick={() => {
-                    setDelOpen(true);
-                    setId(post.id);
-                  }}
-                  className="absolute cursor-pointer top-5 left-5"
-                  color="#a0a0a0"
-                  size={25}
-                />
-
-                <BiEdit
-                  onClick={() => {
-                    setEditOpen(true);
-                    setId(post.id);
-                    setSlug(post.slug);
-                  }}
-                  className="absolute cursor-pointer top-5 right-5"
-                  color="#a0a0a0"
-                  size={25}
-                />
-              </div>
-            ) : (
-              <div className="h-80 w-full bg-slate-400">
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                  <Link href={`/actions?id=${post?.id}&slug=portfolio`}>
-                    <MdManageHistory />
-                  </Link>
-                </div>
-              </div>
-            )}
-            <Link className="cursor-pointer" href={`/blog/${post.slug}`}>
-              <h2 className="text-xl font-semibold">{post.title}</h2>
-              <p className="text-justify line-clamp-2">{post.desc}</p>
-            </Link> */}
           </div>
         ))}
       </div>
@@ -247,6 +206,52 @@ const BlogActionsLayout = () => {
                     setFields({ ...fields, desc: e.target.value })
                   }
                 />
+                <div>
+                  <p>Archive Your blog</p>
+                  <div className="flex gap-10">
+                    <RadioInput
+                      checked={fields?.isArchived}
+                      type="radio"
+                      name="archive"
+                      label="Yes"
+                      onChange={() =>
+                        setFields({ ...fields, isArchived: true })
+                      }
+                    />
+                    <RadioInput
+                      checked={!fields?.isArchived}
+                      type="radio"
+                      name="archive"
+                      label="No"
+                      onChange={() =>
+                        setFields({ ...fields, isArchived: false })
+                      }
+                    />
+                  </div>
+                </div>
+                <div>
+                  <p>Set this blog featured</p>
+                  <div className="flex gap-10">
+                    <RadioInput
+                      checked={fields?.isFeatured}
+                      type="radio"
+                      name="featured"
+                      label="Yes"
+                      onChange={() =>
+                        setFields({ ...fields, isFeatured: true })
+                      }
+                    />
+                    <RadioInput
+                      checked={!fields?.isFeatured}
+                      type="radio"
+                      name="featured"
+                      label="No"
+                      onChange={() =>
+                        setFields({ ...fields, isFeatured: false })
+                      }
+                    />
+                  </div>
+                </div>
                 {progress > 0 && <p>Upload progress: {progress}%</p>}
                 {fields?.featuredImage?.url && (
                   <div className=" grid grid-cols-4">

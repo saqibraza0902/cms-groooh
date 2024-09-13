@@ -139,12 +139,26 @@ div.sticks {
   margin: 50px;
 }
 
-/* @import "../node_modules/@syncfusion/ej2-base/styles/material.css";
-@import "../node_modules/@syncfusion/ej2-icons/styles/material.css";
-@import "../node_modules/@syncfusion/ej2-buttons/styles/material.css";
-@import "../node_modules/@syncfusion/ej2-splitbuttons/styles/material.css";
-@import "../node_modules/@syncfusion/ej2-inputs/styles/material.css";
-@import "../node_modules/@syncfusion/ej2-lists/styles/material.css";
-@import "../node_modules/@syncfusion/ej2-navigations/styles/material.css";
-@import "../node_modules/@syncfusion/ej2-popups/styles/material.css";
-@import "../node_modules/@syncfusion/ej2-richtexteditor/styles/material.css"; */
+.html-tag {
+  color: #d73a49; /* Color for HTML tags */
+}
+
+.html-attribute {
+  color: #6f42c1; /* Color for HTML attributes */
+}
+
+.html-attribute-value {
+  color: #032f62; /* Color for HTML attribute values */
+}
+
+.css-class-name {
+  color: #ff6f61; /* Color for CSS class names */
+}
+
+.css-property {
+  color: #4caf50; /* Color for CSS properties */
+}
+
+.css-value {
+  color: #2196f3; /* Color for CSS values */
+}

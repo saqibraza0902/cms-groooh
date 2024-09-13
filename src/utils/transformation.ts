@@ -1,12 +1,7 @@
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { all, common, createLowlight } from "lowlight";
-import rehypeReact from "rehype-react";
-import { createElement } from "react";
-import { renderToStaticMarkup } from "react-dom/server";
-import language from "react-syntax-highlighter/dist/esm/languages/hljs/1c";
-import "highlight.js/styles/github.css"; // You can choose other styles as well
+import "highlight.js/styles/github.css";
+import hljs from "highlight.js";
+import he from "he";
 
-const lowlight = createLowlight(common);
 export function addCustomStyling(content: string) {
   content = content.replace(
     /<pre id="isPasted">/g,
@@ -21,23 +16,6 @@ export function addCustomStyling(content: string) {
     /<p[^>]*>(\s*<img[^>]*>\s*)<\/p>/g,
     '<p style="width: 100%;"><img style="width: 100%;"$1</p>'
   );
-
-  // content = content.replace(
-  //   /<ol[^>]*>([\s\S]*?)<\/ol>/g,
-  //   function (match, innerHTML) {
-  //     const listContent = innerHTML.trim();
-  //     // Replace the <li> tags with <div> tags
-  //     const modifiedContent = listContent.replace(
-  //       /<li(?:\s+[^>]*)*>([\s\S]*?)<\/li>/g,
-  //       "<div>$1</div>"
-  //     );
-
-  //     // Wrap the modified content in a grid container
-  //     const gridContent = `<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; justify-items: center">${modifiedContent}</div>`;
-
-  //     return gridContent;
-  //   }
-  // );
   let index = 0;
   content = content.replace(/<h3(\s[^>]*)?>/g, (match, attributes) => {
     index++;
@@ -61,31 +39,49 @@ export function addCustomStyling(content: string) {
   content = content.replace(
     /<pre class="custom-styling">([\s\S]*?)<\/pre>/g,
     function (match, codeContent) {
-      const highlighted = lowlight.highlight("js", codeContent.trim());
+      const decodeContent = decodeHTML(codeContent);
+      const containsHTML = /<([a-z]+)(?![^>]*\/>)[^>]*>/i.test(decodeContent);
+      const containsCSS =
+        !containsHTML && /^\s*\.[a-zA-Z_][\w-]*\s*\{/.test(decodeContent);
 
-      // Convert nodes to HTML
-      const highlightedHtml = highlighted.children
-        .map((node) => convertNodeToHtml(node))
-        .join("");
+      let additionalClass = "";
+      if (containsHTML) {
+        codeContent = hljs.highlight(decodeContent, {
+          language: "xml",
+        }).value;
+      } else if (containsCSS) {
+        additionalClass = "css-content";
+        // Apply colorization for CSS content
+        codeContent = codeContent
+          // Class names (e.g., .card)
+          .replace(
+            /(\.[a-zA-Z_][\w-]*)/g,
+            '<span class="css-class-name">$1</span>'
+          )
+          // CSS properties (e.g., border, padding, etc.)
+          .replace(
+            /([a-zA-Z-]+)(\s*:\s*)/g,
+            '<span class="css-property">$1</span>$2'
+          )
+          // CSS values (e.g., 1px solid #ccc)
+          .replace(
+            /(:\s*)([^;]+)(;)/g,
+            '$1<span class="css-value">$2</span>$3'
+          );
+      } else {
+        codeContent = hljs.highlight(decodeContent, {
+          language: "javascript",
+        }).value;
+      }
 
-      return `<pre class="custom-styling"><code>${highlightedHtml}</code></pre>`;
+      return `<pre class="custom-styling"><code class="${additionalClass}">${codeContent}</code></pre>`;
     }
   );
 
   return content;
 }
-function convertNodeToHtml(node: any) {
-  if (node.type === "text") {
-    return node.value;
-  }
-
-  const tagName = node.tagName;
-  const className = node.properties.className
-    ? ` class="${node.properties.className.join(" ")}"`
-    : "";
-  const children = node.children.map(convertNodeToHtml).join("");
-
-  return `<${tagName}${className}>${children}</${tagName}>`;
+function decodeHTML(str: string) {
+  return he.decode(str);
 }
 const getHrefFromAnchor = (anchorTagString: any) => {
   const regex = /href="(.*?)"/g;

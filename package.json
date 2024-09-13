@@ -22,8 +22,8 @@
     "cookies-next": "^4.1.1",
     "firebase": "^10.9.0",
     "framer-motion": "^11.0.20",
+    "he": "^1.2.0",
     "highlight.js": "^11.10.0",
-    "lowlight": "^3.1.0",
     "next": "^14.2.5",
     "next-themes": "^0.3.0",
     "nextjs-toploader": "^1.6.11",
@@ -36,10 +36,8 @@
     "react-responsive": "^10.0.0",
     "react-share": "^5.1.0",
     "react-spinners": "^0.13.8",
-    "react-syntax-highlighter": "^15.5.0",
     "react-toastify": "^10.0.5",
     "redux-persist": "^6.0.0",
-    "rehype-react": "^8.0.0",
     "swiper": "^11.1.0",
     "swr": "^2.2.5",
     "tailwind-merge": "^2.2.2",
@@ -47,6 +45,7 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@types/he": "^1.2.3",
     "@types/node": "^20",
     "@types/nodemailer": "^6.4.15",
     "@types/prismjs": "^1.26.4",
