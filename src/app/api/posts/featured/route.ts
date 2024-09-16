@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { db } from "../../../utils/firebase";
+import { db } from "../../../../utils/firebase";
 import { collection, getDocs, limit, query, where } from "firebase/firestore";
 export const GET = async (req: NextRequest, res: NextResponse) => {
   try {

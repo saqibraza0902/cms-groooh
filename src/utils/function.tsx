@@ -172,10 +172,10 @@ export const get_tags = async () => {
 export const featured_blogs = async () => {
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_URL}/api/featuredblogs`,
+      `${process.env.NEXT_PUBLIC_URL}/api/posts/featured`,
       {
         method: "GET",
-        cache: "no-cache",
+        cache: "no-store",
       }
     );
     if (!res.ok) {
