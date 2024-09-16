@@ -175,7 +175,7 @@ export const featured_blogs = async () => {
       `${process.env.NEXT_PUBLIC_URL}/api/featuredblogs`,
       {
         method: "GET",
-        cache: "no-store",
+        cache: "no-cache",
       }
     );
     if (!res.ok) {
