@@ -1,5 +1,5 @@
 import ContentLayout from "@/ui/components/content-layout";
-import { featured_blogs } from "@/utils/function";
+import { featured_blogs, get_blogs } from "@/utils/function";
 import { IBlog, IBlogSection } from "@/utils/types";
 import { PUBLIC_URLS } from "@/utils/urls";
 import Link from "next/link";
@@ -8,6 +8,7 @@ interface IProp {
 }
 const BlogSection = async ({ mydata }: IProp) => {
   const data = await featured_blogs();
+  const blogs = await get_blogs();
   if (data.length < 1) {
     return;
   }
@@ -31,7 +32,7 @@ const BlogSection = async ({ mydata }: IProp) => {
           />
         ))}
       </div>
-      {data?.length > 3 && (
+      {data?.length >= 6 && blogs?.length > data?.length && (
         <div className="w-full flex justify-center">
           <Link
             href={PUBLIC_URLS.BLOG}
