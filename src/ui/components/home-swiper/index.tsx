@@ -11,7 +11,10 @@ import { useMediaQuery } from "react-responsive";
 SwiperCore.use([Navigation, Autoplay]);
 
 interface IProp {
-  slides: string[];
+  slides: {
+    text: string;
+    image: string;
+  }[];
 }
 const HomeSwiper = ({ slides }: IProp) => {
   const breakpoints = {
@@ -45,16 +48,14 @@ const HomeSwiper = ({ slides }: IProp) => {
           className="h-full w-full relative group cursor-pointer overflow-hidden"
         >
           <Image
-            src={item}
+            src={item.image}
             alt=""
             className="object-center rounded-[40px] w-full h-full"
             layout="fill"
             objectFit="cover"
           />
           <div className="absolute -bottom-32 group-hover:bottom-0 h-28 bg-gradient-to-b from-transparent to-black flex flex-col justify-end p-7 group-hover:h-full gap-3 transition-all duration-300 text-white rounded-[40px] w-full">
-            <p className=" font-SuisseBold text-2xl">
-              support ambitious clients in their pursuit of perfection..
-            </p>
+            <p className=" font-SuisseBold text-2xl">{item.text}</p>
           </div>
         </SwiperSlide>
       ))}

@@ -3,7 +3,10 @@ export interface IHomeHeroSection {
   animatedimages: [string];
   statictext: [string];
   bottomstatictext: [string];
-  carouselslides: string[];
+  carouselslides: {
+    text: string;
+    image: string;
+  }[];
 }
 
 export interface IUser {
