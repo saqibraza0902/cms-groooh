@@ -8,7 +8,7 @@ const people = [
 
 export default function ListView({ t }: { t: string }) {
   return (
-    <div className="mx-auto w-full mt-10 flex flex-wrap  gap-5">
+    <div className="mx-auto w-full pt-10 flex flex-wrap  gap-5">
       {people.map((el) => {
         const href = el.slug === "all" ? `?t=` : `?t=${el.slug}`;
         return (
