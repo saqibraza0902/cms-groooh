@@ -9,6 +9,7 @@ import {
 import { doc, setDoc } from "firebase/firestore";
 import { useRouter } from "next/navigation";
 import { AUTH_URLS } from "@/utils/urls";
+import { toast } from "react-toastify";
 
 const SignInLayout = () => {
   const [email, setEmail] = useState("");
@@ -19,7 +20,7 @@ const SignInLayout = () => {
     try {
       const provider = new GoogleAuthProvider();
       const auths = await signInWithPopup(auth, provider);
-      const authorsDocRef = doc(db, "Authers", auths.user.uid);
+      const authorsDocRef = doc(db, "Users", auths.user.uid);
       await setDoc(authorsDocRef, {
         email: auths.user.email,
         name: auths.user.displayName,
@@ -28,6 +29,7 @@ const SignInLayout = () => {
         isAdmin: false,
         isAuther: false,
       });
+
       router.push(AUTH_URLS.ADD_BLOG);
     } catch (error) {
       console.log(error);
@@ -42,9 +44,15 @@ const SignInLayout = () => {
         email,
         passwordOne
       );
-      router.push(AUTH_URLS.ADD_BLOG);
-    } catch (error) {
+      console.log(user);
+      toast.success("Success");
+      // @ts-ignore
+      if (user?.isAdmin) {
+        router.push(AUTH_URLS.ADD_BLOG);
+      }
+    } catch (error: any) {
       console.log(error);
+      alert(error);
     }
   };
   return (

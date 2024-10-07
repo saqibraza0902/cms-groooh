@@ -2,25 +2,26 @@
 import React, { useEffect, useState } from "react";
 import ToggleSidebar from "./toggle-sidebar";
 import Navbar from "./navbar-component";
-import { auth } from "@/utils/firebase";
+import { auth, db } from "@/utils/firebase";
 import LoggedinNavbar from "./login-navbar";
+import { doc, getDoc } from "firebase/firestore";
 
 const Navigation = () => {
   const [isOpen, setisOpen] = useState(false);
-  const [isUser, setisUser] = useState(false);
+  const [isUser, setisUser] = useState<any>();
   const [mount, setMount] = useState(false);
-
   const toggleSideBar = () => {
     setisOpen(!isOpen);
   };
-
   useEffect(() => {
     setMount(true);
-    const unsubscribe = auth.onAuthStateChanged((user) => {
+    const unsubscribe = auth.onAuthStateChanged(async (user) => {
       if (!user) {
-        setisUser(false);
       } else if (user) {
-        setisUser(true);
+        const docRef = doc(db, "Users", user.uid as string);
+        const docSnap = await getDoc(docRef);
+        const data = { id: docSnap.id, ...docSnap.data() };
+        setisUser(data);
       }
     });
 
@@ -31,7 +32,7 @@ const Navigation = () => {
   }
   return (
     <div>
-      {isUser ? (
+      {isUser && isUser.isAdmin === true ? (
         <LoggedinNavbar toggle={toggleSideBar} />
       ) : (
         <Navbar toggle={toggleSideBar} />

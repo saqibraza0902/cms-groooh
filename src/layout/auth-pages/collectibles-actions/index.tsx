@@ -21,6 +21,7 @@ import { RxCross1 } from "react-icons/rx";
 import useSWR from "swr";
 import { FIREBASE_URLS } from "@/utils/urls";
 import RichTextEditor from "@/utils/text-editor";
+import { BASEURL } from "@/utils/function";
 
 const fetcher = async (url: string) => {
   const res = await fetch(url);
@@ -85,7 +86,7 @@ const CollectiblesActionLayout = () => {
     file: null,
   });
   const { data, mutate, isLoading } = useSWR(
-    `${process.env.NEXT_PUBLIC_URL}/api/collectibles/${id}`,
+    `${BASEURL}api/collectibles/${id}`,
     fetcher
   );
   useEffect(() => {
@@ -361,4 +362,4 @@ const CollectiblesActionLayout = () => {
   );
 };
 
-export default adminAuth(CollectiblesActionLayout);
+export default CollectiblesActionLayout;

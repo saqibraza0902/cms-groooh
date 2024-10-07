@@ -6,6 +6,7 @@ import CookiesConcent from "./common-components/cookies-concent";
 interface ICommon {
   children: React.ReactNode;
 }
+
 const CommonLayout = ({ children }: ICommon) => {
   return (
     <div>

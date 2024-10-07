@@ -73,6 +73,7 @@ const DashboardLayout = () => {
       toast.success("Blog posted");
       setContent("");
     } catch (error) {
+      console.log(error);
       toast.error("Error posting blog");
     }
   };

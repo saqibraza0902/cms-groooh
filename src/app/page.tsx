@@ -9,7 +9,6 @@ import WorkSection from "@/layout/home-layout/work-section";
 import ScrollTextSection from "@/layout/home-layout/scroll-text-section";
 import { home_details } from "@/utils/function";
 import { IHome } from "@/utils/types";
-
 const Home = async () => {
   const home_detail: IHome = await home_details();
   return (

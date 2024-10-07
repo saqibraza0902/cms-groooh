@@ -8,6 +8,7 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
+import { toast } from "react-toastify";
 const initialState = {
   email: "",
   passwordOne: "",
@@ -24,7 +25,7 @@ const SignUpLayout = () => {
         detail.passwordOne
       );
       console.log(auths);
-      const authorsDocRef = doc(db, "Authers", auths.user.uid);
+      const authorsDocRef = doc(db, "Users", auths.user.uid);
       await setDoc(authorsDocRef, {
         email: auths.user.email,
         name: auths.user.displayName,
@@ -34,31 +35,17 @@ const SignUpLayout = () => {
         isAuther: false,
       });
       setDetails(initialState);
+      toast.success("Success");
     } catch (error) {
+      console.log(error);
       alert(error);
     }
   };
-  // Function to check if an email already exists in Firebase authentication
-  const checkIfEmailExists = async (email: string) => {
-    try {
-      // const newauth = getAuth();
-      const methods = await fetchSignInMethodsForEmail(auth, email);
-      if (methods && methods.length > 0) {
-        // Return the provider ID for the existing account
-        return { email, providerId: methods[0] };
-      }
-      return null;
-    } catch (error) {
-      console.error("Error checking if email exists:", error);
-      return null;
-    }
-  };
-
   const handleSignIn = async () => {
     try {
       const provider = new GoogleAuthProvider();
       const auths = await signInWithPopup(auth, provider);
-      const authorsDocRef = doc(db, "Authers", auths.user.uid);
+      const authorsDocRef = doc(db, "Users", auths.user.uid);
       await setDoc(authorsDocRef, {
         email: auths.user.email,
         name: auths.user.displayName,
@@ -70,17 +57,6 @@ const SignUpLayout = () => {
     } catch (error) {
       console.log(error);
     }
-  };
-  const abc = () => {
-    // addDoc(collection(db, "Authers"), {
-    //   email: auths?.user.email,
-    //   name: auths?.user.displayName,
-    //   avatar: auths?.user.photoURL,
-    //   description: auths?.user.providerData[0].providerId,
-    //   isAdmin: false,
-    //   isAuther: false,
-    // });
-    // setDetails(initialState);
   };
 
   return (

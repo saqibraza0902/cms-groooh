@@ -1,12 +1,12 @@
-import CommonLayout from "@/layout";
 import PortfolioActionsLayout from "@/layout/auth-pages/portfolio-actions";
+import WithAuthLayout from "@/layout/with-auth-layout";
 import React from "react";
 
 const PortfolioActions = () => {
   return (
-    <CommonLayout>
+    <WithAuthLayout>
       <PortfolioActionsLayout />
-    </CommonLayout>
+    </WithAuthLayout>
   );
 };
 

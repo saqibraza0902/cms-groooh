@@ -1,12 +1,11 @@
 "use client";
 import CommonLayout from "@/layout";
+import { BASEURL } from "@/utils/function";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 const get_single_posts = async (slug: string) => {
   try {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_URL}/api/collectibles/${slug}`
-    );
+    const res = await fetch(`${BASEURL}api/collectibles/${slug}`);
 
     if (!res.ok) {
       throw new Error("Failed");

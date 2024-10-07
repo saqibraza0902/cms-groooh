@@ -12,6 +12,15 @@ const BlogSection = async ({ mydata }: IProp) => {
   if (data.length < 1) {
     return;
   }
+  if (!Array.isArray(data)) {
+    // console.log("Error: featured_posts is not an array", featured_posts.posts);
+    return <p>Error loading featured posts</p>;
+  }
+
+  if (blogs?.length <= 0 || !Array.isArray(blogs)) {
+    // console.log("Error: data.posts is not an array", data.posts);
+    return <p>Error loading posts</p>;
+  }
   return (
     <div className="flex flex-col gap-10 2xl:w-[85%] mx-auto">
       <h2 className="font-SuisseBold md:w-1/12 lg:w-full text-6xl ">

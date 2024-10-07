@@ -1,5 +1,5 @@
 import CommonLayout from "@/layout";
-import { getSinglePost, suggested_blogs } from "@/utils/function";
+import { BASEURL, getSinglePost, suggested_blogs } from "@/utils/function";
 import extractStrongText from "@/utils/text";
 import { timestamps } from "@/utils/timestamp";
 import { IBlog, IUser } from "@/utils/types";
@@ -32,7 +32,7 @@ export default async function SinglePost({ params }: IProp) {
   const recentBlogs = await suggested_blogs(blogPost.tags, blogPost.id);
   console.log("Length", recentBlogs.length);
   const strongText = extractStrongText(blogPost.content);
-  const link = `${process.env.NEXT_PUBLIC_URL}/blog/${params.slug}`;
+  const link = `${BASEURL}blog/${params.slug}`;
   return (
     <CommonLayout>
       <div className="flex flex-col bg-white  lg:flex-row relative justify-center w-full h-full min-h-screen ">

@@ -1,12 +1,13 @@
 import CommonLayout from "@/layout";
 import BlogActionsLayout from "@/layout/auth-pages/blog-actions";
+import WithAuthLayout from "@/layout/with-auth-layout";
 import React from "react";
 
 const BlogActions = () => {
   return (
-    <CommonLayout>
+    <WithAuthLayout>
       <BlogActionsLayout />
-    </CommonLayout>
+    </WithAuthLayout>
   );
 };
 

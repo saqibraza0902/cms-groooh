@@ -3,10 +3,15 @@ import { app, db } from "./firebase";
 import { cache } from "react";
 import { getDownloadURL, getStorage, listAll, ref } from "firebase/storage";
 
+export const BASEURL = `${process.env.NEXT_PUBLIC_URL}`;
+
 export const home_details = async () => {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/home`, {
+    const res = await fetch(`${BASEURL}api/home`, {
       method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
       next: {
         revalidate: 300,
       },
@@ -21,8 +26,11 @@ export const home_details = async () => {
 };
 export const contact_details = async () => {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/contact`, {
+    const res = await fetch(`${BASEURL}api/contact`, {
       method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
       next: {
         revalidate: 300,
       },
@@ -37,8 +45,11 @@ export const contact_details = async () => {
 };
 export const services_page = async () => {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/services`, {
+    const res = await fetch(`${BASEURL}api/services`, {
       method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
       next: {
         revalidate: 300,
       },
@@ -53,15 +64,15 @@ export const services_page = async () => {
 };
 export const services_title = async () => {
   try {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_URL}/api/servicestitle`,
-      {
-        method: "GET",
-        next: {
-          revalidate: 300,
-        },
-      }
-    );
+    const res = await fetch(`${BASEURL}api/servicestitle`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      next: {
+        revalidate: 300,
+      },
+    });
     if (!res.ok) {
       return console.log("Error ");
     }
@@ -72,8 +83,11 @@ export const services_title = async () => {
 };
 export const get_blogs = async () => {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/posts`, {
+    const res = await fetch(`${BASEURL}api/posts`, {
       method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
       cache: "no-store",
     });
     if (!res.ok) {
@@ -87,8 +101,11 @@ export const get_blogs = async () => {
 };
 export const get_portfolios = async () => {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/portfolio`, {
+    const res = await fetch(`${BASEURL}api/portfolio`, {
       method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
       cache: "no-store",
     });
     if (!res.ok) {
@@ -101,13 +118,13 @@ export const get_portfolios = async () => {
 };
 export const getSinglePost = cache(async (slug: string) => {
   try {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_URL}/api/posts/${slug}`,
-      {
-        method: "GET",
-        cache: "no-store",
-      }
-    );
+    const res = await fetch(`${BASEURL}api/posts/${slug}`, {
+      method: "GET",
+      cache: "no-store",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
     if (!res.ok) {
       throw new Error("Failed");
     }
@@ -118,12 +135,12 @@ export const getSinglePost = cache(async (slug: string) => {
 });
 export const getSinglePortfolio = async (slug: string) => {
   try {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_URL}/api/portfolio/${slug}`,
-      {
-        method: "GET",
-      }
-    );
+    const res = await fetch(`${BASEURL}api/portfolio/${slug}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
     if (!res.ok) {
       throw new Error("Failed");
     }
@@ -171,13 +188,13 @@ export const get_tags = async () => {
 };
 export const featured_blogs = async () => {
   try {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_URL}/api/posts/featured`,
-      {
-        method: "GET",
-        cache: "no-store",
-      }
-    );
+    const res = await fetch(`${BASEURL}api/posts/featured`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      cache: "no-store",
+    });
     if (!res.ok) {
       throw new Error("Failed");
     }
@@ -189,9 +206,12 @@ export const featured_blogs = async () => {
 export const suggested_blogs = async (tags: string[], id: string) => {
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_URL}/api/suggested-blogs?tags=${tags}&id=${id}`,
+      `${BASEURL}api/suggested-blogs?tags=${tags}&id=${id}`,
       {
         method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
         next: {
           revalidate: 300,
         },
@@ -207,12 +227,12 @@ export const suggested_blogs = async (tags: string[], id: string) => {
 };
 export const auther_details = async (id: string) => {
   try {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_URL}/api/autherdetails?id=${id}`,
-      {
-        method: "GET",
-      }
-    );
+    const res = await fetch(`${BASEURL}api/autherdetails?id=${id}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
     if (!res.ok) {
       throw new Error("Failed");
     }
@@ -224,7 +244,7 @@ export const auther_details = async (id: string) => {
 export const suggested_projects = async (tags: string[], id: string) => {
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_URL}/api/suggested-portfolios?tags=${tags}&id=${id}`,
+      `${BASEURL}api/suggested-portfolios?tags=${tags}&id=${id}`,
       {
         method: "GET",
         next: {
@@ -253,11 +273,12 @@ export const get_images_from_firebase = async (folderPath: string) => {
 export const get_collectibles = async (paramtype: string) => {
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_URL}/api/collectibles?mytype=${
-        paramtype ? paramtype : ""
-      }`,
+      `${BASEURL}api/collectibles?mytype=${paramtype ? paramtype : ""}`,
       {
         method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
       }
     );
     if (!res.ok) {
@@ -270,8 +291,11 @@ export const get_collectibles = async (paramtype: string) => {
 };
 export const get_processes = async () => {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/processes`, {
+    const res = await fetch(`${BASEURL}api/processes`, {
       method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
       next: {
         revalidate: 300,
       },

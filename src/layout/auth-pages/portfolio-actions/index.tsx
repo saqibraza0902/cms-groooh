@@ -19,6 +19,7 @@ import Loader from "@/ui/components/loader-component";
 import { FIREBASE_URLS } from "@/utils/urls";
 import ContentLayout from "@/ui/components/content-layout";
 import RichTextEditor from "@/utils/text-editor";
+import { BASEURL } from "@/utils/function";
 
 const fetcher = async (url: string) => {
   const res = await fetch(url);
@@ -38,14 +39,14 @@ const PortfolioActionsLayout = () => {
   const [id, setId] = useState("");
   const [slug, setSlug] = useState("");
   const { data, mutate, isLoading } = useSWR(
-    `${process.env.NEXT_PUBLIC_URL}/api/portfolio`,
+    `${BASEURL}api/portfolio`,
     fetcher
   );
   const {
     data: postData,
     mutate: mutatePost,
     isLoading: isPostLoading,
-  } = useSWR(`${process.env.NEXT_PUBLIC_URL}/api/portfolio/${slug}`, fetcher);
+  } = useSWR(`${BASEURL}api/portfolio/${slug}`, fetcher);
   console.log("This is data", postData);
   const removeItemFromGallery = (indexToRemove: number) => {
     const updatedGallery = [...fields.gallery];

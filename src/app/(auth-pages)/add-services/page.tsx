@@ -1,5 +1,6 @@
 "use client";
 import CommonLayout from "@/layout";
+import WithAuthLayout from "@/layout/with-auth-layout";
 import GalleryInput from "@/ui/form/gallery-input";
 import { app, db } from "@/utils/firebase";
 import { get_images_from_firebase } from "@/utils/function";
@@ -187,7 +188,7 @@ const AddNewService = () => {
     alert("Data submitted successfully!");
   };
   return (
-    <CommonLayout>
+    <WithAuthLayout>
       <div className="max-w-3xl mx-auto my-10 p-6 bg-white shadow-lg rounded-lg">
         <h2 className="font-bold text-4xl text-center mb-8">
           Create a new service page
@@ -326,7 +327,7 @@ const AddNewService = () => {
           Submit
         </button>
       </div>
-    </CommonLayout>
+    </WithAuthLayout>
   );
 };
 

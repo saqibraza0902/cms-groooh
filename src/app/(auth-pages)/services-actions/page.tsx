@@ -1,6 +1,7 @@
 "use client";
 import CommonLayout from "@/layout";
 import EditServices from "@/layout/edit-services";
+import WithAuthLayout from "@/layout/with-auth-layout";
 import { services_title } from "@/utils/function";
 import React, { useEffect, useState } from "react";
 
@@ -32,7 +33,7 @@ const EditService = () => {
   }, [serviceVal, CARDSARRAY]);
 
   return (
-    <CommonLayout>
+    <WithAuthLayout>
       <div className="container w-2/3 mx-auto p-8">
         <div>
           <div className="mb-6">
@@ -74,7 +75,7 @@ const EditService = () => {
           </div>
         </div>
       </div>
-    </CommonLayout>
+    </WithAuthLayout>
   );
 };
 

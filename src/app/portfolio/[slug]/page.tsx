@@ -3,7 +3,7 @@ import { SHARE_ICONS } from "@/mock";
 import { ShareIcon } from "@/ui/components/animated-icons";
 import ContentLayout from "@/ui/components/content-layout";
 import { calculateDuration } from "@/utils/calculate-date";
-import { suggested_projects } from "@/utils/function";
+import { BASEURL, suggested_projects } from "@/utils/function";
 import extractStrongText from "@/utils/text";
 import { timestamps } from "@/utils/timestamp";
 import { addCustomStyling } from "@/utils/transformation";
@@ -15,12 +15,9 @@ import { CiCalendar } from "react-icons/ci";
 
 const getData = async (slug: any) => {
   try {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_URL}/api/portfolio/${slug}`,
-      {
-        cache: "no-store",
-      }
-    );
+    const res = await fetch(`${BASEURL}api/portfolio/${slug}`, {
+      cache: "no-store",
+    });
     if (!res.ok) {
       throw new Error("Failed");
     }
@@ -43,7 +40,7 @@ const SinglePortfolio = async (props: any) => {
   const similarportfolios = await suggested_projects(post.tags, post.id);
   const strongText = extractStrongText(post?.content);
 
-  const link = `${process.env.NEXT_PUBLIC_URL}/portfolio/${slug}`;
+  const link = `${BASEURL}portfolio/${slug}`;
   const duration = calculateDuration(
     // @ts-ignore
     post.timeline.start.seconds,

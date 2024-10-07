@@ -15,7 +15,7 @@ const adminAuth = <P extends object>(
       const unsubscribe = auth.onAuthStateChanged(async (user) => {
         setAuthState(user);
         if (user) {
-          const usersRef = collection(db, "Authers");
+          const usersRef = collection(db, "Users");
           console.log(user);
           const q = query(usersRef, where("email", "==", user.email));
           const snap = await getDocs(q);

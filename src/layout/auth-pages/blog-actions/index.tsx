@@ -21,6 +21,7 @@ import { FIREBASE_URLS } from "@/utils/urls";
 import ContentLayout from "@/ui/components/content-layout";
 import RichTextEditor from "@/utils/text-editor";
 import RadioInput from "@/ui/form/radio-component";
+import { BASEURL } from "@/utils/function";
 const fetcher = async (url: string) => {
   const res = await fetch(url);
   const data = await res.json();
@@ -38,15 +39,12 @@ const BlogActionsLayout = () => {
   const [slug, setSlug] = useState("");
   const [file, setFile] = useState<null | any>();
   const [id, setId] = useState("");
-  const { data, mutate, isLoading } = useSWR(
-    `${process.env.NEXT_PUBLIC_URL}/api/posts`,
-    fetcher
-  );
+  const { data, mutate, isLoading } = useSWR(`${BASEURL}api/posts`, fetcher);
   const {
     data: postData,
     mutate: mutatePost,
     isLoading: isPostLoading,
-  } = useSWR(`${process.env.NEXT_PUBLIC_URL}/api/posts/${slug}`, fetcher);
+  } = useSWR(`${BASEURL}api/posts/${slug}`, fetcher);
 
   const deleteCollectible = async (documentId: string) => {
     try {

@@ -2,6 +2,8 @@
 import React from "react";
 import "react-toastify/ReactToastify.min.css";
 import { ToastContainer } from "react-toastify";
+import { headers } from "next/headers";
+
 const ReactToastProvider = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
