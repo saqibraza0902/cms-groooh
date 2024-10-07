@@ -12,9 +12,7 @@ export const home_details = async () => {
       headers: {
         "Content-Type": "application/json",
       },
-      next: {
-        revalidate: 300,
-      },
+      cache: "no-store",
     });
     if (!res.ok) {
       return console.log("Blog function not working");
@@ -31,9 +29,7 @@ export const contact_details = async () => {
       headers: {
         "Content-Type": "application/json",
       },
-      next: {
-        revalidate: 300,
-      },
+      cache: "no-store",
     });
     if (!res.ok) {
       return console.log("Blog function not working");
@@ -50,9 +46,7 @@ export const services_page = async () => {
       headers: {
         "Content-Type": "application/json",
       },
-      next: {
-        revalidate: 300,
-      },
+      cache: "no-store",
     });
     if (!res.ok) {
       return console.log("Error ");
@@ -69,9 +63,7 @@ export const services_title = async () => {
       headers: {
         "Content-Type": "application/json",
       },
-      next: {
-        revalidate: 300,
-      },
+      cache: "no-store",
     });
     if (!res.ok) {
       return console.log("Error ");
@@ -212,9 +204,7 @@ export const suggested_blogs = async (tags: string[], id: string) => {
         headers: {
           "Content-Type": "application/json",
         },
-        next: {
-          revalidate: 300,
-        },
+        cache: "no-store",
       }
     );
     if (!res.ok) {
@@ -247,9 +237,7 @@ export const suggested_projects = async (tags: string[], id: string) => {
       `${BASEURL}api/suggested-portfolios?tags=${tags}&id=${id}`,
       {
         method: "GET",
-        next: {
-          revalidate: 300,
-        },
+        cache: "no-store",
         headers: {
           "Content-Type": "application/json",
         },
@@ -296,9 +284,7 @@ export const get_processes = async () => {
       headers: {
         "Content-Type": "application/json",
       },
-      next: {
-        revalidate: 30,
-      },
+      cache: "no-store",
     });
     if (!res.ok) {
       throw new Error("Failed");

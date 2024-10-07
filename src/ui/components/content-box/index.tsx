@@ -11,7 +11,7 @@ const ContentBox = ({ className, childClass, children }: IProp) => {
     <div className="relative w-full h-full lg:inline-block">
       <div
         className={`${cn(
-          `absolute inset-0 bg-black rounded-[60px] shadow-lg transform translate-x-5 translate-y-5`
+          `absolute inset-0 bg-black rounded-[60px] transform translate-x-5 translate-y-5`
         )} ${childClass}`}
       ></div>
       <div

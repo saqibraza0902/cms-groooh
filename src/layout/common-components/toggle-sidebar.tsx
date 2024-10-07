@@ -9,7 +9,7 @@ import { AnimatedLink, ButtonLayout } from "@/ui/components/animated-button";
 import { cn } from "@/utils/styles";
 import { HiOutlineSun } from "react-icons/hi2";
 import { useTheme } from "next-themes";
-import { services_title } from "@/utils/function";
+import { get_collectibles, services_title } from "@/utils/function";
 import { useAppSelector } from "@/hooks/Hooks";
 import { PUBLIC_URLS } from "@/utils/urls";
 interface Props {
@@ -30,6 +30,7 @@ const ToggleSidebar = ({ open, close }: Props) => {
   const [activeIndex, setActiveIndex] = useState(null);
   const [activeDropdownIndex, setActiveDropdownIndex] = useState(null);
   const { services } = useAppSelector((s) => s.services);
+  const [collectibles, setCollectibles] = useState([]);
   const handleNavItemClick = (index: any, isDropdown: any) => {
     setActiveIndex(activeIndex === index ? null : index);
     setActiveDropdownIndex(null); // Reset dropdown state when toggling main item
@@ -38,7 +39,13 @@ const ToggleSidebar = ({ open, close }: Props) => {
   const handleDropdownItemClick = (index: any) => {
     setActiveDropdownIndex(activeDropdownIndex === index ? null : index);
   };
-
+  useEffect(() => {
+    const gettitles = async () => {
+      const mydata = await get_collectibles("");
+      setCollectibles(mydata?.data);
+    };
+    gettitles();
+  }, []);
   return (
     <div
       className={`fixed lg:hidden inset-y-0 w-full md:w-[50%]  !overflow-hidden z-50 lg:w-[25%] bg-white dark:bg-black transition-transform duration-300 transform flex 
@@ -66,76 +73,86 @@ const ToggleSidebar = ({ open, close }: Props) => {
         </div>
 
         <div className="w-full flex flex-col gap-1">
-          {WITHOUT_AUTH_PUBLIC_NAV.map((item, index) => (
-            <div
-              key={index}
-              className={`flex transition-all duration-300 ease-in-out flex-col px-3 text-black bg-primary w-full relative gap-2 ${
-                path === item.pathname && "!bg-secondary"
-              }`}
-            >
+          {WITHOUT_AUTH_PUBLIC_NAV.map((item, index) => {
+            const isCollectiblesEmpty =
+              item?.pathname === PUBLIC_URLS.COLLECTIBLES &&
+              collectibles?.length === 0;
+            return (
               <div
-                className="flex transition-all duration-300 ease-in-out items-center cursor-pointer"
-                onClick={() => handleNavItemClick(index, item.isDropdown)}
+                key={index}
+                className={cn(
+                  `flex transition-all duration-300 ease-in-out flex-col px-3 text-black bg-primary w-full relative gap-2 ${
+                    path === item.pathname && "!bg-secondary"
+                  }`,
+                  {
+                    hidden: isCollectiblesEmpty,
+                  }
+                )}
               >
-                <AnimatedLink
-                  className="!text-black !bg-none w-full uppercase flex items-center gap-1"
-                  href={item.pathname}
-                  text={item.title}
-                  showIcon={item.isDropdown}
-                />
-              </div>
-              {item.isDropdown && activeIndex === index && (
                 <div
-                  ref={(el) => {
-                    if (el) {
-                      if (activeIndex === index) {
-                        el.style.maxHeight = `${el.scrollHeight}px`;
-                      } else {
-                        el.style.maxHeight = "0px";
-                      }
-                    }
-                  }}
-                  className={`space-y-2 bg-none p-2 mb-2 transition-[max-height] duration-500 ease-in-out overflow-hidden`}
+                  className="flex transition-all duration-300 ease-in-out items-center cursor-pointer"
+                  onClick={() => handleNavItemClick(index, item.isDropdown)}
                 >
-                  {services?.map((item: item, subIndex) => {
-                    return (
-                      <div key={subIndex}>
-                        <div
-                          className="flex transition-all duration-300 ease-in-out items-center cursor-pointer"
-                          onClick={() => handleDropdownItemClick(subIndex)}
-                        >
-                          <AnimatedLink
-                            className="rounded-none !bg-transparent w-full uppercase flex items-center gap-1"
-                            href={"#"}
-                            text={item?.title}
-                          />
-                        </div>
-                        {activeDropdownIndex === subIndex && (
-                          <div className="pl-4 space-y-1 overflow-hidden">
-                            {item.sub_services.map(
-                              (subCategory, subCatIndex) => (
-                                <AnimatedLink
-                                  key={subCatIndex}
-                                  className={cn(
-                                    `rounded-none w-full pl-2 uppercase flex items-center gap-1 ${
-                                      path === subCategory.url &&
-                                      "!bg-secondary"
-                                    }`
-                                  )}
-                                  href={`${PUBLIC_URLS.SERVICES}/${subCategory.url}`}
-                                  text={subCategory.title}
-                                />
-                              )
-                            )}
-                          </div>
-                        )}
-                      </div>
-                    );
-                  })}
+                  <AnimatedLink
+                    className="!text-black !bg-none w-full uppercase flex items-center gap-1"
+                    href={item.pathname}
+                    text={item.title}
+                    showIcon={item.isDropdown}
+                  />
                 </div>
-              )}
-            </div>
-          ))}
+                {item.isDropdown && activeIndex === index && (
+                  <div
+                    ref={(el) => {
+                      if (el) {
+                        if (activeIndex === index) {
+                          el.style.maxHeight = `${el.scrollHeight}px`;
+                        } else {
+                          el.style.maxHeight = "0px";
+                        }
+                      }
+                    }}
+                    className={`space-y-2 bg-none p-2 mb-2 transition-[max-height] duration-500 ease-in-out overflow-hidden`}
+                  >
+                    {services?.map((item: item, subIndex) => {
+                      return (
+                        <div key={subIndex}>
+                          <div
+                            className="flex transition-all duration-300 ease-in-out items-center cursor-pointer"
+                            onClick={() => handleDropdownItemClick(subIndex)}
+                          >
+                            <AnimatedLink
+                              className="rounded-none !bg-transparent w-full uppercase flex items-center gap-1"
+                              href={"#"}
+                              text={item?.title}
+                            />
+                          </div>
+                          {activeDropdownIndex === subIndex && (
+                            <div className="pl-4 space-y-1 overflow-hidden">
+                              {item.sub_services.map(
+                                (subCategory, subCatIndex) => (
+                                  <AnimatedLink
+                                    key={subCatIndex}
+                                    className={cn(
+                                      `rounded-none w-full pl-2 uppercase flex items-center gap-1 ${
+                                        path === subCategory.url &&
+                                        "!bg-secondary"
+                                      }`
+                                    )}
+                                    href={`${PUBLIC_URLS.SERVICES}/${subCategory.url}`}
+                                    text={subCategory.title}
+                                  />
+                                )
+                              )}
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
         <div className=" ">
           <ButtonLayout className="dark:bg-primary !w-44 dark:text-black bg-black text-white">
