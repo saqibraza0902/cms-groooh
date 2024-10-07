@@ -297,7 +297,7 @@ export const get_processes = async () => {
         "Content-Type": "application/json",
       },
       next: {
-        revalidate: 300,
+        revalidate: 30,
       },
     });
     if (!res.ok) {
