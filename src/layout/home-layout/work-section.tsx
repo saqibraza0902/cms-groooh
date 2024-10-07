@@ -44,7 +44,7 @@ const WorkSection = ({ title }: IProp) => {
     const get_data = async () => {
       try {
         setloading(true);
-        const newposts = await get_portfolios();
+        const newposts = await get_portfolios("");
         console.log(newposts);
         setloading(false);
         setData(newposts);
