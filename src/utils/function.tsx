@@ -91,9 +91,9 @@ export const get_blogs = async () => {
     return error;
   }
 };
-export const get_portfolios = async () => {
+export const get_portfolios = async (t: string) => {
   try {
-    const res = await fetch(`${BASEURL}api/portfolio`, {
+    const res = await fetch(`${BASEURL}api/portfolio?t=${t}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
