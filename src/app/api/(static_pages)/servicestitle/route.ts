@@ -38,3 +38,4 @@ export const GET = async () => {
     return new NextResponse(JSON.stringify({ message: err }));
   }
 };
+export const dynamic = "force-dynamic";

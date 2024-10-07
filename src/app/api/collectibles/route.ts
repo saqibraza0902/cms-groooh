@@ -30,3 +30,4 @@ export const GET = async (req: any, res: NextApiResponse) => {
     return new NextResponse(JSON.stringify({ message: error }));
   }
 };
+export const dynamic = "force-dynamic";

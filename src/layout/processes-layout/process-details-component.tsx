@@ -96,7 +96,7 @@ const ProcessesDetailsSection = ({ prop }: IProp) => {
                         `group absolute inset-0 z-20 cursor-pointer overflow-hidden`
                       )}
                     >
-                      <span className=" bottom-28 z-50 fixed right-14">
+                      {/* <span className=" bottom-28 z-50 fixed right-14">
                         {hoverStates[i] === true ? (
                           <BiMinusCircle
                             size={30}
@@ -110,8 +110,10 @@ const ProcessesDetailsSection = ({ prop }: IProp) => {
                             onClick={() => handleMouseEnter(i)}
                           />
                         )}
-                      </span>
+                      </span> */}
                       <motion.div
+                        onMouseEnter={() => handleMouseEnter(i)}
+                        onMouseLeave={() => handleMouseLeave(i)}
                         initial={{ y: "83%" }}
                         animate={{ y: hoverStates[i] ? "0%" : "83%" }}
                         transition={{ duration: 0.3 }}
