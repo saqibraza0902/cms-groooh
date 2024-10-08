@@ -50,28 +50,15 @@ const ExpertiseComponent = ({ expertise, title }: IProp) => {
                     `group absolute  inset-0 z-20 cursor-pointer overflow-hidden`
                   )}
                 >
-                  <span className="absolute bottom-8 2xl:bottom-12 z-50 right-2">
-                    {hoverStates[i] === true ? (
-                      <BiMinusCircle
-                        size={30}
-                        color="#000"
-                        onClick={() => handleMouseLeave(i)}
-                      />
-                    ) : (
-                      <BiPlusCircle
-                        size={30}
-                        color="#000"
-                        onClick={() => handleMouseEnter(i)}
-                      />
-                    )}
-                  </span>
                   <motion.div
-                    initial={{ y: "83%" }}
-                    animate={{ y: hoverStates[i] ? "0%" : "83%" }}
+                    onMouseLeave={() => handleMouseLeave(i)}
+                    onMouseEnter={() => handleMouseEnter(i)}
+                    initial={{ y: "80%" }}
+                    animate={{ y: hoverStates[i] ? "5%" : "80%" }}
                     transition={{ duration: 0.3 }}
                     className=" w-10/12 mx-auto bg-secondary rounded-2xl text-black overflow-hidden flex-col h-full flex "
                   >
-                    <p className="font-SuisseSemiBold w-11/12 text-2xl">
+                    <p className="font-SuisseSemiBold w-full text-2xl">
                       {el.title}
                     </p>
                     <p

@@ -47,7 +47,9 @@ const WorkSection = ({ title }: IProp) => {
         const newposts = await get_portfolios("");
         console.log(newposts);
         setloading(false);
-        setData(newposts);
+        const limitedPosts = newposts.slice(0, 4);
+        console.log("Limited poosts", limitedPosts);
+        setData(limitedPosts);
       } catch (error) {
         console.log(error);
       } finally {
@@ -63,7 +65,7 @@ const WorkSection = ({ title }: IProp) => {
     <div className="w-full h-full 2xl:w-[85%] 2xl:h-[85%]">
       <ContentBox className="bg-primary !p-5" childClass="!bg-secondary">
         <div className="flex flex-col-reverse z-0 h-full lg:flex-row relative lg:p-5 lg:gap-5">
-          <div className="lg:w-1/2 h-full flex 2xl:justify-end flex-col z-40  -mt-12 md:mt-0 gap-4">
+          <div className="lg:w-1/2 h-max flex lg:items-stretch 2xl:justify-end flex-col z-40  -mt-12 md:mt-0 gap-4">
             <h2 className="text-4xl hidden lg:flex w-1/12 lg:text-[70px] font-SuisseBold lg:leading-[65px] text-black ">
               {title}
             </h2>

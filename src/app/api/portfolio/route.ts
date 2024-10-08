@@ -11,7 +11,7 @@ export const GET = async (req: Request) => {
     const t = type == undefined ? "" : type;
 
     const colRef = collection(db, "Portfolio");
-    const snapshot = await getDocs(query(colRef, orderBy("createdAt", "asc")));
+    const snapshot = await getDocs(query(colRef, orderBy("createdAt", "desc")));
     const data = snapshot.docs.map((doc) => ({
       id: doc.id,
       ...doc.data(),

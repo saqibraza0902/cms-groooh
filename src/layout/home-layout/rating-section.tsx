@@ -28,8 +28,10 @@ const RatingSection = ({ rating }: IProp) => {
     <div className="h-full flex flex-col md:flex-row 2xl:w-[85%] 2xl:justify-between mx-auto">
       <div className="flex flex-row justify-between items-center lg:items-start lg:justify-end lg:px-0 lg:flex-col  text-white">
         <div className="lg:w-1/2 flex pl-6 lg:px-0 flex-col">
-          <span className="text-4xl font-SuisseBold text-black">4.9</span>
-          <span className="text-3xl  text-black font-SuisseMedium">
+          <span className="text-4xl lg:text-6xl font-SuisseMedium lg:leading-[65px] text-black">
+            5.0
+          </span>
+          <span className="text-4xl lg:text-[70px] font-SuisseBold lg:leading-[65px] text-black ">
             {rating?.title}
           </span>
         </div>

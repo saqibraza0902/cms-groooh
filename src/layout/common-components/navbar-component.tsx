@@ -17,6 +17,7 @@ import { get_collectibles, services_title } from "@/utils/function";
 import Image from "next/image";
 import { HiBars3BottomLeft } from "react-icons/hi2";
 import { addservices } from "@/redux/slices/services-slices";
+import ContactIcon from "@/ui/icons/contact-icon";
 
 const Navbar = ({ toggle }: any) => {
   const path = usePathname();
@@ -67,6 +68,7 @@ const Navbar = ({ toggle }: any) => {
                   <AnimatedLink
                     onMouseEnter={() => setIsHovered(true)}
                     onMouseLeave={() => setIsHovered(false)}
+                    iconColor="!dark:text-[#fff] !text-black"
                     className={cn(
                       `text-black dark:text-black !bg-none  uppercase flex items-center gap-1`,
                       {
@@ -125,14 +127,7 @@ const Navbar = ({ toggle }: any) => {
               <div className="hidden md:flex">
                 <Link href={PUBLIC_URLS.CONTACT}>
                   <ButtonLayout
-                    Icon={
-                      <Image
-                        alt=""
-                        src="https://firebasestorage.googleapis.com/v0/b/groooh-com.appspot.com/o/navbar-icons%2FChat-Dot.svg?alt=media&token=7f7ae362-84ff-4e89-9fab-19b45ce9744d"
-                        height={30}
-                        width={30}
-                      />
-                    }
+                    Icon={<ContactIcon />}
                     className="dark:bg-primary max-h-11  dark:text-black bg-black text-white"
                   >
                     Contact Us

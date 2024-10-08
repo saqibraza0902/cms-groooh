@@ -106,7 +106,7 @@ const Footer = () => {
         </div>
       </div>
       <a
-        href="https://wa.me/923116931514"
+        href="https://wa.me/923137198899"
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-0 right-0 z-[1000] rounded-l-xl p-2 gap-2 bg-[#25D366] flex items-center"

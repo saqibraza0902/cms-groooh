@@ -12,6 +12,9 @@ import { useTheme } from "next-themes";
 import { get_collectibles, services_title } from "@/utils/function";
 import { useAppSelector } from "@/hooks/Hooks";
 import { PUBLIC_URLS } from "@/utils/urls";
+import Link from "next/link";
+import Image from "next/image";
+import ContactIcon from "@/ui/icons/contact-icon";
 interface Props {
   open: boolean;
   close: () => void;
@@ -55,15 +58,14 @@ const ToggleSidebar = ({ open, close }: Props) => {
     >
       <div className="px-4 w-full py-3 flex flex-col space-y-6 rounded-xl">
         <div className="flex items-center justify-between md:hidden w-full ">
-          <div
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            className="bg-black cursor-pointer dark:bg-primary h-fit p-1 w-fit  rounded-lg"
-          >
-            <HiOutlineSun
-              size={28}
-              color={theme === "dark" ? "#000" : "#fff"}
+          <Link href={PUBLIC_URLS.HOME} className=" w-32 h-10">
+            <Image
+              src={theme === "dark" ? "/icons/logo-w.svg" : "/icons/logo.svg"}
+              alt="logo"
+              height={40}
+              width={128}
             />
-          </div>
+          </Link>
           <div
             onClick={close}
             className="p-1 rounded-lg cursor-pointer bg-black dark:bg-primary w-fit self-end"
@@ -94,6 +96,7 @@ const ToggleSidebar = ({ open, close }: Props) => {
                   onClick={() => handleNavItemClick(index, item.isDropdown)}
                 >
                   <AnimatedLink
+                    iconColor="text-[#000]"
                     className="!text-black !bg-none w-full uppercase flex items-center gap-1"
                     href={item.pathname}
                     text={item.title}
@@ -121,6 +124,7 @@ const ToggleSidebar = ({ open, close }: Props) => {
                             onClick={() => handleDropdownItemClick(subIndex)}
                           >
                             <AnimatedLink
+                              showIcon={true}
                               className="rounded-none !bg-transparent w-full uppercase flex items-center gap-1"
                               href={"#"}
                               text={item?.title}
@@ -154,10 +158,22 @@ const ToggleSidebar = ({ open, close }: Props) => {
             );
           })}
         </div>
-        <div className=" ">
-          <ButtonLayout className="dark:bg-primary !w-44 dark:text-black bg-black text-white">
+        <div className="flex justify-between items-center">
+          <ButtonLayout
+            Icon={<ContactIcon />}
+            className="dark:bg-primary !w-44 dark:text-black bg-black text-white"
+          >
             CONTACT US
           </ButtonLayout>
+          <div
+            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            className="bg-black cursor-pointer dark:bg-primary h-fit p-1 w-fit  rounded-lg"
+          >
+            <HiOutlineSun
+              size={28}
+              color={theme === "dark" ? "#000" : "#fff"}
+            />
+          </div>
         </div>
       </div>
     </div>

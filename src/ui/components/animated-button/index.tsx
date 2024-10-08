@@ -19,6 +19,7 @@ interface IProp {
 interface ILinkProp {
   text?: string;
   href?: string;
+  iconColor?: string;
   className?: React.LinkHTMLAttributes<HTMLUListElement> | string;
   showIcon?: boolean;
   onMouseEnter?: () => void;
@@ -82,11 +83,12 @@ export const AnimatedLink = ({
   href = "#",
   className,
   showIcon,
+  iconColor,
   onMouseEnter,
   onMouseLeave,
 }: ILinkProp) => {
   const [isHovered, setIsHovered] = useState(false);
-
+  console.log("Icon color", iconColor);
   return (
     <Link
       href={href}
@@ -102,7 +104,7 @@ export const AnimatedLink = ({
         onMouseLeave={showIcon ? onMouseLeave : () => console.log("first")}
       >
         <motion.p
-          className=" flex m-auto items-center gap-1"
+          className=" flex m-auto items-center justify-between gap-1"
           initial={{ y: "50%" }}
           animate={{ y: isHovered ? "-150%" : "50%" }}
           transition={{ duration: 0.3 }}
@@ -111,15 +113,15 @@ export const AnimatedLink = ({
           {showIcon && (
             <>
               {isHovered ? (
-                <FaChevronUp className="dark:text-white text-black" />
+                <FaChevronUp color={iconColor} />
               ) : (
-                <FaChevronDown className="dark:text-white text-black" />
+                <FaChevronDown color={`${iconColor && iconColor}`} />
               )}
             </>
           )}
         </motion.p>
         <motion.p
-          className="flex m-auto items-center gap-1"
+          className="flex m-auto items-center justify-between gap-1"
           initial={{ y: isHovered ? "-50%" : "100%" }}
           animate={{ y: isHovered ? "-50%" : "100%" }}
           transition={{ duration: 0.3 }}
@@ -128,9 +130,9 @@ export const AnimatedLink = ({
           {showIcon && (
             <>
               {isHovered ? (
-                <FaChevronUp className="dark:text-white text-black" />
+                <FaChevronUp color={iconColor && iconColor} />
               ) : (
-                <FaChevronDown className="dark:text-white text-black" />
+                <FaChevronDown color={iconColor && iconColor} />
               )}
             </>
           )}
