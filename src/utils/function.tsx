@@ -5,7 +5,7 @@ import { getDownloadURL, getStorage, listAll, ref } from "firebase/storage";
 
 export const BASEURL = `${process.env.NEXT_PUBLIC_URL}`;
 
-export const home_details = async () => {
+export const home_details = cache(async () => {
   try {
     const res = await fetch(`${BASEURL}api/home`, {
       method: "GET",
@@ -21,7 +21,7 @@ export const home_details = async () => {
   } catch (error) {
     return error;
   }
-};
+});
 export const contact_details = async () => {
   try {
     const res = await fetch(`${BASEURL}api/contact`, {

@@ -102,6 +102,7 @@ export interface IRating {
 }
 export interface IWork {
   title: string;
+  description: string;
 }
 export interface IPartners {
   title: string;
@@ -117,6 +118,7 @@ export interface IBlogSection {
 export interface IHome {
   HeroSection: IHomeHeroSection;
   ScrollText: string;
+  meta_description: string;
   ServicesPage: IServices;
   RatingSection: IRating;
   WorksSection: IWork;

@@ -9,6 +9,14 @@ import WorkSection from "@/layout/home-layout/work-section";
 import ScrollTextSection from "@/layout/home-layout/scroll-text-section";
 import { home_details } from "@/utils/function";
 import { IHome } from "@/utils/types";
+import { Metadata } from "next";
+
+export async function generateMetadata(props: any): Promise<Metadata> {
+  const home_detail: IHome = await home_details();
+  return {
+    description: home_detail?.meta_description,
+  };
+}
 const Home = async () => {
   const home_detail: IHome = await home_details();
   return (
